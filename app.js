@@ -9,12 +9,14 @@ var app = express();
 app.use(bodyParser.json());
 app.use(express.static('./public/dist'));
 
+var facebookRouter = require('./routes/facebook_routes');
 var serviceRouter = require('./routes/service_routes');
 var specimenRouter = require('./routes/specimen_routes');
-var visitorRouter = require('./routes/visitor_routes');
+var usageRouter = require('./routes/usage_routes');
+app.use('/facebook', facebookRouter);
 app.use('/service', serviceRouter);
 app.use('/specimen', specimenRouter);
-app.use('/visitor', visitorRouter);
+app.use('/usage', usageRouter);
 
 var port = 3000;
 app.listen(port, function () {
