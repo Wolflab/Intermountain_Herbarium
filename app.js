@@ -9,8 +9,12 @@ var app = express();
 app.use(bodyParser.json());
 app.use(express.static('./public/dist'));
 
-// var deviceRouter = require('./routes/device_routes');
-// app.use('/devices', deviceRouter);
+var serviceRouter = require('./routes/service_routes');
+var specimenRouter = require('./routes/specimen_routes');
+var visitorRouter = require('./routes/visitor_routes');
+app.use('/service', serviceRouter);
+app.use('/specimen', specimenRouter);
+app.use('/visitor', visitorRouter);
 
 var port = 3000;
 app.listen(port, function () {
