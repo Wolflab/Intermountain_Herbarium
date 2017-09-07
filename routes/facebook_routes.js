@@ -2,7 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var router = express.Router();
 
-var fb = require('fb');
+var FB = require('fb');
+var options = {};
 fb = new FB.Facebook(options);
 
 router.get('/info', function(req, res){

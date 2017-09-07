@@ -1,0 +1,25 @@
+{
+  "name": "herbariumapplication",
+  "version": "0.1.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ronin11/HerbariumApplication.git"
+  },
+  "author": "Ronin11",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ronin11/HerbariumApplication/issues"
+  },
+  "homepage": "https://github.com/Ronin11/HerbariumApplication#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "fb": "^2.0.0",
+    "monk": "^6.0.3"
+  }
+}
