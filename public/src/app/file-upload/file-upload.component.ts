@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+// import { Observable } from 'rxjs/Observable';
+import { Http, RequestOptions, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
 
-import { FileUploader } from 'ng2-file-upload';
 
-const URL = 'localhost:3000/upload';
+
+const URL = '/upload/';
 
 @Component({
   selector: 'app-file-upload',
@@ -10,23 +13,42 @@ const URL = 'localhost:3000/upload';
   styleUrls: ['./file-upload.component.css']
 })
 export class FileUploadComponent implements OnInit {
-	public uploader:FileUploader = new FileUploader({url: URL});
-	public hasBaseDropZoneOver:boolean = false;
+	@ViewChild('inputFile') nativeInputFile: ElementRef;
+	src: string;
 
-	public fileOverBase(e:any):void {
-		this.hasBaseDropZoneOver = e;
-	}
-
-	constructor() { 
+	constructor(public http: Http) { 
 		
 	}
 
 	ngOnInit() {
 	}
 
-	upload(){
-		console.log("uploading")
-		this.uploader.uploadAll()
+
+	selectFile() {
+		this.nativeInputFile.nativeElement.click();
+	}
+
+	fileChange(event) {
+		var parent = this;
+		let fileList: FileList = event.target.files;
+		if(fileList.length > 0) {
+			let file: File = fileList[0];
+			let formData:FormData = new FormData();
+			formData.append('uploadFile', file, file.name);
+			let headers = new Headers();
+			/** No need to include Content-Type in Angular 4 */
+			// headers.append('Content-Type', 'multipart/form-data');
+			headers.append('Accept', 'application/json');
+			let options = new RequestOptions({ headers: headers });
+			this.http.post(`${URL}`, formData, options)
+				.map(function(res){
+					parent.src = res.json().src;
+				})
+				.subscribe(
+					data => console.log('success'),
+					error => console.log(error)
+				)
+		}
 	}
 
 }
