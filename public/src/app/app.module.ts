@@ -17,6 +17,9 @@ import { UsageFormComponent } from './usage-form/usage-form.component';
 import { SpecimenFormComponent } from './specimen-form/specimen-form.component';
 import { ServiceFormComponent } from './service-form/service-form.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { ServicePageComponent } from './service-page/service-page.component';
+import { SpecimenPageComponent } from './specimen-page/specimen-page.component';
+import { UsagePageComponent } from './usage-page/usage-page.component';
 
 @NgModule({
 	declarations: [
@@ -25,7 +28,10 @@ import { HomePageComponent } from './home-page/home-page.component';
 		UsageFormComponent,
 		SpecimenFormComponent,
 		ServiceFormComponent,
-		HomePageComponent
+		HomePageComponent,
+		ServicePageComponent,
+		SpecimenPageComponent,
+		UsagePageComponent
 	],
 	imports: [
 		HttpModule,
@@ -40,6 +46,18 @@ import { HomePageComponent } from './home-page/home-page.component';
 			{
 				path: 'home',
 				component: HomePageComponent
+			},
+			{
+				path: 'service',
+				component: ServicePageComponent
+			},
+			{
+				path: 'specimen',
+				component: SpecimenPageComponent
+			},
+			{
+				path: 'usage',
+				component: UsagePageComponent
 			},
 			{ 
 				path: '',
