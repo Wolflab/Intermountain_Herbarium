@@ -5,9 +5,9 @@ import { MdDialog } from '@angular/material';
 import { SpecimenFormComponent } from '../specimen-form/specimen-form.component';
 
 @Component({
-  selector: 'app-specimen-page',
-  templateUrl: './specimen-page.component.html',
-  styleUrls: ['./specimen-page.component.css']
+	selector: 'app-specimen-page',
+	templateUrl: './specimen-page.component.html',
+	styleUrls: ['./specimen-page.component.css']
 })
 export class SpecimenPageComponent implements OnInit {
 
