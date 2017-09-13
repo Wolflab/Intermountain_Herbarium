@@ -24,6 +24,7 @@ import { SpecimenPageComponent } from './specimen-page/specimen-page.component';
 import { UsageFormComponent } from './usage-form/usage-form.component';
 import { UsagePageComponent } from './usage-page/usage-page.component';
 
+import { DataService } from './services/data/data.service';
 import { ScreenSizeService } from './services/screen-size/screen-size.service';
 
 @NgModule({
@@ -81,6 +82,7 @@ import { ScreenSizeService } from './services/screen-size/screen-size.service';
 		])
 	],
 	providers: [
+		DataService,
 		ScreenSizeService
 	],
 	bootstrap: [AppComponent]
