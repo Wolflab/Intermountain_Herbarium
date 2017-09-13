@@ -1,6 +1,6 @@
 const request = require('request-promise');  
 
-const config = require('../config.json');
+// const config = require('../config.json');
 
 //Headbox 412065968905812
 //Herbarium 185929428100141
@@ -20,4 +20,5 @@ const options = {
 var test = async function(){
 	var res = await request(options)
 	console.log(res);
-}();
+}
+//}();

@@ -10,12 +10,12 @@ app.use(bodyParser.json());
 app.use(express.static('./public/dist'));
 app.use('/uploads', express.static('./uploads'));
 
-var facebookRouter = require('./routes/facebook_routes');
+// var facebookRouter = require('./routes/facebook_routes');
 var serviceRouter = require('./routes/service_routes');
 var specimenRouter = require('./routes/specimen_routes');
 var uploadRouter = require('./routes/upload_routes');
 var usageRouter = require('./routes/usage_routes');
-app.use('/facebook', facebookRouter);
+// app.use('/facebook', facebookRouter);
 app.use('/service', serviceRouter);
 app.use('/specimen', specimenRouter);
 app.use('/upload', uploadRouter);
