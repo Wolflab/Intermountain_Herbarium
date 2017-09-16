@@ -1,9 +1,31 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var router = express.Router();
+const express = require('express');
+const bodyParser = require('body-parser');
+const request = require('request-promise');
+const router = express.Router();
 
-router.get('/totalCount', function(req, res){
-	res.json(4);
+router.get('/totalCount', async function(req, res){
+	try{
+		var urls = [
+			"http://intermountainbiota.org/portal/collections/misc/collprofiles.php?collid=16",
+			"http://bryophyteportal.org/portal/collections/misc/collprofiles.php?collid=10",
+			"http://lichenportal.org/portal/collections/misc/collprofiles.php?collid=30",
+			"http://mycoportal.org/portal/collections/misc/collprofiles.php?collid=4"
+		]
+		var promises = [];
+		for(url of urls){
+			promises.push(request(url));
+		}
+		var values = await Promise.all(promises);
+		var total = 0;
+		for(value of values){
+			const regex = /(\d*) specimen records/g;
+			var temp = value.replace(/,/g, '');
+			total += parseInt(regex.exec(temp)[1]);
+		}
+		res.json(total);
+	}catch(err){
+		res.json("ERROR IN PARSING PAGES")
+	}
 });
 
 router.post("/insert", function(req, res){
