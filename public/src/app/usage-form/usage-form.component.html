@@ -1,26 +1,49 @@
 <div>
-	<h2 md-dialog-title>Usage Dialog</h2>
-	<hr>
-	<md-dialog-content>
-		Content
-		<!-- <md-list>
-			<md-list-item *ngFor="let item of cartService.cartItems">
-				<md-icon class="delete" md-list-icon (click)="removeFromCart(item)">cancel</md-icon>
-				{{ item.name }}
-				<span class="spacer"></span>
-				${{ item.price }}
-			</md-list-item>
-			<md-divider></md-divider>
-			<md-list-item>
-				<span class="spacer"></span>
-				Total: ${{ totalCost }}
-			</md-list-item>
-		</md-list> -->
-
-	</md-dialog-content>
-	<hr>
-	<md-dialog-actions>
-		<button md-raised-button color="primary" (click)="onCloseConfirm()">Submit</button>&nbsp;
-		<button md-raised-button (click)="onCloseCancel()">CANCEL</button>
-	</md-dialog-actions>
+	<form #usageForm="ngForm">
+		<h2 md-dialog-title>Usage Dialog</h2>
+		<hr>
+		<md-dialog-content>
+			<md-grid-list cols=6>
+				<md-grid-tile [colspan]="3">
+					<md-select required placeholder="Usage Type" 
+						[(ngModel)]="selectedUsage" name="selectedUsage" 
+						(change)="onUsageChange($event)" style="width: 250px">
+						<md-option *ngFor="let usage of usageTypes" [value]="usage">
+							{{ usage.name }}
+						</md-option>
+					</md-select>
+				</md-grid-tile>
+				<md-grid-tile [colspan]="3">
+					<div *ngIf="selectedUsage != null">
+						<div *ngIf="selectedUsage.name != 'Group Usage'">
+							<md-select required placeholder="Sub Usage" [(ngModel)]="selectedSubUsage" 
+								name="selectedSubUsage" style="width: 250px">
+								<md-option *ngFor="let subUsage of selectedUsage.options" [value]="subUsage">
+									{{ subUsage.preDisplay }}{{ subUsage.name }}
+								</md-option>
+							</md-select>
+						</div>
+						<div *ngIf="selectedUsage.name == 'Group Usage'">
+							<md-input-container>
+								<input mdInput required name="name" placeholder="Name" ngModel>
+								<md-error>This is required</md-error>
+							</md-input-container>
+						</div>
+					</div>
+				</md-grid-tile>
+				<md-grid-tile [colspan]="3">
+					<md-input-container>
+						<input mdInput required name="count" placeholder="Count" 
+							pattern="[0-9]+" ngModel>
+						<md-error>Please enter a number</md-error>
+					</md-input-container>
+				</md-grid-tile>
+			</md-grid-list>
+		</md-dialog-content>
+		<hr>
+		<md-dialog-actions>
+			<button md-raised-button type=submit color="primary" (click)="submit(usageForm)">Submit</button>&nbsp;
+			<!-- <button md-raised-button (click)="onCloseCancel()">Cancel</button> -->
+		</md-dialog-actions>
+	</form>
 </div>

@@ -66,24 +66,24 @@ import { ScreenSizeService } from './services/screen-size/screen-size.service';
 		RouterModule.forRoot([
 			{
 				path: 'home',
-				component: HomePageComponent
-			},
-			{
-				path: 'admin',
 				component: AdminPageComponent
 			},
-			{
-				path: 'service',
-				component: ServicePageComponent
-			},
-			{
-				path: 'specimen',
-				component: SpecimenPageComponent
-			},
-			{
-				path: 'usage',
-				component: UsagePageComponent
-			},
+			// {
+			// 	path: 'admin',
+			// 	component: AdminPageComponent
+			// },
+			// {
+			// 	path: 'service',
+			// 	component: ServicePageComponent
+			// },
+			// {
+			// 	path: 'specimen',
+			// 	component: SpecimenPageComponent
+			// },
+			// {
+			// 	path: 'usage',
+			// 	component: UsagePageComponent
+			// },
 			{ 
 				path: '',
 				redirectTo: 'home',

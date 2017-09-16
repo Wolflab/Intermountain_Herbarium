@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+
 import { FileUploadComponent } from '../file-upload/file-upload.component';
 
 @Component({
@@ -13,12 +15,13 @@ export class ServiceFormComponent implements OnInit {
 
 	organizations: any[];
 
-	constructor() { 
-	}
+	constructor(public dialogRef: MdDialogRef<ServiceFormComponent>) { }
 
 	submit(form){
-		console.log(form.valid);
-		console.log(form.value);
+		if(form.valid){
+			console.log("Submitting: ", form);
+			this.dialogRef.close();
+		}
 	}
 
 	ngOnInit() {
