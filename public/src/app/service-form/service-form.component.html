@@ -1,11 +1,18 @@
 <div>
 	<form #serviceForm="ngForm">
-		<h2 md-dialog-title>Service Dialog</h2>
+		<h2 md-dialog-title>Service Request Form</h2>
 		<hr>
 		<md-dialog-content>
 			<md-grid-list cols=6>
 				<md-grid-tile [colspan]="3">
-					<md-select required placeholder="Service Organization" 
+					<md-input-container style="width: 100%;">
+						<input mdInput required name="request" placeholder="Name of individual" ngModel>
+						<md-error>This is required</md-error>
+					</md-input-container>
+				</md-grid-tile>
+				<md-grid-tile [colspan]="3"></md-grid-tile>
+				<md-grid-tile [colspan]="3">
+					<md-select required placeholder="Organization" 
 						[(ngModel)]="selectedOrganization" name="serviceOrganization" style="width: 250px">
 						<md-option *ngFor="let group of organizations" [value]="group">
 							{{ group.name }}
@@ -22,18 +29,10 @@
 						</md-select>
 					</div>
 				</md-grid-tile>
-				<md-grid-tile [colspan]="3">
-					<md-input-container>
-						<input mdInput name="time" placeholder="Time" 
-							pattern="[0-9]+" ngModel>
-						<md-error>Please enter a number</md-error>
-					</md-input-container>
-				</md-grid-tile>
-				<md-grid-tile [colspan]="3">
-					<md-input-container>
-						<input mdInput name="request" placeholder="Request" 
-							pattern="[0-9]+" ngModel>
-						<md-error>Please enter a number</md-error>
+				<md-grid-tile [colspan]="6">
+					<md-input-container style="width: 100%;">
+						<textarea mdInput md-autosize required placeholder="Service to Perform" name="serviceToPerform" ngModel></textarea>
+						<md-error>This is required</md-error>
 					</md-input-container>
 				</md-grid-tile>
 			</md-grid-list>
@@ -41,7 +40,7 @@
 		<hr>
 		<md-dialog-actions>
 			<button md-raised-button type=submit color="primary" (click)="submit(serviceForm)">Submit</button>&nbsp;
-			<!-- <button md-raised-button (click)="onCloseCancel()">Cancel</button> -->
+			<button md-raised-button (click)="onCloseCancel()">Cancel</button>
 		</md-dialog-actions>
 	</form>
 </div>

@@ -1,11 +1,28 @@
 <div>
 	<md-card>
-		<h3>
-			Admin Page
-		</h3>
-		<hr>
-		<button md-raised-button color="primary" (click)="openServiceDialog()">Add Service</button>
-		<button md-raised-button color="primary" (click)="openSpecimenDialog()">Add Specimen</button>
-		<button md-raised-button color="primary" (click)="openUsageDialog()">Add Usage</button>
+		<md-tab-group>
+			<md-tab label="Service">
+				<div class="content">
+					<md-grid-list cols=6 rowHeight="50px">
+						<md-grid-tile [colspan]="1">
+							<h3> Service Requests </h3>
+						</md-grid-tile>
+						<md-grid-tile [colspan]="4"></md-grid-tile>
+						<md-grid-tile [colspan]="1">
+							<button md-raised-button color="primary" (click)="openServiceDialog()">Add Service Request</button>
+						</md-grid-tile>
+					</md-grid-list>
+					<hr>
+					<div>
+						SR
+					</div>
+				</div>
+			</md-tab>
+			<md-tab label="Usage">
+				<div class="content">
+					<button md-raised-button color="primary" (click)="openUsageDialog()">Add Usage</button>
+				</div>
+			</md-tab>
+		  </md-tab-group>
 	</md-card>	
 </div>

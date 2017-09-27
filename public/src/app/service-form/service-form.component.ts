@@ -19,7 +19,7 @@ export class ServiceFormComponent implements OnInit {
 
 	submit(form){
 		if(form.valid){
-			console.log("Submitting: ", form);
+			console.log("Submitting: ", form.value);
 			this.dialogRef.close();
 		}
 	}

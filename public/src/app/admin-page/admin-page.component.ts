@@ -24,19 +24,9 @@ export class AdminPageComponent implements OnInit {
 			width: '600px',
 		});
 
-		dialogRef.afterClosed().subscribe(result => {
-			console.log('The dialog was closed: ', result);
-		});
-	}
-
-	openSpecimenDialog(): void {
-		let dialogRef = this.dialog.open(SpecimenFormComponent, {
-			width: '600px',
-		});
-
-		dialogRef.afterClosed().subscribe(result => {
-			console.log('The dialog was closed: ', result);
-		});
+		// dialogRef.afterClosed().subscribe(result => {
+		// 	console.log('The dialog was closed: ', result);
+		// });
 	}
 
 	openUsageDialog(): void {
@@ -44,9 +34,9 @@ export class AdminPageComponent implements OnInit {
 			width: '600px',
 		});
 
-		dialogRef.afterClosed().subscribe(result => {
-			console.log('The dialog was closed: ', result);
-		});
+		// dialogRef.afterClosed().subscribe(result => {
+		// 	console.log('The dialog was closed: ', result);
+		// });
 	}
 
 }
