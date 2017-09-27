@@ -7,8 +7,9 @@ var router = express.Router();
 var app = express();
 
 app.use(bodyParser.json());
-app.use(express.static('./public/dist'));
-app.use('/uploads', express.static('./uploads'));
+app.use('/', express.static('./public/dist'));
+app.use('/home', express.static('./public/dist'));
+// app.use('/uploads', express.static('./uploads'));
 
 // var facebookRouter = require('./routes/facebook_routes');
 var serviceRouter = require('./routes/service_routes');

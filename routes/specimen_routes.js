@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const request = require('request-promise');
 const router = express.Router();
 
+var db = require('../util/db');
+
 router.get('/totalCount', async function(req, res){
 	try{
 		var urls = [

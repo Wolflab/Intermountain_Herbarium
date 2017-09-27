@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
-import { FileUploadComponent } from '../file-upload/file-upload.component';
+import { ServiceService } from '../services/service/service.service';
 
 @Component({
-  selector: 'app-service-form',
-  templateUrl: './service-form.component.html',
-  styleUrls: ['./service-form.component.css']
+	selector: 'app-service-form',
+	templateUrl: './service-form.component.html',
+	styleUrls: ['./service-form.component.css']
 })
 export class ServiceFormComponent implements OnInit {
 	serviceOrganization: string;
@@ -15,12 +15,19 @@ export class ServiceFormComponent implements OnInit {
 
 	organizations: any[];
 
-	constructor(public dialogRef: MdDialogRef<ServiceFormComponent>) { }
+	constructor(public dialogRef: MdDialogRef<ServiceFormComponent>,
+			public serviceService: ServiceService) { }
 
 	submit(form){
 		if(form.valid){
-			console.log("Submitting: ", form.value);
+			var service = form.value;
+			service.serviceOrganization = service.serviceOrganization.name;
+			service.serviceSubOrganization = service.serviceSubOrganization.name;
+			service.status = "Open";
+			service.date = new Date().toLocaleDateString();
+			this.serviceService.addService(service)
 			this.dialogRef.close();
+			window.location.reload();
 		}
 	}
 

@@ -31,12 +31,21 @@
 						</div>
 					</div>
 				</md-grid-tile>
-				<md-grid-tile [colspan]="3">
-					<md-input-container>
-						<input mdInput required name="count" placeholder="Count" 
-							pattern="[0-9]+" ngModel>
-						<md-error>Please enter a number</md-error>
+				<md-grid-tile [colspan]="6">
+					<md-input-container style="width: 100%;">
+						<textarea mdInput md-autosize required placeholder="Purpose" name="purpose" ngModel></textarea>
+						<md-error>This is required</md-error>
 					</md-input-container>
+				</md-grid-tile>
+				<md-grid-tile [colspan]="6" *ngIf="selectedUsage != null && selectedUsage.name == 'Visitation'">
+					<md-input-container>
+						<input mdInput required name="name" placeholder="Name" ngModel>
+						<md-error>This is required</md-error>
+					</md-input-container>
+					<md-input-container>
+							<input mdInput required name="name" placeholder="Name" ngModel>
+							<md-error>This is required</md-error>
+						</md-input-container>
 				</md-grid-tile>
 			</md-grid-list>
 		</md-dialog-content>

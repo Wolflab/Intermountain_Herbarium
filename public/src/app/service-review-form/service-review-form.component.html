@@ -1,0 +1,64 @@
+<div>
+	<form #serviceForm="ngForm">
+		<h2 md-dialog-title>Request Review Form</h2>
+		<hr>
+		<md-dialog-content>
+			<md-grid-list cols=6 rowHeight="75px">
+				<md-grid-tile [colspan]="3">
+					<p>
+						Requester: {{ data.requester }}
+					</p>
+				</md-grid-tile>
+				<md-grid-tile [colspan]="3">
+					<p>
+						Request Date: {{ data.date }}
+					</p>
+				</md-grid-tile>
+				<md-grid-tile [colspan]="6">
+					<p>
+						Requester Affiliation: {{ data.serviceOrganization }} - {{ data.serviceSubOrganization}}
+					</p>
+				</md-grid-tile>
+				<md-grid-tile [colspan]="6">
+					<p>
+						Service to Perform: 
+					</p>
+				</md-grid-tile>
+				<md-grid-tile [colspan]="6">
+					<p>
+						{{ data.serviceToPerform }}
+					</p>
+				</md-grid-tile>
+				<md-grid-tile [colspan]="6">
+					<h2> Service Completion </h2>
+				</md-grid-tile>
+				<md-grid-tile [colspan]="3">
+					<md-input-container style="width: 100%;">
+						<input mdInput required name="completedBy" placeholder="Completed by" ngModel>
+						<md-error>This is required</md-error>
+					</md-input-container>
+				</md-grid-tile>
+				<md-grid-tile [colspan]="3"></md-grid-tile>
+				<md-grid-tile [colspan]="3">
+					<md-input-container>
+						<input mdInput required name="time" placeholder="Time" 
+							pattern="[0-9]+" ngModel>
+						<md-error>Please enter a number</md-error>
+					</md-input-container>
+				</md-grid-tile>
+				<md-grid-tile [colspan]="3">
+					<md-input-container>
+						<input mdInput name="charge" placeholder="Charge" 
+							pattern="[0-9]+" ngModel>
+						<md-error>Please enter a number</md-error>
+					</md-input-container>
+				</md-grid-tile>
+			</md-grid-list>
+		</md-dialog-content>
+		<hr>
+		<md-dialog-actions>
+			<button md-raised-button type=submit color="primary" (click)="submit(serviceForm)">Submit</button>&nbsp;
+			<button md-raised-button (click)="onCloseCancel()">Cancel</button>
+		</md-dialog-actions>
+	</form>
+</div>

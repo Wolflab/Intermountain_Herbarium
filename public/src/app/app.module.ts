@@ -19,34 +19,26 @@ import { MdToolbarModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
-import { FileUploadComponent } from './file-upload/file-upload.component';
-import { HomePageComponent } from './home-page/home-page.component';
 import { ServiceFormComponent } from './service-form/service-form.component';
-import { ServicePageComponent } from './service-page/service-page.component';
-import { SpecimenFormComponent } from './specimen-form/specimen-form.component';
-import { SpecimenPageComponent } from './specimen-page/specimen-page.component';
+import { ServiceReviewFormComponent } from './service-review-form/service-review-form.component';
 import { UsageFormComponent } from './usage-form/usage-form.component';
-import { UsagePageComponent } from './usage-page/usage-page.component';
 
-import { DataService } from './services/data/data.service';
+import { ServiceService } from './services/service/service.service';
+import { UsageService } from './services/usage/usage.service';
 import { ScreenSizeService } from './services/screen-size/screen-size.service';
+
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		AdminPageComponent,
-		FileUploadComponent,
-		HomePageComponent,
 		ServiceFormComponent,
-		ServicePageComponent,
-		SpecimenFormComponent,
-		SpecimenPageComponent,
-		UsageFormComponent,
-		UsagePageComponent
+		ServiceReviewFormComponent,
+		UsageFormComponent
 	],
 	entryComponents: [
 		ServiceFormComponent,
-		SpecimenFormComponent,
+		ServiceReviewFormComponent,
 		UsageFormComponent
 	],
 	imports: [
@@ -70,22 +62,6 @@ import { ScreenSizeService } from './services/screen-size/screen-size.service';
 				path: 'home',
 				component: AdminPageComponent
 			},
-			// {
-			// 	path: 'admin',
-			// 	component: AdminPageComponent
-			// },
-			// {
-			// 	path: 'service',
-			// 	component: ServicePageComponent
-			// },
-			// {
-			// 	path: 'specimen',
-			// 	component: SpecimenPageComponent
-			// },
-			// {
-			// 	path: 'usage',
-			// 	component: UsagePageComponent
-			// },
 			{ 
 				path: '',
 				redirectTo: 'home',
@@ -94,7 +70,8 @@ import { ScreenSizeService } from './services/screen-size/screen-size.service';
 		])
 	],
 	providers: [
-		DataService,
+		ServiceService,
+		UsageService,
 		ScreenSizeService
 	],
 	bootstrap: [AppComponent]

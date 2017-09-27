@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
+import { UsageService } from '../services/usage/usage.service';
+
 @Component({
 	selector: 'app-usage-form',
 	templateUrl: './usage-form.component.html',
@@ -11,8 +13,10 @@ export class UsageFormComponent implements OnInit {
 	selectedUsage: Object;
 	selectedSubUsage: Object;
 	usageTypes: Object[];
+	names: string[];
 
-	constructor(public dialogRef: MdDialogRef<UsageFormComponent>) { }
+	constructor(public dialogRef: MdDialogRef<UsageFormComponent>,
+			public usageService: UsageService) { }
 
 	onUsageChange(event){
 		console.log(event);

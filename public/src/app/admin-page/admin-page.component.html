@@ -5,7 +5,7 @@
 				<div class="content">
 					<md-grid-list cols=6 rowHeight="50px">
 						<md-grid-tile [colspan]="1">
-							<h3> Service Requests </h3>
+							<h3> Open Service Requests </h3>
 						</md-grid-tile>
 						<md-grid-tile [colspan]="4"></md-grid-tile>
 						<md-grid-tile [colspan]="1">
@@ -14,7 +14,14 @@
 					</md-grid-list>
 					<hr>
 					<div>
-						SR
+						<md-grid-list cols=6 rowHeight="50px">
+							<md-grid-tile [colspan]="6" *ngFor="let service of openServices">
+								Requester: {{ service.requester }}
+								Organization {{ service.serviceOrganization }} - {{ service.serviceSubOrganization}}
+								Date: {{ service.date }}
+								<button md-raised-button color="primary" (click)="openServiceCompletionDialog(service)">Request Review</button>
+							</md-grid-tile>
+						</md-grid-list>
 					</div>
 				</div>
 			</md-tab>
