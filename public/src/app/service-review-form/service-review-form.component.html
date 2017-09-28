@@ -1,5 +1,5 @@
 <div>
-	<form #serviceForm="ngForm">
+	<form #serviceForm="ngForm" *ngIf="!waiting">
 		<h2 md-dialog-title>Request Review Form</h2>
 		<hr>
 		<md-dialog-content>
@@ -61,4 +61,11 @@
 			<button md-raised-button (click)="onCloseCancel()">Cancel</button>
 		</md-dialog-actions>
 	</form>
+	<div *ngIf="waiting">
+		<md-grid-list cols=1 rowHeight="350px">
+			<md-grid-tile>
+				<md-spinner color="primary"></md-spinner>
+			</md-grid-tile>
+		</md-grid-list>
+	</div>
 </div>

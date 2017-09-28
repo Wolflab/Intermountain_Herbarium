@@ -12,11 +12,11 @@ import { ServiceService } from '../services/service/service.service';
 export class ServiceFormComponent implements OnInit {
 	serviceOrganization: string;
 	serviceSubOrganization: string;
-
 	organizations: any[];
+	waiting: boolean;
 
 	constructor(public dialogRef: MdDialogRef<ServiceFormComponent>,
-			public serviceService: ServiceService) { }
+			public serviceService: ServiceService) {}
 
 	submit(form){
 		if(form.valid){
@@ -25,13 +25,17 @@ export class ServiceFormComponent implements OnInit {
 			service.serviceSubOrganization = service.serviceSubOrganization.name;
 			service.status = "Open";
 			service.date = new Date().toLocaleDateString();
-			this.serviceService.addService(service)
-			this.dialogRef.close();
-			window.location.reload();
+			this.waiting = true;
+			var parent = this;
+			this.serviceService.addService(service, function(res){
+				parent.dialogRef.close();
+				parent.waiting = false;
+			})
 		}
 	}
 
 	ngOnInit() {
+		this.waiting = false;
 		this.organizations = [
 			{
 				name: "Utah State University",

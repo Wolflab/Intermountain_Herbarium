@@ -1,3 +1,7 @@
 .content{
 	margin-top: 20px;
 }
+
+div.serviceDisplay{
+	flex: 1 1 auto;
+}

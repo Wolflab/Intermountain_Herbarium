@@ -3,24 +3,39 @@ import { Http } from '@angular/http';
 
 @Injectable()
 export class ServiceService {
+	observers: any[];
 
-	constructor(private http: Http) { }
+	constructor(private http: Http) {
+		this.observers = [];
+	}
 
-	addService(service){
+	private update(){
+		for(var observer of this.observers){
+			observer.update();
+		}
+	}
+
+	addService(service, callback?){
+		var parent = this;
 		this.http.post(
 			'/service/insert',
 			service
 		).subscribe(function(res){
-			// console.log(res);
+			parent.update();
+			if(typeof callback == 'function')
+				callback(res);
 		});
 	}
 
-	updateService(service){
+	updateService(service, callback?){
+		var parent = this;
 		this.http.post(
 			'/service/update',
 			service
 		).subscribe(function(res){
-			// console.log(res);
+			parent.update();
+			if(typeof callback == 'function')
+				callback(res);
 		});
 	}
 
@@ -33,5 +48,9 @@ export class ServiceService {
 			else
 				callback([]);
 		});
+	}
+
+	subscribe(obj){
+		this.observers.push(obj);
 	}
 }

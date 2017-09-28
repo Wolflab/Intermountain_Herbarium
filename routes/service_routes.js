@@ -12,7 +12,15 @@ router.get('/open', async function(req, res){
 	res.json(await db.service.find({status: "Open"}));
 });
 
-router.post('/update', function(req, res){
+// function wait(){
+// 	return new Promise(function(resolve, reject){
+// 		setTimeout(function(){
+// 			resolve();	
+// 		}, 3000);
+// 	})
+// }
+
+router.post('/update', async function(req, res){
 	var service = req.body;
 	db.service.update(
 		{_id: service._id},
@@ -23,7 +31,7 @@ router.post('/update', function(req, res){
 	})
 });
 
-router.post('/insert', function(req, res){
+router.post('/insert', async function(req, res){
 	db.service.insert(req.body)
 	.then(function(data){
 		res.json(data);

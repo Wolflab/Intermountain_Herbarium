@@ -11,14 +11,11 @@ import { ServiceService } from '../services/service/service.service';
   styleUrls: ['./service-review-form.component.css']
 })
 export class ServiceReviewFormComponent implements OnInit {
+	waiting: boolean;
 
 	constructor(@Inject(MD_DIALOG_DATA) public data: any,
 			public dialogRef: MdDialogRef<ServiceReviewFormComponent>,
 			public serviceService: ServiceService) { }
-
-	ngOnInit() {
-		this.data = this.data.service;
-	}
 
 	submit(form){
 		if(form.valid){
@@ -27,12 +24,18 @@ export class ServiceReviewFormComponent implements OnInit {
 			var service = Object.assign({}, form.value, this.data);
 			service.status = "Closed";
 			service.dateCompleted = new Date().toLocaleDateString();
-			this.serviceService.updateService(service);
-			this.dialogRef.close();
-			window.location.reload();
+			this.waiting = true;
+			var parent = this;
+			this.serviceService.updateService(service, function(res){
+				parent.dialogRef.close();
+				parent.waiting = false;
+			})
 		}
 	}
 
-
+	ngOnInit() {
+		this.waiting = false;
+		this.data = this.data.service;
+	}
 
 }

@@ -14,6 +14,7 @@ import { MdInputModule } from '@angular/material';
 import { MdMenuModule } from '@angular/material';
 import { MdSelectModule } from '@angular/material';
 import { MdSidenavModule } from '@angular/material';
+import { MdProgressSpinnerModule } from '@angular/material';
 import { MdTabsModule } from '@angular/material';
 import { MdToolbarModule } from '@angular/material';
 
@@ -55,6 +56,7 @@ import { ScreenSizeService } from './services/screen-size/screen-size.service';
 		MdMenuModule,
 		MdSelectModule,
 		MdSidenavModule,
+		MdProgressSpinnerModule,
 		MdTabsModule,
 		MdToolbarModule,
 		RouterModule.forRoot([

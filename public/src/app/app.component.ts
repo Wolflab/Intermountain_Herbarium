@@ -20,12 +20,12 @@ export class AppComponent {
 	onResize(event) {
 		this.screenSizeService.width = window.innerWidth;
 		this.screenSizeService.height = window.innerHeight;
-		this.screenSizeService.mobile = window.innerWidth < 900
+		this.screenSizeService.mobile = window.innerWidth < 1050;
 	}
 	constructor(public screenSizeService: ScreenSizeService) {
 		screenSizeService.width = window.innerWidth;
 		screenSizeService.height = window.innerHeight;
-		screenSizeService.mobile = window.innerWidth < 900
+		screenSizeService.mobile = window.innerWidth < 1050;
 	
 		// this.location = location;
 		// console.log(this.location.path());

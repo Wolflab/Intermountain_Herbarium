@@ -7,6 +7,7 @@ import { ServiceFormComponent } from '../service-form/service-form.component';
 import { ServiceReviewFormComponent } from '../service-review-form/service-review-form.component';
 import { UsageFormComponent } from '../usage-form/usage-form.component';
 
+import { ScreenSizeService } from '../services/screen-size/screen-size.service';
 import { ServiceService } from '../services/service/service.service';
 import { UsageService } from '../services/usage/usage.service';
 
@@ -19,14 +20,21 @@ export class AdminPageComponent implements OnInit {
 	openServices: any[];
 
 	constructor(public dialog: MdDialog,
+			public screenSizeService: ScreenSizeService, 
 			public serviceService: ServiceService,
-			public usageService: UsageService) { }
+			public usageService: UsageService) {
+		serviceService.subscribe(this);
+	}
 
-	ngOnInit() {
+	update(){
 		var parent = this;
 		this.serviceService.getOpenServices(function(response){
 			parent.openServices = response;
 		});
+	}
+
+	ngOnInit() {
+		this.update();
 	}
 
 	openServiceDialog(): void {

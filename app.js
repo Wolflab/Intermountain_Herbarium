@@ -5,11 +5,7 @@ var bodyParser = require('body-parser');
 // Express Setup
 var router = express.Router();
 var app = express();
-
 app.use(bodyParser.json());
-app.use('/', express.static('./public/dist'));
-app.use('/home', express.static('./public/dist'));
-// app.use('/uploads', express.static('./uploads'));
 
 // var facebookRouter = require('./routes/facebook_routes');
 var reportRouter = require('./routes/report_routes');
@@ -23,6 +19,8 @@ app.use('/service', serviceRouter);
 app.use('/specimen', specimenRouter);
 app.use('/upload', uploadRouter);
 app.use('/usage', usageRouter);
+app.use('/', express.static('./public/dist'));
+app.use('*', express.static('./public/dist'));
 
 
 var port = 3000;
