@@ -3,7 +3,7 @@ var db = require('monk')(process.env.MONGOUSER + ':' + process.env.MONGOPASS + '
 // var db = require('monk')('localhost/Herbarium');
 
 db.catch(function(err) {
-	clog.i("MONGO AUTHENTICATION FAILED, go to db.js and make sure you have the right db commented out.");
+	console.log("MONGO AUTHENTICATION FAILED, go to db.js and make sure you have the right db commented out.");
 	process.exit(1);
 });
 
