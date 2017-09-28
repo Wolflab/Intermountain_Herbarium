@@ -1,37 +1,35 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const request = require('request-promise');
 const router = express.Router();
 
-var db = require('../util/db');
+const specimen = require('../models/specimen');
 
-router.get('/totalCount', async function(req, res){
-	try{
-		var urls = [
-			"http://intermountainbiota.org/portal/collections/misc/collprofiles.php?collid=16",
-			"http://bryophyteportal.org/portal/collections/misc/collprofiles.php?collid=10",
-			"http://lichenportal.org/portal/collections/misc/collprofiles.php?collid=30",
-			"http://mycoportal.org/portal/collections/misc/collprofiles.php?collid=4"
-		]
-		var promises = [];
-		for(url of urls){
-			promises.push(request(url));
-		}
-		var values = await Promise.all(promises);
-		var total = 0;
-		for(value of values){
-			const regex = /(\d*) specimen records/g;
-			var temp = value.replace(/,/g, '');
-			total += parseInt(regex.exec(temp)[1]);
-		}
-		res.json(total);
-	}catch(err){
-		res.json("ERROR IN PARSING PAGES")
+router.get('/all_totals', async function(req, res){
+	var totals = {
+		totalCount: await specimen.getTotal(),
+		totalGeoreferenced: await specimen.getTotalGeoreferenced(),
+		totalImaged: await specimen.getTotalImaged(),
+		totalIdentified: await specimen.getTotalIdentified()
 	}
+
+	res.json(totals);
 });
 
-router.post("/insert", function(req, res){
-	console.log("INSERT SPECIMEN: ", req.body);
+router.get('/total_count', async function(req, res){
+	res.json(await specimen.getTotal());
 });
+
+router.get('/total_georeferenced', async function(req, res){
+	res.json(await specimen.getTotalGeoreferenced());
+});
+
+router.get('/total_imaged', async function(req, res){
+	res.json(await specimen.getTotalImaged());
+});
+
+router.get('/total_identified', async function(req, res){
+	res.json(await specimen.getTotalIdentified());
+});
+
 
 module.exports = router;
