@@ -1,9 +1,9 @@
 <div>
-	<form #usageForm="ngForm">
+	<form #usageForm="ngForm" *ngIf="!waiting">
 		<h2 md-dialog-title>Usage Dialog</h2>
 		<hr>
 		<md-dialog-content>
-			<md-grid-list cols=6>
+			<md-grid-list cols=6 rowHeight="75px">
 				<md-grid-tile [colspan]="3">
 					<md-select required placeholder="Usage Type" 
 						[(ngModel)]="selectedUsage" name="selectedUsage" 
@@ -25,7 +25,7 @@
 						</div>
 						<div *ngIf="selectedUsage.name == 'Group Usage'">
 							<md-input-container>
-								<input mdInput required name="name" placeholder="Name" ngModel>
+								<input mdInput required name="groupName" placeholder="Name" ngModel>
 								<md-error>This is required</md-error>
 							</md-input-container>
 						</div>
@@ -37,22 +37,29 @@
 						<md-error>This is required</md-error>
 					</md-input-container>
 				</md-grid-tile>
-				<md-grid-tile [colspan]="6" *ngIf="selectedUsage != null && selectedUsage.name == 'Visitation'">
-					<md-input-container>
-						<input mdInput required name="name" placeholder="Name" ngModel>
-						<md-error>This is required</md-error>
-					</md-input-container>
-					<md-input-container>
-							<input mdInput required name="name" placeholder="Name" ngModel>
-							<md-error>This is required</md-error>
+				<ng-container *ngIf="selectedUsage != null && selectedUsage.name == 'Visitation'">
+					<md-grid-tile [colspan]="3" *ngFor="let name of names; let i = index">
+						<md-input-container>
+							<input mdInput name="name{{i}}" placeholder="Name" value="name" ngModel>
 						</md-input-container>
-				</md-grid-tile>
+					</md-grid-tile>
+					<md-grid-tile [colspan]="6">
+						<button md-raised-button color="primary" (click)="incrementNames()">Add Individual</button>
+					</md-grid-tile>
+				</ng-container>
 			</md-grid-list>
 		</md-dialog-content>
 		<hr>
 		<md-dialog-actions>
-			<button md-raised-button type=submit color="primary" (click)="submit(usageForm)">Submit</button>&nbsp;
+			<button md-raised-button type="button" color="primary" (click)="submit(usageForm)">Submit</button>&nbsp;
 			<!-- <button md-raised-button (click)="onCloseCancel()">Cancel</button> -->
 		</md-dialog-actions>
 	</form>
+	<div *ngIf="waiting">
+		<md-grid-list cols=1 rowHeight="350px">
+			<md-grid-tile>
+				<md-spinner color="primary"></md-spinner>
+			</md-grid-tile>
+		</md-grid-list>
+	</div>
 </div>

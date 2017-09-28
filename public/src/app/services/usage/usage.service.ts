@@ -6,12 +6,13 @@ export class UsageService {
 
 	constructor(private http: Http) { }
 	
-	addUsage(usage){
+	addUsage(usage, callback?){
 		this.http.post(
 			'/usage/insert',
 			usage
 		).subscribe(function(res){
-			console.log(res);
+			if(typeof callback == 'function')
+				callback(res);
 		});
 	}
 

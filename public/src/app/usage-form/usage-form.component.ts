@@ -14,22 +14,48 @@ export class UsageFormComponent implements OnInit {
 	selectedSubUsage: Object;
 	usageTypes: Object[];
 	names: string[];
+	waiting: boolean;
 
 	constructor(public dialogRef: MdDialogRef<UsageFormComponent>,
 			public usageService: UsageService) { }
 
-	onUsageChange(event){
-		console.log(event);
-	}
-
 	submit(form){
 		if(form.valid){
-			console.log("Submitting: ", form);
-			this.dialogRef.close();
+			console.log("Submitting: ", form.value);
+			var usage = {
+				usage: form.value.selectedUsage.name,
+				subUsage: null,
+				date: new Date().toLocaleDateString(),
+				purpose: form.value.purpose,
+				groupName: null,
+				names: null
+			}
+			if(usage.usage == 'Group Usage'){
+				usage.groupName = form.value.groupName
+			}else{
+				usage.subUsage = form.value.selectedSubUsage.name;
+			}
+			if(usage.usage == 'Visitation'){
+				usage.names = [];
+				for(var i = 0; i < this.names.length; i++)
+					usage.names.push(form.value['name' + i]);
+			}
+			this.waiting = true;
+			var parent = this;
+			this.usageService.addUsage(usage, function(res){
+				parent.dialogRef.close();
+				parent.waiting = false;
+			});
 		}
+	}
+
+	incrementNames(){
+		this.names.push(' ');//This is dumb but way easier
 	}
 	
 	ngOnInit() {
+		this.waiting = false;
+		this.names = [' '];
 		this.usageTypes = [
 			{
 				name: "Group Usage"
@@ -132,5 +158,4 @@ export class UsageFormComponent implements OnInit {
 			}
 		];
 	}
-
 }

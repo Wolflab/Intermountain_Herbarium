@@ -12,4 +12,4 @@ db.catch(function(err) {
 exports.report = db.get('Report');
 exports.service = db.get('Service');
 exports.specimen = db.get('Specimen');
-exports.visitor = db.get('Visitor');
+exports.usage = db.get('Usage');

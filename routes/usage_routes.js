@@ -8,8 +8,9 @@ router.get('/all', function(req, res){
 	// console.log("get all Services: ", req.body);
 });
 
-router.post('/insert', function(req, res){
-	console.log("INSERT usage: ", req.body);
+router.post('/insert', async function(req, res){
+	var data = await db.usage.insert(req.body);
+	res.json(data);
 });
 
 module.exports = router;
