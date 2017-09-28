@@ -23,7 +23,7 @@ app.use('/', express.static('./public/dist'));
 app.use('*', express.static('./public/dist'));
 
 
-var port = 3000;
+var port = 8080;
 app.listen(port, function () {
 	// clog.i('TESTR V' + pjson.version + ' has started on port '+ port);
 	console.log("Server started on port ", port);
