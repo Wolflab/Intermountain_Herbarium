@@ -9,6 +9,7 @@ db.catch(function(err) {
 
 
 //Export the collections to be used.
+exports.report = db.get('Report');
 exports.service = db.get('Service');
 exports.specimen = db.get('Specimen');
 exports.visitor = db.get('Visitor');
