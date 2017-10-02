@@ -4,13 +4,12 @@ var router = express.Router();
 
 var db = require('../util/db');
 
-router.get('/all', function(req, res){
-	// console.log("get all Services: ", req.body);
+router.get('/all', async function(req, res){
+	res.json(await db.usage.find());
 });
 
 router.post('/insert', async function(req, res){
-	var data = await db.usage.insert(req.body);
-	res.json(data);
+	res.json(await db.usage.insert(req.body));
 });
 
 module.exports = router;
