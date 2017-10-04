@@ -20,6 +20,7 @@ import { MdToolbarModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { ReportFormComponent } from './report-form/report-form.component';
 import { ServiceFormComponent } from './service-form/service-form.component';
 import { ServiceReviewFormComponent } from './service-review-form/service-review-form.component';
 import { UsageFormComponent } from './usage-form/usage-form.component';
@@ -27,17 +28,22 @@ import { UsageFormComponent } from './usage-form/usage-form.component';
 import { ServiceService } from './services/service/service.service';
 import { UsageService } from './services/usage/usage.service';
 import { ScreenSizeService } from './services/screen-size/screen-size.service';
+import { InterimReportFormComponent } from './interim-report-form/interim-report-form.component';
 
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		AdminPageComponent,
+		InterimReportFormComponent,
+		ReportFormComponent,
 		ServiceFormComponent,
 		ServiceReviewFormComponent,
 		UsageFormComponent
 	],
 	entryComponents: [
+		InterimReportFormComponent,
+		ReportFormComponent,
 		ServiceFormComponent,
 		ServiceReviewFormComponent,
 		UsageFormComponent

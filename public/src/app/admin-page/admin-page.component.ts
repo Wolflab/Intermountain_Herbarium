@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { MdDialog } from '@angular/material';
 
 
+import { InterimReportFormComponent } from '../interim-report-form/interim-report-form.component';
+import { ReportFormComponent } from '../report-form/report-form.component';
 import { ServiceFormComponent } from '../service-form/service-form.component';
 import { ServiceReviewFormComponent } from '../service-review-form/service-review-form.component';
 import { UsageFormComponent } from '../usage-form/usage-form.component';
@@ -47,6 +49,18 @@ export class AdminPageComponent implements OnInit {
 		let dialogRef = this.dialog.open(ServiceReviewFormComponent, {
 			width: '600px',
 			data: { service: service }
+		});
+	}
+
+	openInterimReportDialog(): void {
+		let dialogRef = this.dialog.open(InterimReportFormComponent, {
+			width: '600px',
+		});
+	}
+
+	openReportDialog(): void {
+		let dialogRef = this.dialog.open(ReportFormComponent, {
+			width: '600px',
 		});
 	}
 
