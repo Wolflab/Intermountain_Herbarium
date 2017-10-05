@@ -9,6 +9,7 @@ import { ServiceFormComponent } from '../service-form/service-form.component';
 import { ServiceReviewFormComponent } from '../service-review-form/service-review-form.component';
 import { UsageFormComponent } from '../usage-form/usage-form.component';
 
+import { ReportService } from '../services/report/report.service';
 import { ScreenSizeService } from '../services/screen-size/screen-size.service';
 import { ServiceService } from '../services/service/service.service';
 import { UsageService } from '../services/usage/usage.service';
@@ -20,18 +21,24 @@ import { UsageService } from '../services/usage/usage.service';
 })
 export class AdminPageComponent implements OnInit {
 	openServices: any[];
+	reports: Object[];
 
 	constructor(public dialog: MdDialog,
+			public reportService: ReportService,
 			public screenSizeService: ScreenSizeService, 
 			public serviceService: ServiceService,
 			public usageService: UsageService) {
 		serviceService.subscribe(this);
+		reportService.subscribe(this);
 	}
 
 	update(){
 		var parent = this;
 		this.serviceService.getOpenServices(function(response){
 			parent.openServices = response;
+		});
+		this.reportService.getAllReports(function(reports){
+			parent.reports = reports;
 		});
 	}
 
@@ -58,9 +65,10 @@ export class AdminPageComponent implements OnInit {
 		});
 	}
 
-	openReportDialog(): void {
+	openReportDialog(report): void {
 		let dialogRef = this.dialog.open(ReportFormComponent, {
 			width: '600px',
+			data: { report: report }
 		});
 	}
 

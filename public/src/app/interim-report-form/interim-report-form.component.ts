@@ -11,6 +11,14 @@ export class InterimReportFormComponent implements OnInit {
 
 	constructor(public dialogRef: MdDialogRef<InterimReportFormComponent>) { }
 
+	submit(){
+		
+	}
+	
+	onCloseCancel(){
+		this.dialogRef.close();
+	}
+
 	ngOnInit() {
 		
 	}

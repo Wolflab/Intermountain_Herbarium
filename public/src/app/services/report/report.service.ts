@@ -5,7 +5,9 @@ import { Http } from '@angular/http';
 export class ReportService {
 	observers: any[];
 
-	constructor(private http: Http) { }
+	constructor(private http: Http) {
+		this.observers = [];
+	}
 
 	private update(){
 		for(var observer of this.observers){
@@ -17,18 +19,39 @@ export class ReportService {
 		this.observers.push(obj);
 	}
 
-	addReport(report, callback){
+	// addReport(report, callback){
+	// 	var parent = this;
+	// 	parent.update()
+	// 	if(typeof callback == 'function')
+	// 		callback("");
+	// }
+
+	updateReport(report, callback?){
 		var parent = this;
-		parent.update()
-		if(typeof callback == 'function')
-			callback("");
+		this.http.post(
+			'/reports/update',
+			report
+		).subscribe(function(res){
+			parent.update();
+			if(typeof callback == 'function')
+				callback(res);
+		});
 	}
 
-	updateReport(report, callback){
-		var parent = this;
-		parent.update()
-		if(typeof callback == 'function')
-			callback("");
+	getAllReports(callback?){
+		this.http.get(
+			'/reports/all',
+		).subscribe(function(res){
+			callback(res.json());
+		});
 	}
+
+	reportTemplate(callback?){
+		this.http.get(
+			'/reports/template',
+		).subscribe(function(res){
+			callback(res.json());
+		});
+	};
 
 }

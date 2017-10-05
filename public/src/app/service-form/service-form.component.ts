@@ -34,6 +34,10 @@ export class ServiceFormComponent implements OnInit {
 		}
 	}
 
+	onCloseCancel(){
+		this.dialogRef.close();
+	}
+
 	ngOnInit() {
 		this.waiting = false;
 		this.organizations = [

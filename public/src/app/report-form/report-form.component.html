@@ -1,27 +1,27 @@
 <div>
 	<div *ngIf="!waiting">
 		<form #reportForm="ngForm" *ngIf="!waiting">
-			<h2 md-dialog-title>Report Dialog</h2>
+			<h2 md-dialog-title>Report Dialog - {{ report.date }}</h2>
 			<hr>
 			<md-dialog-content>
 				<md-grid-list cols=12 rowHeight="40px">
-					<ng-container *ngFor="let type of newReport">
+					<ng-container *ngFor="let type of report.report; let i = index">
 						<md-grid-tile [colspan]=12>
 							<h2>{{ type.title }}</h2>
 						</md-grid-tile>
-						<ng-container *ngFor="let activity of type.activities">
+						<ng-container *ngFor="let activity of type.activities; let j = index">
 							<md-grid-tile [colspan]=12>
 								<h3>{{ activity.title }}</h3>
 							</md-grid-tile>
-							<ng-container *ngFor="let datum of activity.data">
+							<ng-container *ngFor="let datum of activity.data; let k = index">
 								<md-grid-tile [colspan]="datum.inputs.length % 2 == 1 ? 6 : 12" [rowspan]="datum.inputs.length % 2 == 1 ? 2 : 1">
 									<h4>{{ datum.title }}</h4>
 								</md-grid-tile>
-								<ng-container *ngFor="let input of datum.inputs">
+								<ng-container *ngFor="let input of datum.inputs; let l = index">
 									<md-grid-tile [colspan]=6 [rowspan]=2>
 										<md-input-container>
-											<input mdInput [(ngModel)]="input.value" name="formInput"
-												placeholder="{{ input.placeholder }}" ngModel>
+											<input mdInput [(ngModel)]="input.value" name="{{ i }}_{{ j }}_{{ k }}_{{ l }}"
+												placeholder="{{ input.placeholder }}">
 										</md-input-container>
 									</md-grid-tile>
 								</ng-container>
@@ -37,8 +37,9 @@
 			</md-dialog-content>
 			<hr>
 			<md-dialog-actions>
-				<button md-raised-button type="button" color="primary" (click)="submit()">Submit</button>&nbsp;
-				<!-- <button md-raised-button (click)="onCloseCancel()">Cancel</button> -->
+				<button md-raised-button (click)="onCloseCancel()">Cancel</button>
+				<span style="flex: 1 1 auto;"></span>
+				<button md-raised-button type="button" color="primary" (click)="submit()">Submit</button>
 			</md-dialog-actions>
 		</form>
 	</div>

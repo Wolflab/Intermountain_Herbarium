@@ -49,6 +49,10 @@ export class UsageFormComponent implements OnInit {
 		}
 	}
 
+	onCloseCancel(){
+		this.dialogRef.close();
+	}
+
 	incrementNames(){
 		this.names.push(' ');//This is dumb but way easier
 	}

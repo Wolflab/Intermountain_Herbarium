@@ -5,3 +5,7 @@
 div.serviceDisplay{
 	flex: 1 1 auto;
 }
+
+div.reportDisplay{
+	flex: 1 1 auto;
+}

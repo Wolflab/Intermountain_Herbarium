@@ -33,6 +33,10 @@ export class ServiceReviewFormComponent implements OnInit {
 		}
 	}
 
+	onCloseCancel(){
+		this.dialogRef.close();
+	}
+
 	ngOnInit() {
 		this.waiting = false;
 		this.data = this.data.service;
