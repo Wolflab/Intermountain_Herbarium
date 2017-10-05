@@ -12,6 +12,7 @@ export class InterimReportFormComponent implements OnInit {
 	constructor(public dialogRef: MdDialogRef<InterimReportFormComponent>) { }
 
 	ngOnInit() {
+		
 	}
 
 }
