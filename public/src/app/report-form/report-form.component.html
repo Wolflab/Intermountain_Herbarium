@@ -20,8 +20,8 @@
 								<ng-container *ngFor="let input of activity.inputs">
 									<md-grid-tile [colspan]=6 [rowspan]=2>
 										<md-input-container>
-											<input mdInput name="{{ type.namePrefix }}{{ datum.postName }}{{ input.name }}" 
-												placeholder="{{ input.placeholder }}" ngModel [value]="10">
+											<input mdInput [(ngModel)]="datum.value" name="{{ type.namePrefix }}{{ datum.postName }}{{ input.name }}"
+												placeholder="{{ input.placeholder }}" ngModel>
 										</md-input-container>
 									</md-grid-tile>
 								</ng-container>

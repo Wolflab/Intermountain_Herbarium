@@ -173,6 +173,22 @@ export class ReportFormComponent implements OnInit {
 							{
 								title: "Landscape Architecture",
 								postName: "LandscapeArchitecture"
+							},
+							{
+								title: "Plants, Soils, & Biometeorology",
+								postName: "PlantsSoilsBiometeorology"
+							},
+							{
+								title: "Extension",
+								postName: "Extension"
+							},
+							{
+								title: "Miscellaneous",
+								postName: "Misc"
+							},
+							{
+								title: "UTC Development",
+								postName: "UTCDevelopment"
 							}
 						]
 					},
@@ -190,17 +206,91 @@ export class ReportFormComponent implements OnInit {
 						],
 						data: [
 							{
-								title: "Local Consultants",
+								title: "Consultants",
 								postName: "LocalConsultants"
 							},
 							{
-								title: "Local Schools",
+								title: "Schools",
 								postName: "LocalSchools"
 							},
 							{
-								title: "Local Scouts",
+								title: "Scouts",
 								postName: "LocalScouts"
 							},
+							{
+								title: "General Public",
+								postName: "LocalGeneralPublic"
+							},
+							{
+								title: "Miscellaneous",
+								postName: "Local"
+							}
+						]
+					},
+					{
+						title: "Federal Agencies",
+						inputs: [
+							{
+								name: "Time",
+								placeholder: "Time"
+							},
+							{
+								name: "Requests",
+								placeholder: "Requests"
+							}
+						],
+						data: [
+							{
+								title: "USDA [ARS, USFS, SCS]",
+								postName: "FedUSDA"
+							},
+							{
+								title: "USDI [NPS, BLM, NBS]",
+								postName: "FedUSDI"
+							},
+							{
+								title: "Miscellaneous [NAS, DOD]",
+								postName: "FedMisc"
+							}
+						]
+					},
+					{
+						title: "Other",
+						inputs: [
+							{
+								name: "Time",
+								placeholder: "Time"
+							},
+							{
+								name: "Requests",
+								placeholder: "Requests"
+							}
+						],
+						data: [
+							{
+								title: "Commercial Companies",
+								postName: "OtherCommercial"
+							},
+							{
+								title: "Foreign Governments",
+								postName: "OtherForeignGovernments"
+							},
+							{
+								title: "Non-Profit Agencies",
+								postName: "OtherNonProfits"
+							},
+							{
+								title: "Other Universities",
+								postName: "OtherUniversities"
+							},
+							{
+								title: "State of Utah [UDOT, UNH]",
+								postName: "StateOfUtah"
+							},
+							{
+								title: "Other States",
+								postName: "OtherStates"
+							}
 						]
 					}
 				]
@@ -229,7 +319,7 @@ export class ReportFormComponent implements OnInit {
 						]
 					},
 					{
-						title: "Visitation",
+						title: "USU Visitation",
 						inputs: [
 							{
 								name: "FacultyCount",
@@ -242,21 +332,136 @@ export class ReportFormComponent implements OnInit {
 						],
 						data: [
 							{
-								title: "USU Biology",
+								title: "Biology",
 								postName: "UsuBiology"
 							},
 							{
-								title: "USU Natural Resources",
+								title: "Natural Resources",
 								postName: "UsuNaturalResources"
 							},
 							{
-								title: "USU Landscape Architecture",
+								title: "Landscape Architecture",
 								postName: "UsuLandscapeArchitecture"
 							},
+							{
+								title: "Plants, Soils, & Biometeorology",
+								postName: "UsuPlantsSoilsBiometeorology"
+							},
+							{
+								title: "Extension",
+								postName: "UsuExtension"
+							},
+							{
+								title: "Miscellaneous",
+								postName: "UsuMisc"
+							}
+						]
+					},
+					{
+						title: "Other Visitation",
+						inputs: [
+							{
+								name: "Count",
+								placeholder: "Count"
+							}
+						],
+						data: [
+							{
+								title: "Federal Agency USDI",
+								postName: "FedUSDI"
+							},
+							{
+								title: "Federal Agency USDA",
+								postName: "FedUSDA"
+							},
+							{
+								title: "Commercial",
+								postName: "Commercial"
+							},
+							{
+								title: "Consultants",
+								postName: "Consultants"
+							},
+							{
+								title: "Other Herbaria and Universities",
+								postName: "OtherHerbariaAndUniversities"
+							},
+							{
+								title: "Non-profit Agencies",
+								postName: "NonProfits"
+							},
+							{
+								title: "Public",
+								postName: "Public"
+							},
+							{
+								title: "Boy Scouts",
+								postName: "BoyScouts"
+							},
+							{
+								title: "State Of Utah",
+								postName: "StateOfUtah"
+							},
+							{
+								title: "Other Miscellaneous",
+								postName: "OtherMisc"
+							}
 						]
 					}
 				]
-			}
+			},
+			{
+				title: "Facebook Activiy",
+				namePrefix: "facebook",
+				activities: [
+					{
+						inputs: [
+							{
+								name: "Count",
+								placeholder: "Count"
+							}
+						],
+						data: [
+							{
+								title: "Page Likes",
+								postName: "PageLikes"
+							},
+							{
+								title: "Reach - Utah",
+								postName: "ReachUtah"
+							},
+							{
+								title: "Reach - USA & territories",
+								postName: "ReachUS"
+							},
+							{
+								title: "Reach - Non US",
+								postName: "ReachNonUS"
+							},
+							{
+								title: "Number of Posts",
+								postName: "NumberOfPosts"
+							},
+							{
+								title: "Post Reach (Max)",
+								postName: "PostReachMax"
+							},
+							{
+								title: "Post Reach (Average)",
+								postName: "PostReachAverage"
+							},
+							{
+								title: "Post Engagement (Max)",
+								postName: "PostEngagementMax"
+							},
+							{
+								title: "Post Engagement (Average)",
+								postName: "PostEngagementAverage"
+							}
+						]
+					}
+				]
+			},
 		]
 	}
 
