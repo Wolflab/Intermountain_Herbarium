@@ -21,6 +21,7 @@ export class ReportFormComponent implements OnInit {
 		if(form.valid){
 			console.log(form.value);
 			var report = form.value;
+			console.log(this.newReport);
 			// this.waiting = true;
 			// var parent = this;
 			// this.reportService.addReport(report, function(res){
@@ -30,116 +31,251 @@ export class ReportFormComponent implements OnInit {
 		}
 	}
 
+	addGroup(datum){
+		console.log(datum);
+		datum.inputs.push({
+			name: "Name",
+			placeholder: "Name"
+		})
+	}
+
 	ngOnInit() {
 		this.waiting = false;
-		this.specimenExchangesRecievedInstitutions = "10";
 		this.newReport = [
 			{
 				title: "Specimen Activiy",
 				namePrefix: "specimen",
 				activities: [
 					{
-						title: "Collection Development",
-						inputs: [
+						data: [
 							{
-								name: "Institutions",
-								placeholder: "Institutions/Individuals"
+								title: "Specimen Total",
+								postName: "SpecimenTotal",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
-							{
-								name: "Specimens",
-								placeholder: "Specimens"
-							}
-						],
+						]
+					},
+					{
+						title: "Collection Development",
 						data: [
 							{
 								title: "Exchanges Received",
-								postName: "ExchangesRecieved"
+								postName: "ExchangesRecieved",
+								inputs: [
+									{
+										name: "Institutions",
+										placeholder: "Institutions/Individuals"
+									},
+									{
+										name: "Specimens",
+										placeholder: "Specimens"
+									}
+								]
 							},
 							{
 								title: "Exchanges Sent",
-								postName: "ExchangesSent"
+								postName: "ExchangesSent",
+								inputs: [
+									{
+										name: "Institutions",
+										placeholder: "Institutions/Individuals"
+									},
+									{
+										name: "Specimens",
+										placeholder: "Specimens"
+									}
+								]
 							},
 							{
 								title: "Gifts Received",
-								postName: "GiftsRecieved"
+								postName: "GiftsRecieved",
+								inputs: [
+									{
+										name: "Institutions",
+										placeholder: "Institutions/Individuals"
+									},
+									{
+										name: "Specimens",
+										placeholder: "Specimens"
+									}
+								]
 							},
 							{
 								title: "Staff Collections",
-								postName: "StaffCollections"
+								postName: "StaffCollections",
+								inputs: [
+									{
+										name: "Institutions",
+										placeholder: "Institutions/Individuals"
+									},
+									{
+										name: "Specimens",
+										placeholder: "Specimens"
+									}
+								]
 							}
 						]
 					},
 					{
 						title: "Database",
-						inputs: [
-							{
-								name: "Database",
-								placeholder: "Specimens"
-							}
-						],
 						data: [
 							{
 								title: "Total Entered",
-								postName: "TotalEntered"
+								postName: "TotalEntered",
+								inputs: [
+									{
+										name: "Database",
+										placeholder: "Specimens"
+									}
+								]
 							},
 							{
 								title: "Specimens Entered",
-								postName: "SpecimensEntered"
+								postName: "SpecimensEntered",
+								inputs: [
+									{
+										name: "Database",
+										placeholder: "Specimens"
+									}
+								]
 							},
 							{
 								title: "Georeferenced",
-								postName: "Georeferenced"
+								postName: "Georeferenced",
+								inputs: [
+									{
+										name: "Database",
+										placeholder: "Specimens"
+									}
+								]
 							},
 							{
 								title: "Imaged",
-								postName: "Imaged"
+								postName: "Imaged",
+								inputs: [
+									{
+										name: "Database",
+										placeholder: "Specimens"
+									}
+								]
 							},
 							{
 								title: "Images Processed",
-								postName: "ImagesProcessed"
+								postName: "ImagesProcessed",
+								inputs: [
+									{
+										name: "Database",
+										placeholder: "Specimens"
+									}
+								]
 							}
 						]
 					},
 					{
 						title: "Other Specimen Activity",
-						inputs: [
-							{
-								name: "Institutions",
-								placeholder: "Institutions/Individuals"
-							},
-							{
-								name: "Specimens",
-								placeholder: "Specimens"
-							}
-						],
 						data: [
 							{
 								title: "Loans Sent",
-								postName: "LoansSent"
+								postName: "LoansSent",
+								inputs: [
+									{
+										name: "Institutions",
+										placeholder: "Institutions/Individuals"
+									},
+									{
+										name: "Specimens",
+										placeholder: "Specimens"
+									}
+								]
 							},
 							{
 								title: "Loans Received",
-								postName: "LoansReceived"
+								postName: "LoansReceived",
+								inputs: [
+									{
+										name: "Institutions",
+										placeholder: "Institutions/Individuals"
+									},
+									{
+										name: "Specimens",
+										placeholder: "Specimens"
+									}
+								]
 							},
 							{
 								title: "Loans Returned to UTC",
-								postName: "LoansReturnedToUTC"
+								postName: "LoansReturnedToUTC",
+								inputs: [
+									{
+										name: "Institutions",
+										placeholder: "Institutions/Individuals"
+									},
+									{
+										name: "Specimens",
+										placeholder: "Specimens"
+									}
+								]
 							},
 							{
 								title: "Loans Returned by UTC",
-								postName: "LoansReturnedByUTC"
+								postName: "LoansReturnedByUTC",
+								inputs: [
+									{
+										name: "Institutions",
+										placeholder: "Institutions/Individuals"
+									},
+									{
+										name: "Specimens",
+										placeholder: "Specimens"
+									}
+								]
 							},
 							{
 								title: "Loans Transferred by UTC",
-								postName: "LoansTransferredByUTC"
+								postName: "LoansTransferredByUTC",
+								inputs: [
+									{
+										name: "Institutions",
+										placeholder: "Institutions/Individuals"
+									},
+									{
+										name: "Specimens",
+										placeholder: "Specimens"
+									}
+								]
 							},
 							{
 								title: "Local Loans",
-								postName: "LocalLoans"
+								postName: "LocalLoans",
+								inputs: [
+									{
+										name: "Institutions",
+										placeholder: "Institutions/Individuals"
+									},
+									{
+										name: "Specimens",
+										placeholder: "Specimens"
+									}
+								]
 							},
 							{
 								title: "Photographic Slides Loaned",
-								postName: "PhotographicSlidesLoaned"
+								postName: "PhotographicSlidesLoaned",
+								inputs: [
+									{
+										name: "Institutions",
+										placeholder: "Institutions/Individuals"
+									},
+									{
+										name: "Specimens",
+										placeholder: "Specimens"
+									}
+								]
 							}
 						]
 					}
@@ -151,145 +287,315 @@ export class ReportFormComponent implements OnInit {
 				activities: [
 					{
 						title: "Utah State University",
-						inputs: [
-							{
-								name: "Time",
-								placeholder: "Time"
-							},
-							{
-								name: "Requests",
-								placeholder: "Requests"
-							}
-						],
 						data: [
 							{
 								title: "Biology",
-								postName: "Biology"
+								postName: "Biology",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "Natural Resources",
-								postName: "NaturalResources"
+								postName: "NaturalResources",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "Landscape Architecture",
-								postName: "LandscapeArchitecture"
+								postName: "LandscapeArchitecture",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "Plants, Soils, & Biometeorology",
-								postName: "PlantsSoilsBiometeorology"
+								postName: "PlantsSoilsBiometeorology",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "Extension",
-								postName: "Extension"
+								postName: "Extension",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "Miscellaneous",
-								postName: "Misc"
+								postName: "Misc",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "UTC Development",
-								postName: "UTCDevelopment"
+								postName: "UTCDevelopment",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							}
 						]
 					},
 					{
 						title: "Local",
-						inputs: [
-							{
-								name: "Time",
-								placeholder: "Time"
-							},
-							{
-								name: "Requests",
-								placeholder: "Requests"
-							}
-						],
 						data: [
 							{
 								title: "Consultants",
-								postName: "LocalConsultants"
+								postName: "LocalConsultants",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "Schools",
-								postName: "LocalSchools"
+								postName: "LocalSchools",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "Scouts",
-								postName: "LocalScouts"
+								postName: "LocalScouts",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "General Public",
-								postName: "LocalGeneralPublic"
+								postName: "LocalGeneralPublic",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "Miscellaneous",
-								postName: "Local"
+								postName: "Local",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							}
 						]
 					},
 					{
 						title: "Federal Agencies",
-						inputs: [
-							{
-								name: "Time",
-								placeholder: "Time"
-							},
-							{
-								name: "Requests",
-								placeholder: "Requests"
-							}
-						],
 						data: [
 							{
 								title: "USDA [ARS, USFS, SCS]",
-								postName: "FedUSDA"
+								postName: "FedUSDA",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "USDI [NPS, BLM, NBS]",
-								postName: "FedUSDI"
+								postName: "FedUSDI",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "Miscellaneous [NAS, DOD]",
-								postName: "FedMisc"
+								postName: "FedMisc",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							}
 						]
 					},
 					{
 						title: "Other",
-						inputs: [
-							{
-								name: "Time",
-								placeholder: "Time"
-							},
-							{
-								name: "Requests",
-								placeholder: "Requests"
-							}
-						],
 						data: [
 							{
 								title: "Commercial Companies",
-								postName: "OtherCommercial"
+								postName: "OtherCommercial",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "Foreign Governments",
-								postName: "OtherForeignGovernments"
+								postName: "OtherForeignGovernments",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "Non-Profit Agencies",
-								postName: "OtherNonProfits"
+								postName: "OtherNonProfits",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "Other Universities",
-								postName: "OtherUniversities"
+								postName: "OtherUniversities",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "State of Utah [UDOT, UNH]",
-								postName: "StateOfUtah"
+								postName: "StateOfUtah",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							},
 							{
 								title: "Other States",
-								postName: "OtherStates"
+								postName: "OtherStates",
+								inputs: [
+									{
+										name: "Time",
+										placeholder: "Time"
+									},
+									{
+										name: "Requests",
+										placeholder: "Requests"
+									}
+								]
 							}
 						]
 					}
@@ -301,110 +607,258 @@ export class ReportFormComponent implements OnInit {
 				activities: [
 					{
 						title: "Library Activity",
-						inputs: [
-							{
-								name: "Count",
-								placeholder: "Count"
-							}
-						],
 						data: [
 							{
 								title: "Items Checked Out",
-								postName: "ItemsCheckedOut"
+								postName: "ItemsCheckedOut",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Visits",
-								postName: "Visits"
+								postName: "Visits",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							}
 						]
 					},
 					{
 						title: "USU Visitation",
-						inputs: [
-							{
-								name: "FacultyCount",
-								placeholder: "Faculty Count"
-							},
-							{
-								name: "StudentCount",
-								placeholder: "Student Count"
-							}
-						],
 						data: [
 							{
 								title: "Biology",
-								postName: "UsuBiology"
+								postName: "UsuBiology",
+								inputs: [
+									{
+										name: "FacultyCount",
+										placeholder: "Faculty Count"
+									},
+									{
+										name: "StudentCount",
+										placeholder: "Student Count"
+									}
+								]
 							},
 							{
 								title: "Natural Resources",
-								postName: "UsuNaturalResources"
+								postName: "UsuNaturalResources",
+								inputs: [
+									{
+										name: "FacultyCount",
+										placeholder: "Faculty Count"
+									},
+									{
+										name: "StudentCount",
+										placeholder: "Student Count"
+									}
+								]
 							},
 							{
 								title: "Landscape Architecture",
-								postName: "UsuLandscapeArchitecture"
+								postName: "UsuLandscapeArchitecture",
+								inputs: [
+									{
+										name: "FacultyCount",
+										placeholder: "Faculty Count"
+									},
+									{
+										name: "StudentCount",
+										placeholder: "Student Count"
+									}
+								]
 							},
 							{
 								title: "Plants, Soils, & Biometeorology",
-								postName: "UsuPlantsSoilsBiometeorology"
+								postName: "UsuPlantsSoilsBiometeorology",
+								inputs: [
+									{
+										name: "FacultyCount",
+										placeholder: "Faculty Count"
+									},
+									{
+										name: "StudentCount",
+										placeholder: "Student Count"
+									}
+								]
 							},
 							{
 								title: "Extension",
-								postName: "UsuExtension"
+								postName: "UsuExtension",
+								inputs: [
+									{
+										name: "FacultyCount",
+										placeholder: "Faculty Count"
+									},
+									{
+										name: "StudentCount",
+										placeholder: "Student Count"
+									}
+								]
 							},
 							{
 								title: "Miscellaneous",
-								postName: "UsuMisc"
+								postName: "UsuMisc",
+								inputs: [
+									{
+										name: "FacultyCount",
+										placeholder: "Faculty Count"
+									},
+									{
+										name: "StudentCount",
+										placeholder: "Student Count"
+									}
+								]
 							}
 						]
 					},
 					{
 						title: "Other Visitation",
-						inputs: [
-							{
-								name: "Count",
-								placeholder: "Count"
-							}
-						],
 						data: [
 							{
 								title: "Federal Agency USDI",
-								postName: "FedUSDI"
+								postName: "FedUSDI",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Federal Agency USDA",
-								postName: "FedUSDA"
+								postName: "FedUSDA",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Commercial",
-								postName: "Commercial"
+								postName: "Commercial",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Consultants",
-								postName: "Consultants"
+								postName: "Consultants",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Other Herbaria and Universities",
-								postName: "OtherHerbariaAndUniversities"
+								postName: "OtherHerbariaAndUniversities",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Non-profit Agencies",
-								postName: "NonProfits"
+								postName: "NonProfits",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Public",
-								postName: "Public"
+								postName: "Public",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Boy Scouts",
-								postName: "BoyScouts"
+								postName: "BoyScouts",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "State Of Utah",
-								postName: "StateOfUtah"
+								postName: "StateOfUtah",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Other Miscellaneous",
-								postName: "OtherMisc"
+								postName: "OtherMisc",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
+							}
+						]
+					},
+					{
+						title: "Group Usage",
+						data: [
+							{
+								title: "Class Usage",
+								postName: "ClassUsage",
+								openEnded: true,
+								inputs: [
+									{
+										name: "Name",
+										placeholder: "Name"
+									}
+								]
+							},
+							{
+								title: "Other Campus Groups",
+								postName: "OtherCampusGroups",
+								openEnded: true,
+								inputs: [
+									{
+										name: "Name",
+										placeholder: "Name"
+									}
+								]
+							},
+							{
+								title: "Other Non-Campus Groups",
+								postName: "OtherNonCampusGroups",
+								openEnded: true,
+								inputs: [
+									{
+										name: "Name",
+										placeholder: "Name"
+									}
+								]
 							}
 						]
 					}
@@ -415,48 +869,96 @@ export class ReportFormComponent implements OnInit {
 				namePrefix: "facebook",
 				activities: [
 					{
-						inputs: [
-							{
-								name: "Count",
-								placeholder: "Count"
-							}
-						],
 						data: [
 							{
 								title: "Page Likes",
-								postName: "PageLikes"
+								postName: "PageLikes",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Reach - Utah",
-								postName: "ReachUtah"
+								postName: "ReachUtah",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Reach - USA & territories",
-								postName: "ReachUS"
+								postName: "ReachUS",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Reach - Non US",
-								postName: "ReachNonUS"
+								postName: "ReachNonUS",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Number of Posts",
-								postName: "NumberOfPosts"
+								postName: "NumberOfPosts",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Post Reach (Max)",
-								postName: "PostReachMax"
+								postName: "PostReachMax",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Post Reach (Average)",
-								postName: "PostReachAverage"
+								postName: "PostReachAverage",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Post Engagement (Max)",
-								postName: "PostEngagementMax"
+								postName: "PostEngagementMax",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							},
 							{
 								title: "Post Engagement (Average)",
-								postName: "PostEngagementAverage"
+								postName: "PostEngagementAverage",
+								inputs: [
+									{
+										name: "Count",
+										placeholder: "Count"
+									}
+								]
 							}
 						]
 					}

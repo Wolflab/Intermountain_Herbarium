@@ -14,17 +14,22 @@
 								<h3>{{ activity.title }}</h3>
 							</md-grid-tile>
 							<ng-container *ngFor="let datum of activity.data">
-								<md-grid-tile [colspan]="activity.inputs.length % 2 == 1 ? 6 : 12" [rowspan]="activity.inputs.length % 2 == 1 ? 2 : 1">
+								<md-grid-tile [colspan]="datum.inputs.length % 2 == 1 ? 6 : 12" [rowspan]="datum.inputs.length % 2 == 1 ? 2 : 1">
 									<h4>{{ datum.title }}</h4>
 								</md-grid-tile>
-								<ng-container *ngFor="let input of activity.inputs">
+								<ng-container *ngFor="let input of datum.inputs">
 									<md-grid-tile [colspan]=6 [rowspan]=2>
 										<md-input-container>
-											<input mdInput [(ngModel)]="datum.value" name="{{ type.namePrefix }}{{ datum.postName }}{{ input.name }}"
+											<input mdInput [(ngModel)]="input.value" name="{{ type.namePrefix }}{{ datum.postName }}{{ input.name }}"
 												placeholder="{{ input.placeholder }}" ngModel>
 										</md-input-container>
 									</md-grid-tile>
 								</ng-container>
+								<ng-container *ngIf="datum.openEnded">
+										<md-grid-tile [colspan]=12 [rowspan]=2>
+											<button md-raised-button color="primary" (click)="addGroup(datum)">Add Group</button>
+										</md-grid-tile>
+									</ng-container>
 							</ng-container>
 						</ng-container>
 					</ng-container>
