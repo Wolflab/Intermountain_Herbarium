@@ -17,10 +17,8 @@ export class ReportFormComponent implements OnInit {
 	constructor(public dialogRef: MdDialogRef<ReportFormComponent>,
 			public reportService: ReportService) { }
 
-	submit(form){
-		if(form.valid){
-			console.log(form.value);
-			var report = form.value;
+	submit(){
+			// var report = form.value;
 			console.log(this.newReport);
 			// this.waiting = true;
 			// var parent = this;
@@ -28,11 +26,9 @@ export class ReportFormComponent implements OnInit {
 			// 	parent.dialogRef.close();
 			// 	parent.waiting = false;
 			// });
-		}
 	}
 
 	addGroup(datum){
-		console.log(datum);
 		datum.inputs.push({
 			name: "Name",
 			placeholder: "Name"
@@ -44,13 +40,11 @@ export class ReportFormComponent implements OnInit {
 		this.newReport = [
 			{
 				title: "Specimen Activiy",
-				namePrefix: "specimen",
 				activities: [
 					{
 						data: [
 							{
 								title: "Specimen Total",
-								postName: "SpecimenTotal",
 								inputs: [
 									{
 										name: "Count",
@@ -65,7 +59,6 @@ export class ReportFormComponent implements OnInit {
 						data: [
 							{
 								title: "Exchanges Received",
-								postName: "ExchangesRecieved",
 								inputs: [
 									{
 										name: "Institutions",
@@ -79,7 +72,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Exchanges Sent",
-								postName: "ExchangesSent",
 								inputs: [
 									{
 										name: "Institutions",
@@ -93,7 +85,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Gifts Received",
-								postName: "GiftsRecieved",
 								inputs: [
 									{
 										name: "Institutions",
@@ -107,7 +98,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Staff Collections",
-								postName: "StaffCollections",
 								inputs: [
 									{
 										name: "Institutions",
@@ -126,7 +116,6 @@ export class ReportFormComponent implements OnInit {
 						data: [
 							{
 								title: "Total Entered",
-								postName: "TotalEntered",
 								inputs: [
 									{
 										name: "Database",
@@ -136,7 +125,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Specimens Entered",
-								postName: "SpecimensEntered",
 								inputs: [
 									{
 										name: "Database",
@@ -146,7 +134,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Georeferenced",
-								postName: "Georeferenced",
 								inputs: [
 									{
 										name: "Database",
@@ -156,7 +143,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Imaged",
-								postName: "Imaged",
 								inputs: [
 									{
 										name: "Database",
@@ -166,7 +152,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Images Processed",
-								postName: "ImagesProcessed",
 								inputs: [
 									{
 										name: "Database",
@@ -181,7 +166,6 @@ export class ReportFormComponent implements OnInit {
 						data: [
 							{
 								title: "Loans Sent",
-								postName: "LoansSent",
 								inputs: [
 									{
 										name: "Institutions",
@@ -195,7 +179,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Loans Received",
-								postName: "LoansReceived",
 								inputs: [
 									{
 										name: "Institutions",
@@ -209,7 +192,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Loans Returned to UTC",
-								postName: "LoansReturnedToUTC",
 								inputs: [
 									{
 										name: "Institutions",
@@ -223,7 +205,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Loans Returned by UTC",
-								postName: "LoansReturnedByUTC",
 								inputs: [
 									{
 										name: "Institutions",
@@ -237,7 +218,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Loans Transferred by UTC",
-								postName: "LoansTransferredByUTC",
 								inputs: [
 									{
 										name: "Institutions",
@@ -251,7 +231,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Local Loans",
-								postName: "LocalLoans",
 								inputs: [
 									{
 										name: "Institutions",
@@ -265,7 +244,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Photographic Slides Loaned",
-								postName: "PhotographicSlidesLoaned",
 								inputs: [
 									{
 										name: "Institutions",
@@ -283,14 +261,12 @@ export class ReportFormComponent implements OnInit {
 			},
 			{
 				title: "Service Activiy",
-				namePrefix: "service",
 				activities: [
 					{
 						title: "Utah State University",
 						data: [
 							{
 								title: "Biology",
-								postName: "Biology",
 								inputs: [
 									{
 										name: "Time",
@@ -304,7 +280,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Natural Resources",
-								postName: "NaturalResources",
 								inputs: [
 									{
 										name: "Time",
@@ -318,7 +293,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Landscape Architecture",
-								postName: "LandscapeArchitecture",
 								inputs: [
 									{
 										name: "Time",
@@ -332,7 +306,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Plants, Soils, & Biometeorology",
-								postName: "PlantsSoilsBiometeorology",
 								inputs: [
 									{
 										name: "Time",
@@ -346,7 +319,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Extension",
-								postName: "Extension",
 								inputs: [
 									{
 										name: "Time",
@@ -360,7 +332,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Miscellaneous",
-								postName: "Misc",
 								inputs: [
 									{
 										name: "Time",
@@ -374,7 +345,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "UTC Development",
-								postName: "UTCDevelopment",
 								inputs: [
 									{
 										name: "Time",
@@ -393,7 +363,6 @@ export class ReportFormComponent implements OnInit {
 						data: [
 							{
 								title: "Consultants",
-								postName: "LocalConsultants",
 								inputs: [
 									{
 										name: "Time",
@@ -407,7 +376,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Schools",
-								postName: "LocalSchools",
 								inputs: [
 									{
 										name: "Time",
@@ -421,7 +389,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Scouts",
-								postName: "LocalScouts",
 								inputs: [
 									{
 										name: "Time",
@@ -435,7 +402,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "General Public",
-								postName: "LocalGeneralPublic",
 								inputs: [
 									{
 										name: "Time",
@@ -449,7 +415,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Miscellaneous",
-								postName: "Local",
 								inputs: [
 									{
 										name: "Time",
@@ -468,7 +433,6 @@ export class ReportFormComponent implements OnInit {
 						data: [
 							{
 								title: "USDA [ARS, USFS, SCS]",
-								postName: "FedUSDA",
 								inputs: [
 									{
 										name: "Time",
@@ -482,7 +446,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "USDI [NPS, BLM, NBS]",
-								postName: "FedUSDI",
 								inputs: [
 									{
 										name: "Time",
@@ -496,7 +459,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Miscellaneous [NAS, DOD]",
-								postName: "FedMisc",
 								inputs: [
 									{
 										name: "Time",
@@ -515,7 +477,6 @@ export class ReportFormComponent implements OnInit {
 						data: [
 							{
 								title: "Commercial Companies",
-								postName: "OtherCommercial",
 								inputs: [
 									{
 										name: "Time",
@@ -529,7 +490,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Foreign Governments",
-								postName: "OtherForeignGovernments",
 								inputs: [
 									{
 										name: "Time",
@@ -543,7 +503,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Non-Profit Agencies",
-								postName: "OtherNonProfits",
 								inputs: [
 									{
 										name: "Time",
@@ -557,7 +516,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Other Universities",
-								postName: "OtherUniversities",
 								inputs: [
 									{
 										name: "Time",
@@ -571,7 +529,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "State of Utah [UDOT, UNH]",
-								postName: "StateOfUtah",
 								inputs: [
 									{
 										name: "Time",
@@ -585,7 +542,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Other States",
-								postName: "OtherStates",
 								inputs: [
 									{
 										name: "Time",
@@ -603,14 +559,12 @@ export class ReportFormComponent implements OnInit {
 			},
 			{
 				title: "Usage Activiy",
-				namePrefix: "usage",
 				activities: [
 					{
 						title: "Library Activity",
 						data: [
 							{
 								title: "Items Checked Out",
-								postName: "ItemsCheckedOut",
 								inputs: [
 									{
 										name: "Count",
@@ -620,7 +574,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Visits",
-								postName: "Visits",
 								inputs: [
 									{
 										name: "Count",
@@ -635,7 +588,6 @@ export class ReportFormComponent implements OnInit {
 						data: [
 							{
 								title: "Biology",
-								postName: "UsuBiology",
 								inputs: [
 									{
 										name: "FacultyCount",
@@ -649,7 +601,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Natural Resources",
-								postName: "UsuNaturalResources",
 								inputs: [
 									{
 										name: "FacultyCount",
@@ -663,7 +614,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Landscape Architecture",
-								postName: "UsuLandscapeArchitecture",
 								inputs: [
 									{
 										name: "FacultyCount",
@@ -677,7 +627,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Plants, Soils, & Biometeorology",
-								postName: "UsuPlantsSoilsBiometeorology",
 								inputs: [
 									{
 										name: "FacultyCount",
@@ -691,7 +640,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Extension",
-								postName: "UsuExtension",
 								inputs: [
 									{
 										name: "FacultyCount",
@@ -705,7 +653,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Miscellaneous",
-								postName: "UsuMisc",
 								inputs: [
 									{
 										name: "FacultyCount",
@@ -724,7 +671,6 @@ export class ReportFormComponent implements OnInit {
 						data: [
 							{
 								title: "Federal Agency USDI",
-								postName: "FedUSDI",
 								inputs: [
 									{
 										name: "Count",
@@ -734,7 +680,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Federal Agency USDA",
-								postName: "FedUSDA",
 								inputs: [
 									{
 										name: "Count",
@@ -744,7 +689,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Commercial",
-								postName: "Commercial",
 								inputs: [
 									{
 										name: "Count",
@@ -754,7 +698,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Consultants",
-								postName: "Consultants",
 								inputs: [
 									{
 										name: "Count",
@@ -764,7 +707,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Other Herbaria and Universities",
-								postName: "OtherHerbariaAndUniversities",
 								inputs: [
 									{
 										name: "Count",
@@ -774,7 +716,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Non-profit Agencies",
-								postName: "NonProfits",
 								inputs: [
 									{
 										name: "Count",
@@ -784,7 +725,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Public",
-								postName: "Public",
 								inputs: [
 									{
 										name: "Count",
@@ -794,7 +734,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Boy Scouts",
-								postName: "BoyScouts",
 								inputs: [
 									{
 										name: "Count",
@@ -804,7 +743,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "State Of Utah",
-								postName: "StateOfUtah",
 								inputs: [
 									{
 										name: "Count",
@@ -814,7 +752,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Other Miscellaneous",
-								postName: "OtherMisc",
 								inputs: [
 									{
 										name: "Count",
@@ -829,7 +766,6 @@ export class ReportFormComponent implements OnInit {
 						data: [
 							{
 								title: "Class Usage",
-								postName: "ClassUsage",
 								openEnded: true,
 								inputs: [
 									{
@@ -840,7 +776,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Other Campus Groups",
-								postName: "OtherCampusGroups",
 								openEnded: true,
 								inputs: [
 									{
@@ -851,7 +786,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Other Non-Campus Groups",
-								postName: "OtherNonCampusGroups",
 								openEnded: true,
 								inputs: [
 									{
@@ -866,13 +800,11 @@ export class ReportFormComponent implements OnInit {
 			},
 			{
 				title: "Facebook Activiy",
-				namePrefix: "facebook",
 				activities: [
 					{
 						data: [
 							{
 								title: "Page Likes",
-								postName: "PageLikes",
 								inputs: [
 									{
 										name: "Count",
@@ -882,7 +814,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Reach - Utah",
-								postName: "ReachUtah",
 								inputs: [
 									{
 										name: "Count",
@@ -892,7 +823,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Reach - USA & territories",
-								postName: "ReachUS",
 								inputs: [
 									{
 										name: "Count",
@@ -902,7 +832,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Reach - Non US",
-								postName: "ReachNonUS",
 								inputs: [
 									{
 										name: "Count",
@@ -912,7 +841,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Number of Posts",
-								postName: "NumberOfPosts",
 								inputs: [
 									{
 										name: "Count",
@@ -922,7 +850,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Post Reach (Max)",
-								postName: "PostReachMax",
 								inputs: [
 									{
 										name: "Count",
@@ -932,7 +859,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Post Reach (Average)",
-								postName: "PostReachAverage",
 								inputs: [
 									{
 										name: "Count",
@@ -942,7 +868,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Post Engagement (Max)",
-								postName: "PostEngagementMax",
 								inputs: [
 									{
 										name: "Count",
@@ -952,7 +877,6 @@ export class ReportFormComponent implements OnInit {
 							},
 							{
 								title: "Post Engagement (Average)",
-								postName: "PostEngagementAverage",
 								inputs: [
 									{
 										name: "Count",

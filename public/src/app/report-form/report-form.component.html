@@ -20,7 +20,7 @@
 								<ng-container *ngFor="let input of datum.inputs">
 									<md-grid-tile [colspan]=6 [rowspan]=2>
 										<md-input-container>
-											<input mdInput [(ngModel)]="input.value" name="{{ type.namePrefix }}{{ datum.postName }}{{ input.name }}"
+											<input mdInput [(ngModel)]="input.value" name="formInput"
 												placeholder="{{ input.placeholder }}" ngModel>
 										</md-input-container>
 									</md-grid-tile>
@@ -37,7 +37,7 @@
 			</md-dialog-content>
 			<hr>
 			<md-dialog-actions>
-				<button md-raised-button type="button" color="primary" (click)="submit(reportForm)">Submit</button>&nbsp;
+				<button md-raised-button type="button" color="primary" (click)="submit()">Submit</button>&nbsp;
 				<!-- <button md-raised-button (click)="onCloseCancel()">Cancel</button> -->
 			</md-dialog-actions>
 		</form>
