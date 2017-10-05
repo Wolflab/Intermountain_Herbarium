@@ -1,15 +1,15 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var router = express.Router();
+const express = require('express');
+const bodyParser = require('body-parser');
+const router = express.Router();
 
-var db = require('../util/db');
+const usage = require('../models/usage');
 
 router.get('/all', async function(req, res){
-	res.json(await db.usage.find());
+	res.json(await usage.getAll());
 });
 
 router.post('/insert', async function(req, res){
-	res.json(await db.usage.insert(req.body));
+	res.json(await usage.insert(req.body));
 });
 
 module.exports = router;

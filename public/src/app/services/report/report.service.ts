@@ -46,9 +46,9 @@ export class ReportService {
 		});
 	}
 
-	reportTemplate(callback?){
+	getInterimReport(callback?){
 		this.http.get(
-			'/reports/template',
+			'/reports/interim',
 		).subscribe(function(res){
 			callback(res.json());
 		});

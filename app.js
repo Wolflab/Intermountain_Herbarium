@@ -14,7 +14,7 @@ var specimenRouter = require('./routes/specimen_routes');
 var uploadRouter = require('./routes/upload_routes');
 var usageRouter = require('./routes/usage_routes');
 // app.use('/facebook', facebookRouter);
-app.use('/report', reportRouter);
+app.use('/reports', reportRouter);
 app.use('/service', serviceRouter);
 app.use('/specimen', specimenRouter);
 app.use('/upload', uploadRouter);

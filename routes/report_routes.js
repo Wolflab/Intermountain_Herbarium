@@ -1,21 +1,19 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var router = express.Router();
+const express = require('express');
+const bodyParser = require('body-parser');
+const router = express.Router();
 
-var db = require('../util/db');
-
-router.get('/:year', async function(req, res){
-	console.log("YEAR:", req.params.year)
-	res.json(await db.service.find({year: req.params.year}));
-});
+const reports = require('../models/reports');
 
 router.get('/interim', async function(req, res){
-	// res.json(await db.service.find({}));
+	res.json(await reports.getInterimReport());
+});
+
+router.post('/update', async function(req, res){
+	res.json(await reports.update(req.body));
 });
 
 router.get('/all', async function(req, res){
-	res.json(await db.report.find());
+	res.json(await reports.getAll());
 });
-
 
 module.exports = router;
