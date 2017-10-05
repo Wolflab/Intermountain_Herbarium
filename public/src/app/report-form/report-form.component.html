@@ -1,5 +1,5 @@
 <div>
-	<form #usageForm="ngForm" *ngIf="!waiting">
+	<form #reportForm="ngForm" *ngIf="!waiting">
 		<h2 md-dialog-title>Report Dialog</h2>
 		<hr>
 		<md-dialog-content>
@@ -9,7 +9,7 @@
 				</md-grid-tile>
 				<md-grid-tile [colspan]=12 [rowspan]=2>
 					<md-input-container>
-						<input mdInput name="specimenTotal" placeholder="Specimen Total" ngModel>
+						<input mdInput name="specimensTotal" placeholder="Specimen Total" ngModel>
 					</md-input-container>
 				</md-grid-tile>
 				<md-grid-tile [colspan]=12>
@@ -691,7 +691,7 @@
 				</md-grid-tile>
 				<md-grid-tile [colspan]=6 [rowspan]=2>
 					<md-input-container>
-						<input mdInput name="usageVisitationOther Miscellaneous" placeholder="Count" ngModel>
+						<input mdInput name="usageVisitationOtherMiscellaneous" placeholder="Count" ngModel>
 					</md-input-container>
 				</md-grid-tile>
 				<md-grid-tile [colspan]=12>
@@ -773,7 +773,7 @@
 		</md-dialog-content>
 		<hr>
 		<md-dialog-actions>
-			<button md-raised-button type="button" color="primary" (click)="submit(usageForm)">Submit</button>&nbsp;
+			<button md-raised-button type="button" color="primary" (click)="submit(reportForm)">Submit</button>&nbsp;
 			<!-- <button md-raised-button (click)="onCloseCancel()">Cancel</button> -->
 		</md-dialog-actions>
 	</form>
