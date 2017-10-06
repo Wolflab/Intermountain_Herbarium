@@ -30,6 +30,12 @@
 						</div>
 					</div>
 				</md-grid-tile>
+				<md-grid-tile [colspan]=3 *ngIf="selectedUsage != null && selectedUsage.name == 'Library Usage'">
+					<md-input-container>
+						<input mdInput required name="count" placeholder="Count" ngModel>
+						<md-error>This is required</md-error>
+					</md-input-container>
+				</md-grid-tile>
 				<md-grid-tile [colspan]="6">
 					<md-input-container style="width: 100%;">
 						<textarea mdInput md-autosize required placeholder="Purpose" name="purpose" ngModel></textarea>

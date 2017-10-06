@@ -28,7 +28,8 @@ export class UsageFormComponent implements OnInit {
 				date: new Date().toLocaleDateString(),
 				purpose: form.value.purpose,
 				groupName: null,
-				names: null
+				names: null,
+				count: null,
 			}
 			if(usage.usage == 'Group Usage'){
 				usage.groupName = form.value.groupName
@@ -39,6 +40,9 @@ export class UsageFormComponent implements OnInit {
 				usage.names = [];
 				for(var i = 0; i < this.names.length; i++)
 					usage.names.push(form.value['name' + i]);
+			}
+			if(usage.usage == 'Library Usage'){
+				usage.count = parseInt(form.value.count);
 			}
 			this.waiting = true;
 			var parent = this;

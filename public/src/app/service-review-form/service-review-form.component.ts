@@ -23,7 +23,12 @@ export class ServiceReviewFormComponent implements OnInit {
 				form.value.charge = "0";
 			var service = Object.assign({}, form.value, this.data);
 			service.status = "Closed";
+			service.time = parseInt(service.time);
+			service.charge = parseInt(service.charge);
 			service.dateCompleted = new Date().toLocaleDateString();
+			service.fiscalYear = new Date().getFullYear();
+			if(new Date(service.fiscalYear + "/11/01") <= new Date())
+				service.fiscalYear += 1; 
 			this.waiting = true;
 			var parent = this;
 			this.serviceService.updateService(service, function(res){
@@ -41,5 +46,4 @@ export class ServiceReviewFormComponent implements OnInit {
 		this.waiting = false;
 		this.data = this.data.service;
 	}
-
 }

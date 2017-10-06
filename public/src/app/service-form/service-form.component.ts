@@ -24,7 +24,7 @@ export class ServiceFormComponent implements OnInit {
 			service.serviceOrganization = service.serviceOrganization.name;
 			service.serviceSubOrganization = service.serviceSubOrganization.name;
 			service.status = "Open";
-			service.date = new Date().toLocaleDateString();
+			service.dateRequested = new Date().toLocaleDateString();
 			this.waiting = true;
 			var parent = this;
 			this.serviceService.addService(service, function(res){
