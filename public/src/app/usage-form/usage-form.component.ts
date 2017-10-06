@@ -30,6 +30,8 @@ export class UsageFormComponent implements OnInit {
 				groupName: null,
 				names: null,
 				count: null,
+				studentCount: null,
+				facultyCount: null
 			}
 			if(usage.usage == 'Group Usage'){
 				usage.groupName = form.value.groupName
@@ -40,6 +42,19 @@ export class UsageFormComponent implements OnInit {
 				usage.names = [];
 				for(var i = 0; i < this.names.length; i++)
 					usage.names.push(form.value['name' + i]);
+				console.log(form.value.selectedSubUsage);
+				if(form.value.selectedSubUsage.organization == 'Utah State University'){
+					if(form.value.studentCount)
+						usage.studentCount = parseInt(form.value.studentCount);
+					else
+						usage.studentCount = 0;
+					if(form.value.facultyCount)
+						usage.facultyCount = parseInt(form.value.facultyCount);
+					else
+						usage.facultyCount = 0;
+				}else{
+					usage.count = usage.names.length;
+				}
 			}
 			if(usage.usage == 'Library Usage'){
 				usage.count = parseInt(form.value.count);

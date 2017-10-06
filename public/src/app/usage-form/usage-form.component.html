@@ -45,9 +45,20 @@
 				<ng-container *ngIf="selectedUsage != null && selectedUsage.name == 'Visitation'">
 					<md-grid-tile [colspan]="3" *ngFor="let name of names; let i = index">
 						<md-input-container>
-							<input mdInput name="name{{i}}" placeholder="Name" value="name" ngModel>
+							<input mdInput name="name{{i}}" placeholder="Name" ngModel>
 						</md-input-container>
 					</md-grid-tile>
+					<ng-container *ngIf="selectedSubUsage != null && selectedSubUsage.organization == 'Utah State University'">
+						<md-grid-tile [colspan]=6>
+							<md-input-container>
+								<input mdInput name="studentCount" placeholder="Student Count" ngModel>
+							</md-input-container>
+							<span style="flex: 1 1 auto;"></span>
+							<md-input-container>
+								<input mdInput name="facultyCount" placeholder="Faculty Count" ngModel>
+							</md-input-container>
+						</md-grid-tile>
+					</ng-container>
 					<md-grid-tile [colspan]="6">
 						<button md-raised-button color="primary" (click)="incrementNames()">Add Individual</button>
 					</md-grid-tile>
