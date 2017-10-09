@@ -130,17 +130,17 @@ export class UsageFormComponent implements OnInit {
 						organization: "Utah State University"
 					},
 					{
-						name: "Miscellaneous U.S.U.",
+						name: "Miscellaneous",
 						preDisplay: "USU - ",
 						organization: "Utah State University"
 					},
 					{
-						name: "U.S.D.A.",
+						name: "Federal Agency USDI",
 						preDisplay: "Federal - ",
 						organization: "Federal Agency"
 					},
 					{
-						name: "U.S.D.I.",
+						name: "Federal Agency USDA",
 						preDisplay: "Federal - ",
 						organization: "Federal Agency"
 					},
@@ -160,7 +160,7 @@ export class UsageFormComponent implements OnInit {
 						organization: "Other"
 					},
 					{
-						name: "Non-profit Agencies",
+						name: "Non-Profit Agencies",
 						preDisplay: "Other - ",
 						organization: "Other"
 					},

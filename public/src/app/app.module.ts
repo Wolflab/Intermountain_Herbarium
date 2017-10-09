@@ -30,6 +30,7 @@ import { ReportService } from './services/report/report.service';
 import { UsageService } from './services/usage/usage.service';
 import { ScreenSizeService } from './services/screen-size/screen-size.service';
 import { ServiceService } from './services/service/service.service';
+import { ObjectIteratorPipe } from './pipes/object-iterator/object-iterator.pipe';
 
 @NgModule({
 	declarations: [
@@ -39,7 +40,8 @@ import { ServiceService } from './services/service/service.service';
 		ReportFormComponent,
 		ServiceFormComponent,
 		ServiceReviewFormComponent,
-		UsageFormComponent
+		UsageFormComponent,
+		ObjectIteratorPipe
 	],
 	entryComponents: [
 		InterimReportFormComponent,

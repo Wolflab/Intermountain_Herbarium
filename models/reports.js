@@ -18,8 +18,7 @@ exports.getAll = function(){
 exports.getInterimReport = function(){
 	return new Promise(function(resolve, reject){
 		try{
-			var reportTemplate = template;
-
+			resolve(interimReport())
 		}catch(err){
 			reject(err);
 		}
@@ -34,6 +33,8 @@ exports.getTotalSpecimen = function(fiscalYear){
 		}catch(err){
 			reject(err);
 		}
+	}).catch(function(err){
+		return null;
 	});
 }
 
@@ -42,10 +43,13 @@ var interimReport = async function(){
 	if(new Date(fiscalYear + "/11/01") <= new Date())
 		fiscalYear += 1; 
 
-	var report = template.report;
+	var reportTemplate = Object.assign({}, template);
+	var report = reportTemplate.report;
 	var database = report.specimen.activities.database;
 	database.data.totalEntered.inputs.specimens.value = await specimen.getTotal()
-	// database.data[1].inputs[1].value = await specimen.getTotal() - await exports.getTotalSpecimen(fiscalYear);
+	var lastYearsTotal = await exports.getTotalSpecimen(fiscalYear-1)
+	if(lastYearsTotal)
+		database.data[1].inputs[1].value = await specimen.getTotal() - lastYearsTotal;
 	database.data.georeferenced.inputs.specimens.value = await specimen.getTotalGeoreferenced()
 	database.data.imaged.inputs.specimens.value = await specimen.getTotalImaged()
 	
@@ -70,10 +74,8 @@ var interimReport = async function(){
 			}
 		}
 	}
-	// console.log(JSON.stringify(report, null, 4));
+
 	var usageEntries = await usage.getReportNumbers(fiscalYear);
-	// console.log("Report: ", JSON.stringify(report.usage, null, 4));
-	console.log("entries: ", JSON.stringify(usageEntries, null, 4));
 	for(var entryKey in usageEntries){
 		var type = usageEntries[entryKey];
 		var temp = report.usage.activities;
@@ -81,16 +83,12 @@ var interimReport = async function(){
 			for(var entry of type){
 				if(temp[key].title == entry.usage){
 					for(var key2 in temp[key].data){
-						// console.log("key2: ", temp[key].data[key2]);
-						// console.log("entry: ", entry)
 						if(temp[key].data[key2].title == entry.subUsage){
-							// console.log("Proced: ", entry)
 							if(entry.usage == "Group Usage"){
-								temp[key].data[key2].inputs.push(entry);
+								temp[key].data[key2].inputs.unshift(entry);
 							}else if(typeof entry.value == "object"){
 								for(var key3 in entry.value){
 									if(temp[key].data[key2].inputs[key3]){
-										// console.log("Hit: ", temp[key].data[key2].inputs[key3])
 										if(temp[key].data[key2].inputs[key3].value)
 											temp[key].data[key2].inputs[key3].value += entry.value[key3];
 										else
@@ -98,7 +96,6 @@ var interimReport = async function(){
 									}
 								}
 							}else if(typeof entry.value == "number"){
-								// console.log("Cont: ", temp[key].data[key2].inputs)
 								if(temp[key].data[key2].inputs['count'].value)
 									temp[key].data[key2].inputs['count'].value += entry.value;
 								else
@@ -110,8 +107,7 @@ var interimReport = async function(){
 			}
 		}
 	}
-	console.log(JSON.stringify(report, null, 4))
-
+	return reportTemplate;
 }
 
 var template = {
@@ -707,7 +703,7 @@ var template = {
 							}
 						},
 						nonProfitAgencies: {
-							title: "Non-profit Agencies",
+							title: "Non-Profit Agencies",
 							inputs: {
 								count:	{
 									placeholder: "Count"
@@ -731,7 +727,7 @@ var template = {
 							}
 						},
 						stateOfUtah: {
-							title: "State Of Utah",
+							title: "State of Utah",
 							inputs: {
 								count: {
 									placeholder: "Count"
@@ -866,7 +862,3 @@ var template = {
 		}
 	}
 }
-
-var temp = async function(){
-	await interimReport();
-}();

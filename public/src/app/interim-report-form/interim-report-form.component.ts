@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
+import { ObjectIteratorPipe } from '../pipes/object-iterator/object-iterator.pipe';
 import { ReportService } from '../services/report/report.service';
+
 
 @Component({
 	selector: 'app-interim-report-form',
@@ -10,10 +12,12 @@ import { ReportService } from '../services/report/report.service';
 	styleUrls: ['./interim-report-form.component.css']
 })
 export class InterimReportFormComponent implements OnInit {
-	report: Object;
+	waiting: boolean;
+	data: Object;
 
 	constructor(public dialogRef: MdDialogRef<InterimReportFormComponent>,
-			public reportService: ReportService) { }
+			public reportService: ReportService) {
+	}
 
 	submit(){
 		
@@ -23,10 +27,24 @@ export class InterimReportFormComponent implements OnInit {
 		this.dialogRef.close();
 	}
 
+	addGroup(datum){
+		datum.inputs.push({
+			name: "Name",
+			placeholder: "Name"
+		})
+	}
+
+	oddInputs(datum){
+		return Object.keys(datum.inputs).length % 2 == 1;
+	}
+
 	ngOnInit() {
+		this.waiting = true;
 		var parent = this;
-		this.reportService.getInterimReport(function(report){
-			parent.report = report;
+		this.reportService.getInterimReport(function(data){
+			parent.data = data;
+			parent.waiting = false;
+			console.log(parent.data)
 		});
 	}
 

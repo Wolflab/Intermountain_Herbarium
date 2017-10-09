@@ -63,7 +63,7 @@ export class ServiceFormComponent implements OnInit {
 						name: "Miscellaneous"
 					},
 					{
-						name: "UTC development"
+						name: "UTC Development"
 					}
 				]
 			},
@@ -97,7 +97,7 @@ export class ServiceFormComponent implements OnInit {
 						name: "USDA [ARS, USFS, SCS]"
 					},
 					{
-						name: " USDI [NPS, BLM, NBS]"
+						name: "USDI [NPS, BLM, NBS]"
 					}
 				]
 			},
@@ -111,7 +111,7 @@ export class ServiceFormComponent implements OnInit {
 						name: "Foreign Governments"
 					},
 					{
-						name: "Non-profit Agencies"
+						name: "Non-Profit Agencies"
 					},
 					{
 						name: "Other Universities"
@@ -120,7 +120,7 @@ export class ServiceFormComponent implements OnInit {
 						name: "State of Utah [UDOT, UNH]"
 					},
 					{
-						name: "Other states"
+						name: "Other States"
 					}
 				]
 			}

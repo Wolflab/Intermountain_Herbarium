@@ -32,14 +32,20 @@ exports.getReportNumbers = async function(year){
 						},
 						{
 							charge: this.charge,
+							requests: 1,
 							time: this.time
 						}
 					)
 				},
 				function(key, values){
-					return values.reduce(function(a, b){
-						return 	{ charge: a.charge + b.charge, time: a.time + b.time};
+					var temp = values.reduce(function(a, b){
+						return 	{ 
+							charge: a.charge + b.charge, 
+							time: a.time + b.time
+						};
 					});
+					temp.requests = values.length;
+					return temp;
 				},
 				{
 					query: {

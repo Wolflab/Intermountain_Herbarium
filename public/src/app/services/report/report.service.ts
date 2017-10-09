@@ -50,6 +50,7 @@ export class ReportService {
 		this.http.get(
 			'/reports/interim',
 		).subscribe(function(res){
+			// console.log(res.json())
 			callback(res.json());
 		});
 	};
