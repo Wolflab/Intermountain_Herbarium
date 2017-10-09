@@ -12,6 +12,7 @@ import { ReportService } from '../services/report/report.service';
 export class ReportFormComponent implements OnInit {
 	waiting: boolean;
 	report: Object;
+	temps: Object;
 
 
 	constructor(@Inject(MD_DIALOG_DATA) public data: any,
@@ -43,7 +44,6 @@ export class ReportFormComponent implements OnInit {
 	ngOnInit() {
 		this.waiting = false;
 		this.report = this.data.report;
-		console.log(this.report);
 	}
 
 }

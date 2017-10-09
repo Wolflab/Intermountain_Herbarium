@@ -14,21 +14,19 @@
 				</md-grid-tile>
 				<md-grid-tile [colspan]="3">
 					<div *ngIf="selectedUsage != null">
-						<div *ngIf="selectedUsage.name != 'Group Usage'">
-							<md-select required placeholder="Sub Usage" [(ngModel)]="selectedSubUsage" 
-								name="selectedSubUsage" style="width: 250px">
-								<md-option *ngFor="let subUsage of selectedUsage.options" [value]="subUsage">
-									{{ subUsage.preDisplay }}{{ subUsage.name }}
-								</md-option>
-							</md-select>
-						</div>
-						<div *ngIf="selectedUsage.name == 'Group Usage'">
-							<md-input-container>
-								<input mdInput required name="groupName" placeholder="Name" ngModel>
-								<md-error>This is required</md-error>
-							</md-input-container>
-						</div>
+						<md-select required placeholder="Sub Usage" [(ngModel)]="selectedSubUsage" 
+							name="selectedSubUsage" style="width: 250px">
+							<md-option *ngFor="let subUsage of selectedUsage.options" [value]="subUsage">
+								{{ subUsage.preDisplay }}{{ subUsage.name }}
+							</md-option>
+						</md-select>
 					</div>
+				</md-grid-tile>
+				<md-grid-tile [colspan]=3 *ngIf="selectedUsage != null && selectedUsage.name == 'Group Usage'">
+					<md-input-container>
+						<input mdInput required name="groupName" placeholder="Name" ngModel>
+						<md-error>This is required</md-error>
+					</md-input-container>
 				</md-grid-tile>
 				<md-grid-tile [colspan]=3 *ngIf="selectedUsage != null && selectedUsage.name == 'Library Usage'">
 					<md-input-container>

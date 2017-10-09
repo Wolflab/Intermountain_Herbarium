@@ -22,28 +22,22 @@ export class UsageFormComponent implements OnInit {
 	submit(form){
 		if(form.valid){
 			console.log("Submitting: ", form.value);
-			var usage = {
+			var usage = <any>{
 				usage: form.value.selectedUsage.name,
-				subUsage: null,
+				subUsage: form.value.selectedSubUsage.name,
+				organization: form.value.selectedSubUsage.organization,
 				date: new Date().toLocaleDateString(),
+				fiscalYear: new Date().getFullYear(),
 				purpose: form.value.purpose,
-				groupName: null,
-				names: null,
-				count: null,
-				studentCount: null,
-				facultyCount: null
 			}
-			if(usage.usage == 'Group Usage'){
-				usage.groupName = form.value.groupName
-			}else{
-				usage.subUsage = form.value.selectedSubUsage.name;
-			}
+			if(new Date(usage.fiscalYear + "/11/01") <= new Date())
+				usage.fiscalYear += 1; 
 			if(usage.usage == 'Visitation'){
 				usage.names = [];
 				for(var i = 0; i < this.names.length; i++)
 					usage.names.push(form.value['name' + i]);
-				console.log(form.value.selectedSubUsage);
-				if(form.value.selectedSubUsage.organization == 'Utah State University'){
+				if(usage.organization == 'Utah State University'){
+					usage.usage = "USU Visitation";
 					if(form.value.studentCount)
 						usage.studentCount = parseInt(form.value.studentCount);
 					else
@@ -53,11 +47,13 @@ export class UsageFormComponent implements OnInit {
 					else
 						usage.facultyCount = 0;
 				}else{
+					usage.usage = "Other Visitation";
 					usage.count = usage.names.length;
 				}
-			}
-			if(usage.usage == 'Library Usage'){
+			}else if(usage.usage == 'Library Usage'){
 				usage.count = parseInt(form.value.count);
+			}else if(usage.usage == 'Group Usage'){
+				usage.groupName = form.value.groupName;
 			}
 			this.waiting = true;
 			var parent = this;
@@ -81,13 +77,24 @@ export class UsageFormComponent implements OnInit {
 		this.names = [' '];
 		this.usageTypes = [
 			{
-				name: "Group Usage"
+				name: "Group Usage",
+				options: [
+					{
+						name: "Class Usage"
+					},
+					{
+						name: "Other Campus Groups"
+					},
+					{
+						name: "Other Non-Campus Groups"
+					}
+				]
 			},
 			{
 				name: "Library Usage",
 				options: [
 					{
-						name: "Items checked out"
+						name: "Items Checked Out"
 					},
 					{
 						name: "Visits"
@@ -158,7 +165,7 @@ export class UsageFormComponent implements OnInit {
 						organization: "Other"
 					},
 					{
-						name: " Public",
+						name: "Public",
 						preDisplay: "Other - ",
 						organization: "Other"
 					},
@@ -173,7 +180,7 @@ export class UsageFormComponent implements OnInit {
 						organization: "Other"
 					},
 					{
-						name: " Miscellaneous",
+						name: "Miscellaneous",
 						preDisplay: "Other - ",
 						organization: "Other"
 					}

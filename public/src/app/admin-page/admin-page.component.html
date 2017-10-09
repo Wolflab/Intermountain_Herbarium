@@ -51,17 +51,22 @@
 						</md-grid-list>
 						<hr>
 						<div>
-							<md-grid-list cols=6 rowHeight="50px">
-								<md-grid-tile [colspan]="6" *ngFor="let report of reports">
-									<div class="reportDisplay">
-										Date: <b>{{ report.date }}</b>
-									</div>
-									<div class="reportDisplay">
-											<button md-raised-button color="primary" (click)="openReportDialog(report)">Review/Edit Report</button>
-									</div>
-								</md-grid-tile>
-							</md-grid-list>
-						</div>
+						<md-grid-list cols=6 rowHeight="50px">
+							<md-grid-tile [colspan]="6" *ngFor="let report of reports">
+								<div class="reportDisplay">
+									Date: <b>{{ report.date }}</b>
+								</div>
+								<div class="reportDisplay">
+										<button md-raised-button color="primary" (click)="openReportDialog(report)">Review/Edit Report</button>
+								</div>
+							</md-grid-tile>
+						</md-grid-list>
+						<md-grid-list cols=3>
+							<md-grid-tile *ngFor="let temp of temps">
+								{{ temp.title }}
+							</md-grid-tile>
+						</md-grid-list>
+					</div>
 				</div>
 			</md-tab>
 		  </md-tab-group>

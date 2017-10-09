@@ -22,6 +22,7 @@ exports.insert = function(service){
 exports.getReportNumbers = async function(year){
 	return new Promise(async function(resolve, reject){
 		try{
+			year = parseInt(year);
 			var serviceTotals = await db.service.mapReduce(
 				function(){
 					emit(
@@ -42,7 +43,8 @@ exports.getReportNumbers = async function(year){
 				},
 				{
 					query: {
-						status: "Closed"
+						status: "Closed",
+						fiscalYear: year
 					},
 					out: { inline: 1 }
 				}
@@ -53,8 +55,3 @@ exports.getReportNumbers = async function(year){
 		}
 	});
 }
-
-// var test = async function(){
-// 	var data = await exports.getReportNumbers(2017);
-// 	console.log(data);
-// }();

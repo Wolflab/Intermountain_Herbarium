@@ -22,6 +22,7 @@ import { UsageService } from '../services/usage/usage.service';
 export class AdminPageComponent implements OnInit {
 	openServices: any[];
 	reports: Object[];
+	temps: Object;
 
 	constructor(public dialog: MdDialog,
 			public reportService: ReportService,
