@@ -16,4 +16,8 @@ router.get('/all', async function(req, res){
 	res.json(await reports.getAll());
 });
 
+router.post('/insert', async function(req, res){
+	res.json(await reports.insert(req.body));
+});
+
 module.exports = router;

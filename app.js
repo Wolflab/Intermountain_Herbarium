@@ -8,12 +8,14 @@ var app = express();
 app.use(bodyParser.json());
 
 // var facebookRouter = require('./routes/facebook_routes');
+var graphRouter = require('./routes/graph_routes');
 var reportRouter = require('./routes/report_routes');
 var serviceRouter = require('./routes/service_routes');
 var specimenRouter = require('./routes/specimen_routes');
 var uploadRouter = require('./routes/upload_routes');
 var usageRouter = require('./routes/usage_routes');
 // app.use('/facebook', facebookRouter);
+app.use('/graph', graphRouter);
 app.use('/reports', reportRouter);
 app.use('/service', serviceRouter);
 app.use('/specimen', specimenRouter);

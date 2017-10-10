@@ -4,6 +4,10 @@ var service = require('./service');
 var specimen = require('./specimen');
 var usage = require('./usage');
 
+exports.insert = function(report){
+	return db.reports.insert(report);
+}
+
 exports.update = function(report){
 	return db.reports.update(
 		{_id: report._id},
