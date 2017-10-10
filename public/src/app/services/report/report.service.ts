@@ -55,4 +55,16 @@ export class ReportService {
 		});
 	};
 
+	insertReport(report, callback?){
+		var parent = this;
+		this.http.post(
+			'/reports/insert',
+			report
+		).subscribe(function(res){
+			parent.update();
+			if(typeof callback == 'function')
+				callback(res);
+		});
+	}
+
 }

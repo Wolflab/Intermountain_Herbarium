@@ -41,9 +41,13 @@ export class ReportFormComponent implements OnInit {
 		})
 	}
 
+	oddInputs(datum){
+		return Object.keys(datum.inputs).length % 2 == 1;
+	}
+
 	ngOnInit() {
 		this.waiting = false;
-		this.report = this.data.report;
+		this.data = this.data.report;
 	}
 
 }

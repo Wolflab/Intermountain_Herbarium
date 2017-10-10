@@ -20,7 +20,12 @@ export class InterimReportFormComponent implements OnInit {
 	}
 
 	submit(){
-		
+		this.waiting = true;
+		var parent = this;
+		this.reportService.insertReport(this.data, function(res){
+			parent.dialogRef.close();
+			parent.waiting = false;
+		});
 	}
 	
 	onCloseCancel(){

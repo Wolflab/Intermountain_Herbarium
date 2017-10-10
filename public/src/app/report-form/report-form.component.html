@@ -1,35 +1,47 @@
 <div>
 	<div *ngIf="!waiting">
 		<form #reportForm="ngForm" *ngIf="!waiting">
-			<h2 md-dialog-title>Report Dialog - {{ report.date }}</h2>
+			<h2 md-dialog-title>Report Dialog - {{ data.date }}</h2>
 			<hr>
 			<md-dialog-content>
 				<md-grid-list cols=12 rowHeight="40px">
-					<ng-container *ngFor="let type of report.report; let i = index">
+					<ng-container *ngFor="let type of data.report | objectIterator; let i = index">
 						<md-grid-tile [colspan]=12>
 							<h2>{{ type.title }}</h2>
 						</md-grid-tile>
-						<ng-container *ngFor="let activity of type.activities; let j = index">
+						<ng-container *ngFor="let activity of type.activities | objectIterator; let j = index">
 							<md-grid-tile [colspan]=12>
 								<h3>{{ activity.title }}</h3>
 							</md-grid-tile>
-							<ng-container *ngFor="let datum of activity.data; let k = index">
-								<md-grid-tile [colspan]="datum.inputs.length % 2 == 1 ? 6 : 12" [rowspan]="datum.inputs.length % 2 == 1 ? 2 : 1">
+							<ng-container *ngFor="let datum of activity.data | objectIterator; let k = index">
+								<md-grid-tile [colspan]="oddInputs(datum) ? 6 : 12" [rowspan]="oddInputs(datum) ? 2 : 1">
 									<h4>{{ datum.title }}</h4>
 								</md-grid-tile>
-								<ng-container *ngFor="let input of datum.inputs; let l = index">
-									<md-grid-tile [colspan]=6 [rowspan]=2>
-										<md-input-container>
-											<input mdInput [(ngModel)]="input.value" name="{{ i }}_{{ j }}_{{ k }}_{{ l }}"
-												placeholder="{{ input.placeholder }}">
-										</md-input-container>
-									</md-grid-tile>
-								</ng-container>
-								<ng-container *ngIf="datum.openEnded">
-										<md-grid-tile [colspan]=12 [rowspan]=2>
-											<button md-raised-button color="primary" (click)="addGroup(datum)">Add Group</button>
+								<ng-container *ngIf="activity.title != 'Group Usage'">
+									<ng-container *ngFor="let input of datum.inputs | objectIterator; let l = index">
+										<md-grid-tile [colspan]=6 [rowspan]=2>
+											<md-input-container>
+												<input mdInput [(ngModel)]="input.value" name="{{ i }}_{{ j }}_{{ k }}_{{ l }}"
+													placeholder="{{ input.placeholder }}">
+											</md-input-container>
 										</md-grid-tile>
 									</ng-container>
+								</ng-container>
+								<ng-container *ngIf="activity.title == 'Group Usage'">
+									<ng-container *ngFor="let input of datum.inputs; let l = index">
+										<md-grid-tile [colspan]=6 [rowspan]=2>
+											<md-input-container>
+												<input mdInput [(ngModel)]="input.groupName" name="{{ i }}_{{ j }}_{{ k }}_{{ l }}"
+													placeholder="{{ input.placeholder }}">
+											</md-input-container>
+										</md-grid-tile>
+									</ng-container>
+								</ng-container>
+								<ng-container *ngIf="datum.openEnded">
+									<md-grid-tile [colspan]=12 [rowspan]=2>
+										<button md-raised-button color="primary" (click)="addGroup(datum)">Add Group</button>
+									</md-grid-tile>
+								</ng-container>
 							</ng-container>
 						</ng-container>
 					</ng-container>
