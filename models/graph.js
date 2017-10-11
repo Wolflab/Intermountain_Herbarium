@@ -118,11 +118,11 @@ var multiLine = function(data){
 		// appends a 'group' element to 'svg'
 		// moves the 'group' element to the top left margin
 		const g = svg.append('g')
-				.attr("width", width + margin.left + margin.right)
-				.attr("height", height + margin.top + margin.bottom)
-			.append("g")
-				.attr("transform",
-					"translate(" + margin.left + "," + margin.top + ")");
+				.attr('width', width + margin.left + margin.right)
+				.attr('height', height + margin.top + margin.bottom)
+			.append('g')
+				.attr('transform',
+					'translate(' + margin.left + ',' + margin.top + ')');
 
 		// format the data
 		data.forEach(function(d) {
@@ -174,13 +174,11 @@ var multiLine = function(data){
 			.call(d3.axisLeft(y));
 
 		//Add legend
-		svg.append('g')
-			.attr('class','legend')
-			.attr('transform','translate(50,30)')
-			.style('font-size','12px')
-			.call(d3.legend)
-
-		// });
+		// svg.append('g')
+		// 	.attr('class','legend')
+		// 	.attr('transform','translate(50,30)')
+		// 	.style('font-size','12px')
+		// 	.call(d3.legend)
 
 		return d3n;
 }
