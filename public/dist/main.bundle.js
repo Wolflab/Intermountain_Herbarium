@@ -401,6 +401,7 @@ var InterimReportFormComponent = (function () {
     InterimReportFormComponent.prototype.submit = function () {
         this.waiting = true;
         var parent = this;
+        this.data.date = this.data.fiscalYear + "-10-31";
         this.reportService.insertReport(this.data, function (res) {
             parent.dialogRef.close();
             parent.waiting = false;
