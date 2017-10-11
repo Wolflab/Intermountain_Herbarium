@@ -4,14 +4,26 @@ const router = express.Router();
 
 const graph = require('../models/graph');
 
-router.get('/svg', async function(req, res){
-	graph.createGraph(function(){
+router.get('/database/svg', async function(req, res){
+	graph.createDatabaseGraph(function(){
 		res.download(__dirname + '/../output/output.svg', 'svgOutput.svg');
 	});
 });
 
-router.get('/png', async function(req, res){
-	graph.createGraph(function(){
+router.get('/database/png', async function(req, res){
+	graph.createDatabaseGraph(function(){
+		res.download(__dirname + '/../output/output.png', 'pngOutput.png');
+	});
+});
+
+router.get('/total/svg', async function(req, res){
+	graph.createTotalGraph(function(){
+		res.download(__dirname + '/../output/output.svg', 'svgOutput.svg');
+	});
+});
+
+router.get('/total/png', async function(req, res){
+	graph.createTotalGraph(function(){
 		res.download(__dirname + '/../output/output.png', 'pngOutput.png');
 	});
 });

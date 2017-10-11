@@ -20,13 +20,11 @@
   "homepage": "https://github.com/Ronin11/HerbariumApplication#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "co": "^4.6.0",
     "d3-node": "^1.1.1",
     "d3node-output": "^1.0.1",
     "express": "^4.15.4",
     "fb": "^2.0.0",
     "monk": "^6.0.4",
-    "node-chartist": "^1.0.5",
     "request": "^2.81.0",
     "request-promise": "^4.2.1"
   }
