@@ -22,7 +22,6 @@ import { UsageService } from '../services/usage/usage.service';
 export class AdminPageComponent implements OnInit {
 	openServices: any[];
 	reports: Object[];
-	temps: Object;
 
 	constructor(public dialog: MdDialog,
 			public reportService: ReportService,
@@ -39,7 +38,15 @@ export class AdminPageComponent implements OnInit {
 			parent.openServices = response;
 		});
 		this.reportService.getAllReports(function(reports){
-			parent.reports = reports;
+			parent.reports = reports.sort(function(a, b){
+				if(new Date(a.date) < new Date(b.date))
+					return 1;
+				else if(new Date(a.date) < new Date(b.date))
+					return -1;
+				else
+					return 0;
+			});
+			console.log(reports);
 		});
 	}
 
