@@ -115,6 +115,7 @@ var interimReport = async function(){
 }
 
 var template = {
+	fiscalYear: new Date().getFullYear(),
 	date: new Date().toLocaleDateString(),
 	report: {
 		specimen: {
@@ -748,7 +749,7 @@ var template = {
 						}
 					}
 				},
-				goupUsage: {
+				groupUsage: {
 					title: "Group Usage",
 					data: {
 						classUsage: {
