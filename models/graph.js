@@ -1,24 +1,24 @@
-const co = require('co');
-const generate = require('node-chartist');
+// const co = require('co');
+// const generate = require('node-chartist');
 
 
-co(function * () {
-	const options = {
-		width: 400,
-		height: 200,
-		axisX: { title: 'X Axis (units)' },
-		axisY: { title: 'Y Axis (units)' }
-	};
+// co(function * () {
+// 	const options = {
+// 		width: 400,
+// 		height: 200,
+// 		axisX: { title: 'X Axis (units)' },
+// 		axisY: { title: 'Y Axis (units)' }
+// 	};
 
-	const line = yield generate('line', options, {
-		labels: ['a', 'b', 'c', 'd', 'e'],
-		series: [
-			{name: 'Series 1', value: [1, 2, 3, 4, 5]},
-			{name: 'Series 2', value: [3, 4, 5, 6, 7]}
-		]
-	});
-	console.log(line)
-})
+// 	const line = yield generate('line', options, {
+// 		labels: ['a', 'b', 'c', 'd', 'e'],
+// 		series: [
+// 			{name: 'Series 1', value: [1, 2, 3, 4, 5]},
+// 			{name: 'Series 2', value: [3, 4, 5, 6, 7]}
+// 		]
+// 	});
+// 	console.log(line)
+// })
 // co(function * () {
 
 // 	// options object
