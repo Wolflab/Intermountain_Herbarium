@@ -11,8 +11,7 @@ import { ReportService } from '../services/report/report.service';
 })
 export class ReportFormComponent implements OnInit {
 	waiting: boolean;
-	report: Object;
-	temps: Object;
+	// report: Object;
 
 
 	constructor(@Inject(MD_DIALOG_DATA) public data: any,
@@ -21,10 +20,10 @@ export class ReportFormComponent implements OnInit {
 
 	submit(){
 			// var report = form.value;
-			console.log(this.report);
+			console.log(this.data);
 			this.waiting = true;
 			var parent = this;
-			this.reportService.updateReport(this.report, function(res){
+			this.reportService.updateReport(this.data, function(res){
 				parent.dialogRef.close();
 				parent.waiting = false;
 			});
@@ -47,7 +46,7 @@ export class ReportFormComponent implements OnInit {
 
 	ngOnInit() {
 		this.waiting = false;
-		this.report = this.data.report;
+		// this.report = this.data.report;
 	}
 
 }
