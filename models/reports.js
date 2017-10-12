@@ -43,7 +43,7 @@ exports.getTotalSpecimen = function(fiscalYear){
 }
 
 exports.getDatabaseDataset = async function(){
-	var docs = await db.reports.find();
+	var docs = await db.reports.find({}, {sort: {"fiscalYear": -1}});
 	return docs.map(function(val){
 		return {
 			"fiscalYear": val.fiscalYear,
@@ -55,7 +55,7 @@ exports.getDatabaseDataset = async function(){
 }
 
 exports.getTotalDataset = async function(){
-	var docs = await db.reports.find();
+	var docs = await db.reports.find({}, {sort: {"fiscalYear": -1}});
 	return docs.map(function(val){
 		return {
 			"fiscalYear": val.fiscalYear,
