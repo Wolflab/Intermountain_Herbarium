@@ -47,7 +47,7 @@ export class ReportFormComponent implements OnInit {
 
 	ngOnInit() {
 		this.waiting = false;
-		this.data = this.data.report;
+		this.report = this.data.report;
 	}
 
 }
