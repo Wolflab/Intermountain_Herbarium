@@ -92,10 +92,9 @@ exports.getDatabaseDataset = function(){
 exports.getTotalDataset = async function(){
 	var docs = await db.reports.find();
 	var temp = docs.map(function(val, index, arr){
-		console.log(JSON.stringify(val.report, null, 4))
 		return {
 			"fiscalYear": val.fiscalYear,
-			"specimenTotal": val.report.specimen.activities.totals.data.specimenTotal.inputs.value
+			"specimenTotal": val.report.specimen.activities.totals.data.specimenTotal.inputs.count.value
 		}
 	});
 	console.log(temp);
