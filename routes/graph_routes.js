@@ -10,11 +10,11 @@ router.get('/database/svg', async function(req, res){
 	});
 });
 
-router.get('/database/png', async function(req, res){
-	graph.createDatabaseGraph(function(){
-		res.download(__dirname + '/../output/output.png', 'pngOutput.png');
-	});
-});
+// router.get('/database/png', async function(req, res){
+// 	graph.createDatabaseGraph(function(){
+// 		res.download(__dirname + '/../output/output.png', 'pngOutput.png');
+// 	});
+// });
 
 router.get('/total/svg', async function(req, res){
 	graph.createTotalGraph(function(){
@@ -22,10 +22,10 @@ router.get('/total/svg', async function(req, res){
 	});
 });
 
-router.get('/total/png', async function(req, res){
-	graph.createTotalGraph(function(){
-		res.download(__dirname + '/../output/output.png', 'pngOutput.png');
-	});
-});
+// router.get('/total/png', async function(req, res){
+// 	graph.createTotalGraph(function(){
+// 		res.download(__dirname + '/../output/output.png', 'pngOutput.png');
+// 	});
+// });
 
 module.exports = router;
