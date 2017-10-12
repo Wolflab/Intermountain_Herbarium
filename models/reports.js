@@ -44,7 +44,7 @@ exports.getTotalSpecimen = function(fiscalYear){
 
 exports.getDatabaseDataset = async function(){
 	var docs = await db.reports.find();
-	return docs.map(function(val, index, arr){
+	return docs.map(function(val){
 		return {
 			"fiscalYear": val.fiscalYear,
 			"specimenTotal": val.report.specimen.activities.totals.data.specimenTotal.inputs.count.value,
@@ -56,7 +56,7 @@ exports.getDatabaseDataset = async function(){
 
 exports.getTotalDataset = async function(){
 	var docs = await db.reports.find();
-	return docs.map(function(val, index, arr){
+	return docs.map(function(val){
 		return {
 			"fiscalYear": val.fiscalYear,
 			"specimenTotal": val.report.specimen.activities.totals.data.specimenTotal.inputs.count.value
