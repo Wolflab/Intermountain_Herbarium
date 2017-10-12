@@ -137,65 +137,65 @@ var interimReport = async function(){
 
 	var reportTemplate = Object.assign({}, template);
 	var report = reportTemplate.report;
-	var database = report.specimen.activities.database;
-	database.data.totalEntered.inputs.specimens.value = await specimen.getTotal()
-	database.data.georeferenced.inputs.specimens.value = await specimen.getTotalGeoreferenced()
-	database.data.imaged.inputs.specimens.value = await specimen.getTotalImaged()
+	// var database = report.specimen.activities.database;
+	// database.data.totalEntered.inputs.specimens.value = await specimen.getTotal()
+	// database.data.georeferenced.inputs.specimens.value = await specimen.getTotalGeoreferenced()
+	// database.data.imaged.inputs.specimens.value = await specimen.getTotalImaged()
 	
-	var serviceEntries = await service.getReportNumbers(fiscalYear);
-	for(var entry of serviceEntries){
-		var serviceActivites = report.service.activities;
-		for(var key in serviceActivites){
-			if(serviceActivites[key].title == entry._id.serviceOrganization){
-				for(var key2 in serviceActivites[key].data){
-					if(serviceActivites[key].data[key2].title == entry._id.serviceSubOrganization){
-						for(var key3 in entry.value){
-							if(serviceActivites[key].data[key2].inputs[key3]){
-								if(serviceActivites[key].data[key2].inputs[key3].value){
-									serviceActivites[key].data[key2].inputs[key3].value += entry.value[key3];
-								}else{
-									serviceActivites[key].data[key2].inputs[key3].value = entry.value[key3];
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	// var serviceEntries = await service.getReportNumbers(fiscalYear);
+	// for(var entry of serviceEntries){
+	// 	var serviceActivites = report.service.activities;
+	// 	for(var key in serviceActivites){
+	// 		if(serviceActivites[key].title == entry._id.serviceOrganization){
+	// 			for(var key2 in serviceActivites[key].data){
+	// 				if(serviceActivites[key].data[key2].title == entry._id.serviceSubOrganization){
+	// 					for(var key3 in entry.value){
+	// 						if(serviceActivites[key].data[key2].inputs[key3]){
+	// 							if(serviceActivites[key].data[key2].inputs[key3].value){
+	// 								serviceActivites[key].data[key2].inputs[key3].value += entry.value[key3];
+	// 							}else{
+	// 								serviceActivites[key].data[key2].inputs[key3].value = entry.value[key3];
+	// 							}
+	// 						}
+	// 					}
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// }
 
-	var usageEntries = await usage.getReportNumbers(fiscalYear);
-	for(var entryKey in usageEntries){
-		var type = usageEntries[entryKey];
-		var temp = report.usage.activities;
-		for(var key in temp){
-			for(var entry of type){
-				if(temp[key].title == entry.usage){
-					for(var key2 in temp[key].data){
-						if(temp[key].data[key2].title == entry.subUsage){
-							if(entry.usage == "Group Usage"){
-								temp[key].data[key2].inputs.unshift(entry);
-							}else if(typeof entry.value == "object"){
-								for(var key3 in entry.value){
-									if(temp[key].data[key2].inputs[key3]){
-										if(temp[key].data[key2].inputs[key3].value)
-											temp[key].data[key2].inputs[key3].value += entry.value[key3];
-										else
-											temp[key].data[key2].inputs[key3].value = entry.value[key3];
-									}
-								}
-							}else if(typeof entry.value == "number"){
-								if(temp[key].data[key2].inputs['count'].value)
-									temp[key].data[key2].inputs['count'].value += entry.value;
-								else
-									temp[key].data[key2].inputs['count'].value = entry.value;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+	// var usageEntries = await usage.getReportNumbers(fiscalYear);
+	// for(var entryKey in usageEntries){
+	// 	var type = usageEntries[entryKey];
+	// 	var temp = report.usage.activities;
+	// 	for(var key in temp){
+	// 		for(var entry of type){
+	// 			if(temp[key].title == entry.usage){
+	// 				for(var key2 in temp[key].data){
+	// 					if(temp[key].data[key2].title == entry.subUsage){
+	// 						if(entry.usage == "Group Usage"){
+	// 							temp[key].data[key2].inputs.unshift(entry);
+	// 						}else if(typeof entry.value == "object"){
+	// 							for(var key3 in entry.value){
+	// 								if(temp[key].data[key2].inputs[key3]){
+	// 									if(temp[key].data[key2].inputs[key3].value)
+	// 										temp[key].data[key2].inputs[key3].value += entry.value[key3];
+	// 									else
+	// 										temp[key].data[key2].inputs[key3].value = entry.value[key3];
+	// 								}
+	// 							}
+	// 						}else if(typeof entry.value == "number"){
+	// 							if(temp[key].data[key2].inputs['count'].value)
+	// 								temp[key].data[key2].inputs['count'].value += entry.value;
+	// 							else
+	// 								temp[key].data[key2].inputs['count'].value = entry.value;
+	// 						}
+	// 					}
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// }
 	return reportTemplate;
 }
 
