@@ -89,8 +89,8 @@ exports.getDatabaseDataset = function(){
 	]
 }
 
-exports.getTotalDataset = function(){
-	var docs = db.reports.find();
+exports.getTotalDataset = async function(){
+	var docs = await db.reports.find();
 	var temp = docs.map(function(val, index, arr){
 		return {
 			"fiscalYear": val.fiscalYear,
