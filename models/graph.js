@@ -7,12 +7,14 @@ const reports = require('./reports');
 exports.createTotalGraph = function(callback){
 	var data = reports.getTotalDataset();
 	// create output files
+	console.log(data);
 	output('./output/output', line(data));
 	setTimeout(callback, 1000);
 }
 
 exports.createDatabaseGraph = function(callback){
 	var data = reports.getDatabaseDataset();
+	console.log(data);
 	// create output files
 	output('./output/output', multiLine(data));
 	setTimeout(callback, 1000);

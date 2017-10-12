@@ -43,100 +43,25 @@ exports.getTotalSpecimen = function(fiscalYear){
 }
 
 exports.getDatabaseDataset = function(){
-	return [
-		{
-			fiscalYear: 1990,
-			specimenTotal: 100,
-			totalEntered: 10,
-			totalImaged: 1,
-		},
-		{
-			fiscalYear: 1991,
-			specimenTotal: 200,
-			totalEntered: 20,
-			totalImaged: 2,
-		},
-		{
-			fiscalYear: 1992,
-			specimenTotal: 300,
-			totalEntered: 30,
-			totalImaged: 3,
-		},
-		{
-			fiscalYear: 1993,
-			specimenTotal: 400,
-			totalEntered: 40,
-			totalImaged: 4,
-		},
-		{
-			fiscalYear: 1994,
-			specimenTotal: 500,
-			totalEntered: 50,
-			totalImaged: 5,
-		},
-		{
-			fiscalYear: 1995,
-			specimenTotal: 600,
-			totalEntered: 60,
-			totalImaged: 6,
-		},
-		{
-			fiscalYear: 1996,
-			specimenTotal: 700,
-			totalEntered: 70,
-			totalImaged: 7,
-		},
-	]
+	var docs = await db.reports.find();
+	return docs.map(function(val, index, arr){
+		return {
+			"fiscalYear": val.fiscalYear,
+			"specimenTotal": val.report.specimen.activities.totals.data.specimenTotal.inputs.count.value,
+			"totalEntered": val.report.specimen.activities.database.data.totalEntered.inputs.specimens.value,
+			"totalImaged": val.report.specimen.activities.database.data.imaged.inputs.specimens.value
+		}
+	});
 }
 
 exports.getTotalDataset = async function(){
 	var docs = await db.reports.find();
-	var temp = docs.map(function(val, index, arr){
+	return docs.map(function(val, index, arr){
 		return {
 			"fiscalYear": val.fiscalYear,
 			"specimenTotal": val.report.specimen.activities.totals.data.specimenTotal.inputs.count.value
 		}
 	});
-	console.log(temp);
-	return temp;
-	// return [
-	// 	{
-	// 		fiscalYear: 1931,
-	// 		specimenTotal: 0
-	// 	},
-	// 	{
-	// 		fiscalYear: 1932,
-	// 		specimenTotal: 2147
-	// 	},
-	// 	{
-	// 		fiscalYear: 1933,
-	// 		specimenTotal: 2147
-	// 	},
-	// 	{
-	// 		fiscalYear: 1934,
-	// 		specimenTotal: 10599
-	// 	},
-	// 	{
-	// 		fiscalYear: 1935,
-	// 		specimenTotal: 15000
-	// 	},
-	// 	{
-	// 		fiscalYear: 1936,
-	// 		specimenTotal: 15000
-	// 	},
-	// 	{
-	// 		fiscalYear: 1938,
-	// 		specimenTotal: 23608
-	// 	},
-	// 	{
-	// 		fiscalYear: 1939,
-	// 		specimenTotal:23608
-	// 	},
-	// 	{
-	// 		fiscalYear: 1940,
-	// 		specimenTotal: 23608
-	// 	}
-	// ]
 }
 
 var interimReport = async function(){
