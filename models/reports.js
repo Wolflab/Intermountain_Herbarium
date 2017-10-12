@@ -91,12 +91,14 @@ exports.getDatabaseDataset = function(){
 
 exports.getTotalDataset = function(){
 	var reports = db.reports.find();
-	return reports.map(function(val, index, arr){
+	var temp = reports.map(function(val, index, arr){
 		return {
 			"fiscalYear": val.fiscalYear,
 			"specimenTotal": val.report.specimen.activities.totals.data.specimenTotal.inputs.value
 		}
 	});
+	console.log(temp);
+	return temp;
 	// return [
 	// 	{
 	// 		fiscalYear: 1931,
