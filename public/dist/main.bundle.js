@@ -527,15 +527,12 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 var ReportFormComponent = (function () {
-    // report: Object;
     function ReportFormComponent(data, dialogRef, reportService) {
         this.data = data;
         this.dialogRef = dialogRef;
         this.reportService = reportService;
     }
     ReportFormComponent.prototype.submit = function () {
-        // var report = form.value;
-        console.log(this.data);
         this.waiting = true;
         var parent = this;
         this.reportService.updateReport(this.data, function (res) {
@@ -557,7 +554,7 @@ var ReportFormComponent = (function () {
     };
     ReportFormComponent.prototype.ngOnInit = function () {
         this.waiting = false;
-        // this.report = this.data.report;
+        this.data = this.data.report;
     };
     return ReportFormComponent;
 }());
