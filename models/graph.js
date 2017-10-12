@@ -64,21 +64,21 @@ const d3n = new D3Node({
 		.x(function(d) { return x(d.fiscalYear); })
 		.y(function(d) { return y(d.specimenTotal); });
 
-	valueline.curve(d3.curveBasis);//Smooths data transition
+	// valueline.curve(d3.curveBasis);//Smooths data transition
 
 	// define the 2nd line
 	var valueline2 = d3.line()
 		.x(function(d) { return x(d.fiscalYear); })
 		.y(function(d) { return y(d.totalEntered); });
 
-	valueline2.curve(d3.curveBasis);
+	// valueline2.curve(d3.curveBasis);
 
 	// define the 2nd line
 	var valueline3 = d3.line()
 		.x(function(d) { return x(d.fiscalYear); })
 		.y(function(d) { return y(d.totalImaged); });
 
-	valueline3.curve(d3.curveBasis);
+	// valueline3.curve(d3.curveBasis);
 
 	// append the svg obgect to the body of the page
 	// appends a 'group' element to 'svg'
@@ -200,7 +200,7 @@ const d3n = new D3Node({
 		.x(function(d) { return x(d.fiscalYear); })
 		.y(function(d) { return y(d.specimenTotal); });
 
-	valueline.curve(d3.curveBasis);//Smooths data transition
+	// valueline.curve(d3.curveBasis);//Smooths data transition
 
 
 	// append the svg obgect to the body of the page
