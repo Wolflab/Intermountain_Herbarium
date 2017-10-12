@@ -14,6 +14,10 @@ exports.createTotalGraph = async function(callback){
 exports.createDatabaseGraph = async function(callback){
 	var data = await reports.getDatabaseDataset();
 	// create output files
+	data = data.filter(function(val){
+		return parseInt(val.fiscalYear) > 1990;
+	});
+	
 	output('./output/output', multiLine(data));
 	setTimeout(callback, 1000);
 }
@@ -89,9 +93,18 @@ const d3n = new D3Node({
 	// format the data
 	data.forEach(function(d) {
 		d.fiscalYear = parseTime(d.fiscalYear);
-		d.specimenTotal = +d.specimenTotal;
-		d.totalEntered = +d.totalEntered;
-		d.totalImaged = +d.totalImaged;
+		if(d.specimenTotal)
+			d.specimenTotal = +d.specimenTotal;
+		else
+			d.specimenTotal = 0;
+		if(d.totalEntered)
+			d.totalEntered = +d.totalEntered;
+		else
+			d.totalEntered = 0;
+		if(d.totalImaged)
+			d.totalImaged = +d.totalImaged;
+		else
+			d.totalImaged = 0;
 	});
 
 	// Scale the range of the data
