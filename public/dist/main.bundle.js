@@ -90,15 +90,7 @@ var AdminPageComponent = (function () {
             parent.openServices = response;
         });
         this.reportService.getAllReports(function (reports) {
-            parent.reports = reports.sort(function (a, b) {
-                if (new Date(a.date) < new Date(b.date))
-                    return 1;
-                else if (new Date(a.date) < new Date(b.date))
-                    return -1;
-                else
-                    return 0;
-            });
-            console.log(reports);
+            parent.reports = reports;
         });
     };
     AdminPageComponent.prototype.ngOnInit = function () {
@@ -433,7 +425,6 @@ var InterimReportFormComponent = (function () {
         this.reportService.getInterimReport(function (data) {
             parent.data = data;
             parent.waiting = false;
-            console.log(parent.data);
         });
     };
     return InterimReportFormComponent;

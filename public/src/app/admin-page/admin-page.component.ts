@@ -38,14 +38,7 @@ export class AdminPageComponent implements OnInit {
 			parent.openServices = response;
 		});
 		this.reportService.getAllReports(function(reports){
-			parent.reports = reports.sort(function(a, b){
-				if(new Date(a.date) < new Date(b.date))
-					return 1;
-				else if(new Date(a.date) > new Date(b.date))
-					return -1;
-				else
-					return 0;
-			});
+			parent.reports = reports;
 		});
 	}
 
