@@ -50,7 +50,6 @@ export class InterimReportFormComponent implements OnInit {
 		this.reportService.getInterimReport(function(data){
 			parent.data = data;
 			parent.waiting = false;
-			console.log(parent.data)
 		});
 	}
 
