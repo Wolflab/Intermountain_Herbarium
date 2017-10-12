@@ -42,7 +42,7 @@ exports.getTotalSpecimen = function(fiscalYear){
 	});
 }
 
-exports.getDatabaseDataset = function(){
+exports.getDatabaseDataset = async function(){
 	var docs = await db.reports.find();
 	return docs.map(function(val, index, arr){
 		return {
