@@ -18,12 +18,12 @@ export class ReportFormComponent implements OnInit {
 		public reportService: ReportService) { }
 
 	submit(){
-			this.waiting = true;
-			var parent = this;
-			this.reportService.updateReport(this.data, function(res){
-				parent.dialogRef.close();
-				parent.waiting = false;
-			});
+			// this.waiting = true;
+			// var parent = this;
+			// this.reportService.updateReport(this.data, function(res){
+			// 	parent.dialogRef.close();
+			// 	parent.waiting = false;
+			// });
 	}
 
 	onCloseCancel(){

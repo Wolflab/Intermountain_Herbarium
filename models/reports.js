@@ -90,44 +90,51 @@ exports.getDatabaseDataset = function(){
 }
 
 exports.getTotalDataset = function(){
-	return [
-		{
-			fiscalYear: 1931,
-			specimenTotal: 0
-		},
-		{
-			fiscalYear: 1932,
-			specimenTotal: 2147
-		},
-		{
-			fiscalYear: 1933,
-			specimenTotal: 2147
-		},
-		{
-			fiscalYear: 1934,
-			specimenTotal: 10599
-		},
-		{
-			fiscalYear: 1935,
-			specimenTotal: 15000
-		},
-		{
-			fiscalYear: 1936,
-			specimenTotal: 15000
-		},
-		{
-			fiscalYear: 1938,
-			specimenTotal: 23608
-		},
-		{
-			fiscalYear: 1939,
-			specimenTotal:23608
-		},
-		{
-			fiscalYear: 1940,
-			specimenTotal: 23608
+	var reports = db.reports.find();
+	return reports.map(function(val, index, arr){
+		return {
+			"fiscalYear": val.fiscalYear,
+			"specimenTotal": val.report.specimen.activities.totals.data.specimenTotal.inputs.value
 		}
-	]
+	});
+	// return [
+	// 	{
+	// 		fiscalYear: 1931,
+	// 		specimenTotal: 0
+	// 	},
+	// 	{
+	// 		fiscalYear: 1932,
+	// 		specimenTotal: 2147
+	// 	},
+	// 	{
+	// 		fiscalYear: 1933,
+	// 		specimenTotal: 2147
+	// 	},
+	// 	{
+	// 		fiscalYear: 1934,
+	// 		specimenTotal: 10599
+	// 	},
+	// 	{
+	// 		fiscalYear: 1935,
+	// 		specimenTotal: 15000
+	// 	},
+	// 	{
+	// 		fiscalYear: 1936,
+	// 		specimenTotal: 15000
+	// 	},
+	// 	{
+	// 		fiscalYear: 1938,
+	// 		specimenTotal: 23608
+	// 	},
+	// 	{
+	// 		fiscalYear: 1939,
+	// 		specimenTotal:23608
+	// 	},
+	// 	{
+	// 		fiscalYear: 1940,
+	// 		specimenTotal: 23608
+	// 	}
+	// ]
 }
 
 var interimReport = async function(){
