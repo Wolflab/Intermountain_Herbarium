@@ -16,7 +16,7 @@ exports.update = function(report){
 }
 
 exports.getAll = function(){
-	return db.reports.find().sort( { "fiscalYear": -1 } );
+	return db.reports.find({}, {sort: {"fiscalYear": -1}});
 }
 
 exports.getInterimReport = function(){
