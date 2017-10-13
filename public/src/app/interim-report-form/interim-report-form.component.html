@@ -11,11 +11,6 @@
 									placeholder="Fiscal Year">
 							</md-input-container>
 						</md-grid-tile>
-						<!-- <ng-container *ngFor="let item of data.report | objectIterator">
-							<md-grid-tile [colspan]=12>
-								<h2>Title - {{ item.title }}</h2>
-							</md-grid-tile>
-						</ng-container> -->
 						<ng-container *ngFor="let type of data.report | objectIterator; let i = index">
 							<md-grid-tile [colspan]=12>
 								<h2>{{ type.title }}</h2>
