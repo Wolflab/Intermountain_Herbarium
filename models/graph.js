@@ -4,16 +4,20 @@ const D3Node = require('d3-node');
 
 const reports = require('./reports');
 
-exports.createTotalGraph = function(callback){
-	var data = reports.getTotalDataset();
+exports.createTotalGraph = async function(callback){
+	var data = await reports.getTotalDataset();
 	// create output files
 	output('./output/output', line(data));
 	setTimeout(callback, 1000);
 }
 
-exports.createDatabaseGraph = function(callback){
-	var data = reports.getDatabaseDataset();
+exports.createDatabaseGraph = async function(callback){
+	var data = await reports.getDatabaseDataset();
 	// create output files
+	data = data.filter(function(val){
+		return parseInt(val.fiscalYear) > 1990;
+	});
+	
 	output('./output/output', multiLine(data));
 	setTimeout(callback, 1000);
 }
@@ -60,21 +64,21 @@ const d3n = new D3Node({
 		.x(function(d) { return x(d.fiscalYear); })
 		.y(function(d) { return y(d.specimenTotal); });
 
-	valueline.curve(d3.curveBasis);//Smooths data transition
+	// valueline.curve(d3.curveBasis);//Smooths data transition
 
 	// define the 2nd line
 	var valueline2 = d3.line()
 		.x(function(d) { return x(d.fiscalYear); })
 		.y(function(d) { return y(d.totalEntered); });
 
-	valueline2.curve(d3.curveBasis);
+	// valueline2.curve(d3.curveBasis);
 
 	// define the 2nd line
 	var valueline3 = d3.line()
 		.x(function(d) { return x(d.fiscalYear); })
 		.y(function(d) { return y(d.totalImaged); });
 
-	valueline3.curve(d3.curveBasis);
+	// valueline3.curve(d3.curveBasis);
 
 	// append the svg obgect to the body of the page
 	// appends a 'group' element to 'svg'
@@ -89,9 +93,18 @@ const d3n = new D3Node({
 	// format the data
 	data.forEach(function(d) {
 		d.fiscalYear = parseTime(d.fiscalYear);
-		d.specimenTotal = +d.specimenTotal;
-		d.totalEntered = +d.totalEntered;
-		d.totalImaged = +d.totalImaged;
+		if(d.specimenTotal)
+			d.specimenTotal = +d.specimenTotal;
+		else
+			d.specimenTotal = 0;
+		if(d.totalEntered)
+			d.totalEntered = +d.totalEntered;
+		else
+			d.totalEntered = 0;
+		if(d.totalImaged)
+			d.totalImaged = +d.totalImaged;
+		else
+			d.totalImaged = 0;
 	});
 
 	// Scale the range of the data
@@ -193,7 +206,7 @@ const d3n = new D3Node({
 		.x(function(d) { return x(d.fiscalYear); })
 		.y(function(d) { return y(d.specimenTotal); });
 
-	valueline.curve(d3.curveBasis);//Smooths data transition
+	// valueline.curve(d3.curveBasis);//Smooths data transition
 
 
 	// append the svg obgect to the body of the page
