@@ -13,7 +13,7 @@ import { ReportService } from '../services/report/report.service';
 })
 export class InterimReportFormComponent implements OnInit {
 	waiting: boolean;
-	data: Object;
+	data: any;
 
 	constructor(public dialogRef: MdDialogRef<InterimReportFormComponent>,
 			public reportService: ReportService) {
@@ -22,7 +22,8 @@ export class InterimReportFormComponent implements OnInit {
 	submit(){
 		this.waiting = true;
 		var parent = this;
-		(this.data as any).date = (this.data as any).fiscalYear + "-10-31";
+		this.data.fiscalYear = this.data.fiscalYear.toString();
+		this.data.date = this.data.fiscalYear + "-10-31";
 		this.reportService.insertReport(this.data, function(res){
 			parent.dialogRef.close();
 			parent.waiting = false;
