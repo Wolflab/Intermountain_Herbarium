@@ -1,19 +1,55 @@
 // Library Imports
-var express = require('express');
-var bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
 
 // Express Setup
-var router = express.Router();
-var app = express();
+const router = express.Router();
+const app = express();
 app.use(bodyParser.json());
 
-// var facebookRouter = require('./routes/facebook_routes');
-var graphRouter = require('./routes/graph_routes');
-var reportRouter = require('./routes/report_routes');
-var serviceRouter = require('./routes/service_routes');
-var specimenRouter = require('./routes/specimen_routes');
-var usageRouter = require('./routes/usage_routes');
+app.use(function(req, res, next){
+	const route = req.path.split('/')[1];
+	if(route == 'reports'){
+		if(req.headers.key == process.env.adminKey){
+			next();
+		}else if(req.headers.key == process.env.userKey){
+			res.sendStatus(401);
+		}else{
+			res.sendStatus(401);
+		}
+	}else if(route == 'service'){
+		if(req.headers.key == process.env.adminKey){
+			next();
+		}else if(req.headers.key == process.env.userKey){
+			next();
+		}else{
+			res.sendStatus(401);
+		}
+	}else if(route == 'usage'){
+		if(req.headers.key == process.env.adminKey){
+			next();
+		}else if(req.headers.key == process.env.userKey){
+			next();
+		}else{
+			res.sendStatus(401);
+		}
+	}else{
+		next();
+	}
+});
+
+app.get('/test', function (req,res) {
+	res.send('I can be reached only using an authorised api key.')
+})
+
+const loginRouter = require('./routes/login_routes');
+const graphRouter = require('./routes/graph_routes');
+const reportRouter = require('./routes/report_routes');
+const serviceRouter = require('./routes/service_routes');
+const specimenRouter = require('./routes/specimen_routes');
+const usageRouter = require('./routes/usage_routes');
 // app.use('/facebook', facebookRouter);
+app.use('/login', loginRouter);
 app.use('/graph', graphRouter);
 app.use('/reports', reportRouter);
 app.use('/service', serviceRouter);
@@ -23,10 +59,10 @@ app.use('/', express.static('./public/dist'));
 app.use('*', express.static('./public/dist'));
 
 
-var port = 8080;
+const port = 8080;
 app.listen(port, function () {
 	// clog.i('TESTR V' + pjson.version + ' has started on port '+ port);
 	console.log("Server started on port ", port);
 });
 
-var fb = require('./util/fb');
+// const fb = require('./util/fb');

@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/admin-page/admin-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n\t<md-card>\n\t\t<md-tab-group>\n\t\t\t<md-tab label=\"Service\">\n\t\t\t\t<div class=\"content\">\n\t\t\t\t\t<md-grid-list cols=6 rowHeight=\"50px\">\n\t\t\t\t\t\t<md-grid-tile [colspan]=\"screenSizeService.mobile ? 2 : 1\">\n\t\t\t\t\t\t\t<h3> Open Service Requests </h3>\n\t\t\t\t\t\t</md-grid-tile>\n\t\t\t\t\t\t<md-grid-tile [colspan]=\"screenSizeService.mobile ? 2 : 4\"></md-grid-tile>\n\t\t\t\t\t\t<md-grid-tile [colspan]=\"screenSizeService.mobile ? 2 : 1\">\n\t\t\t\t\t\t\t<button md-raised-button color=\"primary\" (click)=\"openServiceDialog()\">Add Service Request</button>\n\t\t\t\t\t\t</md-grid-tile>\n\t\t\t\t\t</md-grid-list>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<md-grid-list cols=6 rowHeight=\"50px\">\n\t\t\t\t\t\t\t<md-grid-tile [colspan]=\"6\" *ngFor=\"let service of openServices\">\n\t\t\t\t\t\t\t\t<div class=\"serviceDisplay\">\n\t\t\t\t\t\t\t\t\tRequester: <b>{{ service.requester }}</b>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"serviceDisplay\">\n\t\t\t\t\t\t\t\t\tOrganization: <b>{{ service.serviceOrganization }} - {{ service.serviceSubOrganization}}</b>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"serviceDisplay\">\n\t\t\t\t\t\t\t\t\tDate: <b>{{ service.dateRequested }}</b>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"serviceDisplay\">\n\t\t\t\t\t\t\t\t\t<button md-raised-button color=\"primary\" (click)=\"openServiceCompletionDialog(service)\">Review</button>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</md-grid-tile>\n\t\t\t\t\t\t</md-grid-list>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</md-tab>\n\t\t\t<md-tab label=\"Usage\">\n\t\t\t\t<div class=\"content\">\n\t\t\t\t\t<button md-raised-button color=\"primary\" (click)=\"openUsageDialog()\">Add Usage</button>\n\t\t\t\t</div>\n\t\t\t</md-tab>\t\t\t\n\t\t\t<md-tab label=\"Reports\">\n\t\t\t\t<div class=\"content\">\n\t\t\t\t\t<md-grid-list cols=6 rowHeight=\"50px\">\n\t\t\t\t\t\t\t<md-grid-tile [colspan]=\"screenSizeService.mobile ? 2 : 1\">\n\t\t\t\t\t\t\t\t<h3> Reports </h3>\n\t\t\t\t\t\t\t</md-grid-tile>\n\t\t\t\t\t\t\t<md-grid-tile [colspan]=\"screenSizeService.mobile ? 2 : 4\"></md-grid-tile>\n\t\t\t\t\t\t\t<md-grid-tile [colspan]=\"screenSizeService.mobile ? 2 : 1\">\n\t\t\t\t\t\t\t\t\t<button md-raised-button color=\"primary\" (click)=\"openInterimReportDialog()\">Get Interim Report</button>\n\t\t\t\t\t\t\t</md-grid-tile>\n\t\t\t\t\t\t</md-grid-list>\n\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t<md-grid-list cols=6 rowHeight=\"50px\">\n\t\t\t\t\t\t\t<md-grid-tile [colspan]=\"6\" *ngFor=\"let report of reports\">\n\t\t\t\t\t\t\t\t<div class=\"reportDisplay\">\n\t\t\t\t\t\t\t\t\tDate: <b>{{ report.date }}</b>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"reportDisplay\">\n\t\t\t\t\t\t\t\t\t\t<button md-raised-button color=\"primary\" (click)=\"openReportDialog(report)\">Review/Edit Report</button>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</md-grid-tile>\n\t\t\t\t\t\t</md-grid-list>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</md-tab>\n\t\t  </md-tab-group>\n\t</md-card>\t\n</div>\n"
+module.exports = "<div>\n\t<md-card>\n\t\t<div *ngIf=\"!loginService.loggedIn && !loginBeenCalled\">\n\t\t\t<div *ngIf=\"openLoginDialog()\"></div>\n\t\t</div>\n\t\t<md-tab-group>\n\t\t\t<md-tab label=\"Service\" *ngIf=\"loginService.serviceAuth\">\n\t\t\t\t<div class=\"content\">\n\t\t\t\t\t<md-grid-list cols=6 rowHeight=\"50px\">\n\t\t\t\t\t\t<md-grid-tile [colspan]=\"screenSizeService.mobile ? 2 : 1\">\n\t\t\t\t\t\t\t<h3> Open Service Requests </h3>\n\t\t\t\t\t\t</md-grid-tile>\n\t\t\t\t\t\t<md-grid-tile [colspan]=\"screenSizeService.mobile ? 2 : 4\"></md-grid-tile>\n\t\t\t\t\t\t<md-grid-tile [colspan]=\"screenSizeService.mobile ? 2 : 1\">\n\t\t\t\t\t\t\t<button md-raised-button color=\"primary\" (click)=\"openServiceDialog()\">Add Service Request</button>\n\t\t\t\t\t\t</md-grid-tile>\n\t\t\t\t\t</md-grid-list>\n\t\t\t\t\t<hr>\n\t\t\t\t\t<div>\n\t\t\t\t\t\t<md-grid-list cols=6 rowHeight=\"50px\">\n\t\t\t\t\t\t\t<md-grid-tile [colspan]=\"6\" *ngFor=\"let service of openServices\">\n\t\t\t\t\t\t\t\t<div class=\"serviceDisplay\">\n\t\t\t\t\t\t\t\t\tRequester: <b>{{ service.requester }}</b>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"serviceDisplay\">\n\t\t\t\t\t\t\t\t\tOrganization: <b>{{ service.serviceOrganization }} - {{ service.serviceSubOrganization}}</b>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"serviceDisplay\">\n\t\t\t\t\t\t\t\t\tDate: <b>{{ service.dateRequested }}</b>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"serviceDisplay\">\n\t\t\t\t\t\t\t\t\t<button md-raised-button color=\"primary\" (click)=\"openServiceCompletionDialog(service)\">Review</button>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</md-grid-tile>\n\t\t\t\t\t\t</md-grid-list>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</md-tab>\n\t\t\t<md-tab label=\"Usage\" *ngIf=\"loginService.usageAuth\">\n\t\t\t\t<div class=\"content\">\n\t\t\t\t\t<button md-raised-button color=\"primary\" (click)=\"openUsageDialog()\">Add Usage</button>\n\t\t\t\t</div>\n\t\t\t</md-tab>\t\t\t\n\t\t\t<md-tab label=\"Reports\" *ngIf=\"loginService.reportAuth\">\n\t\t\t\t<div class=\"content\">\n\t\t\t\t\t<md-grid-list cols=6 rowHeight=\"50px\">\n\t\t\t\t\t\t\t<md-grid-tile [colspan]=\"screenSizeService.mobile ? 2 : 1\">\n\t\t\t\t\t\t\t\t<h3> Reports </h3>\n\t\t\t\t\t\t\t</md-grid-tile>\n\t\t\t\t\t\t\t<md-grid-tile [colspan]=\"screenSizeService.mobile ? 2 : 4\"></md-grid-tile>\n\t\t\t\t\t\t\t<md-grid-tile [colspan]=\"screenSizeService.mobile ? 2 : 1\">\n\t\t\t\t\t\t\t\t\t<button md-raised-button color=\"primary\" (click)=\"openInterimReportDialog()\">Get Interim Report</button>\n\t\t\t\t\t\t\t</md-grid-tile>\n\t\t\t\t\t\t</md-grid-list>\n\t\t\t\t\t\t<hr>\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t<md-grid-list cols=6 rowHeight=\"50px\">\n\t\t\t\t\t\t\t<md-grid-tile [colspan]=\"6\" *ngFor=\"let report of reports\">\n\t\t\t\t\t\t\t\t<div class=\"reportDisplay\">\n\t\t\t\t\t\t\t\t\tDate: <b>{{ report.date }}</b>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"reportDisplay\">\n\t\t\t\t\t\t\t\t\t\t<button md-raised-button color=\"primary\" (click)=\"openReportDialog(report)\">Review/Edit Report</button>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</md-grid-tile>\n\t\t\t\t\t\t</md-grid-list>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</md-tab>\n\t\t  </md-tab-group>\n\t</md-card>\t\n</div>\n"
 
 /***/ }),
 
@@ -44,15 +44,17 @@ module.exports = "<div>\n\t<md-card>\n\t\t<md-tab-group>\n\t\t\t<md-tab label=\"
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__interim_report_form_interim_report_form_component__ = __webpack_require__("../../../../../src/app/interim-report-form/interim-report-form.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__report_form_report_form_component__ = __webpack_require__("../../../../../src/app/report-form/report-form.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_form_service_form_component__ = __webpack_require__("../../../../../src/app/service-form/service-form.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__service_review_form_service_review_form_component__ = __webpack_require__("../../../../../src/app/service-review-form/service-review-form.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__usage_form_usage_form_component__ = __webpack_require__("../../../../../src/app/usage-form/usage-form.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_report_report_service__ = __webpack_require__("../../../../../src/app/services/report/report.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_screen_size_screen_size_service__ = __webpack_require__("../../../../../src/app/services/screen-size/screen-size.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_service_service_service__ = __webpack_require__("../../../../../src/app/services/service/service.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_usage_usage_service__ = __webpack_require__("../../../../../src/app/services/usage/usage.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_form_login_form_component__ = __webpack_require__("../../../../../src/app/login-form/login-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__interim_report_form_interim_report_form_component__ = __webpack_require__("../../../../../src/app/interim-report-form/interim-report-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__report_form_report_form_component__ = __webpack_require__("../../../../../src/app/report-form/report-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__service_form_service_form_component__ = __webpack_require__("../../../../../src/app/service-form/service-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__service_review_form_service_review_form_component__ = __webpack_require__("../../../../../src/app/service-review-form/service-review-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__usage_form_usage_form_component__ = __webpack_require__("../../../../../src/app/usage-form/usage-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_login_login_service__ = __webpack_require__("../../../../../src/app/services/login/login.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_report_report_service__ = __webpack_require__("../../../../../src/app/services/report/report.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_screen_size_screen_size_service__ = __webpack_require__("../../../../../src/app/services/screen-size/screen-size.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_service_service_service__ = __webpack_require__("../../../../../src/app/services/service/service.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_usage_usage_service__ = __webpack_require__("../../../../../src/app/services/usage/usage.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminPageComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -74,9 +76,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var AdminPageComponent = (function () {
-    function AdminPageComponent(dialog, reportService, screenSizeService, serviceService, usageService) {
+    function AdminPageComponent(dialog, loginService, reportService, screenSizeService, serviceService, usageService) {
         this.dialog = dialog;
+        this.loginService = loginService;
         this.reportService = reportService;
         this.screenSizeService = screenSizeService;
         this.serviceService = serviceService;
@@ -95,31 +100,40 @@ var AdminPageComponent = (function () {
     };
     AdminPageComponent.prototype.ngOnInit = function () {
         this.update();
+        this.loginBeenCalled = false;
+    };
+    AdminPageComponent.prototype.openLoginDialog = function () {
+        if (!this.loginBeenCalled) {
+            this.loginBeenCalled = true;
+            var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__login_form_login_form_component__["a" /* LoginFormComponent */], {
+                width: '600px',
+            });
+        }
     };
     AdminPageComponent.prototype.openServiceDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__service_form_service_form_component__["a" /* ServiceFormComponent */], {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_5__service_form_service_form_component__["a" /* ServiceFormComponent */], {
             width: '600px',
         });
     };
     AdminPageComponent.prototype.openServiceCompletionDialog = function (service) {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_5__service_review_form_service_review_form_component__["a" /* ServiceReviewFormComponent */], {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__service_review_form_service_review_form_component__["a" /* ServiceReviewFormComponent */], {
             width: '600px',
             data: { service: service }
         });
     };
     AdminPageComponent.prototype.openInterimReportDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_2__interim_report_form_interim_report_form_component__["a" /* InterimReportFormComponent */], {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__interim_report_form_interim_report_form_component__["a" /* InterimReportFormComponent */], {
             width: '600px',
         });
     };
     AdminPageComponent.prototype.openReportDialog = function (report) {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_3__report_form_report_form_component__["a" /* ReportFormComponent */], {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_4__report_form_report_form_component__["a" /* ReportFormComponent */], {
             width: '600px',
             data: { report: report }
         });
     };
     AdminPageComponent.prototype.openUsageDialog = function () {
-        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_6__usage_form_usage_form_component__["a" /* UsageFormComponent */], {
+        var dialogRef = this.dialog.open(__WEBPACK_IMPORTED_MODULE_7__usage_form_usage_form_component__["a" /* UsageFormComponent */], {
             width: '600px',
         });
     };
@@ -131,10 +145,10 @@ AdminPageComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/admin-page/admin-page.component.html"),
         styles: [__webpack_require__("../../../../../src/app/admin-page/admin-page.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["o" /* MdDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["o" /* MdDialog */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_7__services_report_report_service__["a" /* ReportService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__services_report_report_service__["a" /* ReportService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_8__services_screen_size_screen_size_service__["a" /* ScreenSizeService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__services_screen_size_screen_size_service__["a" /* ScreenSizeService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_9__services_service_service_service__["a" /* ServiceService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__services_service_service_service__["a" /* ServiceService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_10__services_usage_usage_service__["a" /* UsageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__services_usage_usage_service__["a" /* UsageService */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["o" /* MdDialog */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["o" /* MdDialog */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_8__services_login_login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__services_login_login_service__["a" /* LoginService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_9__services_report_report_service__["a" /* ReportService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_9__services_report_report_service__["a" /* ReportService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_10__services_screen_size_screen_size_service__["a" /* ScreenSizeService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_10__services_screen_size_screen_size_service__["a" /* ScreenSizeService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_11__services_service_service_service__["a" /* ServiceService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_11__services_service_service_service__["a" /* ServiceService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_12__services_usage_usage_service__["a" /* UsageService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_12__services_usage_usage_service__["a" /* UsageService */]) === "function" && _f || Object])
 ], AdminPageComponent);
 
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=admin-page.component.js.map
 
 /***/ }),
@@ -235,15 +249,17 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__admin_page_admin_page_component__ = __webpack_require__("../../../../../src/app/admin-page/admin-page.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__interim_report_form_interim_report_form_component__ = __webpack_require__("../../../../../src/app/interim-report-form/interim-report-form.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__report_form_report_form_component__ = __webpack_require__("../../../../../src/app/report-form/report-form.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__service_form_service_form_component__ = __webpack_require__("../../../../../src/app/service-form/service-form.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__service_review_form_service_review_form_component__ = __webpack_require__("../../../../../src/app/service-review-form/service-review-form.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__usage_form_usage_form_component__ = __webpack_require__("../../../../../src/app/usage-form/usage-form.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_report_report_service__ = __webpack_require__("../../../../../src/app/services/report/report.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_usage_usage_service__ = __webpack_require__("../../../../../src/app/services/usage/usage.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_screen_size_screen_size_service__ = __webpack_require__("../../../../../src/app/services/screen-size/screen-size.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_service_service_service__ = __webpack_require__("../../../../../src/app/services/service/service.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pipes_object_iterator_object_iterator_pipe__ = __webpack_require__("../../../../../src/app/pipes/object-iterator/object-iterator.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__login_form_login_form_component__ = __webpack_require__("../../../../../src/app/login-form/login-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__report_form_report_form_component__ = __webpack_require__("../../../../../src/app/report-form/report-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__service_form_service_form_component__ = __webpack_require__("../../../../../src/app/service-form/service-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__service_review_form_service_review_form_component__ = __webpack_require__("../../../../../src/app/service-review-form/service-review-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__usage_form_usage_form_component__ = __webpack_require__("../../../../../src/app/usage-form/usage-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_login_login_service__ = __webpack_require__("../../../../../src/app/services/login/login.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_report_report_service__ = __webpack_require__("../../../../../src/app/services/report/report.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__services_usage_usage_service__ = __webpack_require__("../../../../../src/app/services/usage/usage.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__services_screen_size_screen_size_service__ = __webpack_require__("../../../../../src/app/services/screen-size/screen-size.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_service_service_service__ = __webpack_require__("../../../../../src/app/services/service/service.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pipes_object_iterator_object_iterator_pipe__ = __webpack_require__("../../../../../src/app/pipes/object-iterator/object-iterator.pipe.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -251,6 +267,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -292,18 +310,20 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */],
             __WEBPACK_IMPORTED_MODULE_8__admin_page_admin_page_component__["a" /* AdminPageComponent */],
             __WEBPACK_IMPORTED_MODULE_9__interim_report_form_interim_report_form_component__["a" /* InterimReportFormComponent */],
-            __WEBPACK_IMPORTED_MODULE_10__report_form_report_form_component__["a" /* ReportFormComponent */],
-            __WEBPACK_IMPORTED_MODULE_11__service_form_service_form_component__["a" /* ServiceFormComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__service_review_form_service_review_form_component__["a" /* ServiceReviewFormComponent */],
-            __WEBPACK_IMPORTED_MODULE_13__usage_form_usage_form_component__["a" /* UsageFormComponent */],
-            __WEBPACK_IMPORTED_MODULE_18__pipes_object_iterator_object_iterator_pipe__["a" /* ObjectIteratorPipe */]
+            __WEBPACK_IMPORTED_MODULE_11__report_form_report_form_component__["a" /* ReportFormComponent */],
+            __WEBPACK_IMPORTED_MODULE_12__service_form_service_form_component__["a" /* ServiceFormComponent */],
+            __WEBPACK_IMPORTED_MODULE_13__service_review_form_service_review_form_component__["a" /* ServiceReviewFormComponent */],
+            __WEBPACK_IMPORTED_MODULE_14__usage_form_usage_form_component__["a" /* UsageFormComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__pipes_object_iterator_object_iterator_pipe__["a" /* ObjectIteratorPipe */],
+            __WEBPACK_IMPORTED_MODULE_10__login_form_login_form_component__["a" /* LoginFormComponent */]
         ],
         entryComponents: [
+            __WEBPACK_IMPORTED_MODULE_10__login_form_login_form_component__["a" /* LoginFormComponent */],
             __WEBPACK_IMPORTED_MODULE_9__interim_report_form_interim_report_form_component__["a" /* InterimReportFormComponent */],
-            __WEBPACK_IMPORTED_MODULE_10__report_form_report_form_component__["a" /* ReportFormComponent */],
-            __WEBPACK_IMPORTED_MODULE_11__service_form_service_form_component__["a" /* ServiceFormComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__service_review_form_service_review_form_component__["a" /* ServiceReviewFormComponent */],
-            __WEBPACK_IMPORTED_MODULE_13__usage_form_usage_form_component__["a" /* UsageFormComponent */]
+            __WEBPACK_IMPORTED_MODULE_11__report_form_report_form_component__["a" /* ReportFormComponent */],
+            __WEBPACK_IMPORTED_MODULE_12__service_form_service_form_component__["a" /* ServiceFormComponent */],
+            __WEBPACK_IMPORTED_MODULE_13__service_review_form_service_review_form_component__["a" /* ServiceReviewFormComponent */],
+            __WEBPACK_IMPORTED_MODULE_14__usage_form_usage_form_component__["a" /* UsageFormComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* HttpModule */],
@@ -335,10 +355,11 @@ AppModule = __decorate([
             ])
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_14__services_report_report_service__["a" /* ReportService */],
-            __WEBPACK_IMPORTED_MODULE_15__services_usage_usage_service__["a" /* UsageService */],
-            __WEBPACK_IMPORTED_MODULE_16__services_screen_size_screen_size_service__["a" /* ScreenSizeService */],
-            __WEBPACK_IMPORTED_MODULE_17__services_service_service_service__["a" /* ServiceService */]
+            __WEBPACK_IMPORTED_MODULE_15__services_login_login_service__["a" /* LoginService */],
+            __WEBPACK_IMPORTED_MODULE_16__services_report_report_service__["a" /* ReportService */],
+            __WEBPACK_IMPORTED_MODULE_17__services_usage_usage_service__["a" /* UsageService */],
+            __WEBPACK_IMPORTED_MODULE_18__services_screen_size_screen_size_service__["a" /* ScreenSizeService */],
+            __WEBPACK_IMPORTED_MODULE_19__services_service_service_service__["a" /* ServiceService */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
     })
@@ -440,6 +461,91 @@ InterimReportFormComponent = __decorate([
 
 var _a, _b;
 //# sourceMappingURL=interim-report-form.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/login-form/login-form.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/login-form/login-form.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div>\n\t<form #loginForm=\"ngForm\" *ngIf=\"!waiting\">\n\t\t<h2 md-dialog-title>Login Dialog</h2>\n\t\t<hr>\n\t\t<md-dialog-content>\n\t\t\t<md-grid-list cols=6 rowHeight=\"75px\">\n\t\t\t\t<md-grid-tile [colspan]=6 *ngIf=\"failed\">\n\t\t\t\t\t<h4 style=\"color: red;\">Incorrect Password</h4>\n\t\t\t\t</md-grid-tile>\n\t\t\t\t<md-grid-tile [colspan]=6>\n\t\t\t\t\t<md-input-container>\n\t\t\t\t\t\t<input mdInput required type=\"password\" name=\"password\" placeholder=\"Password\" ngModel>\n\t\t\t\t\t\t<md-error>This is required</md-error>\n\t\t\t\t\t</md-input-container>\n\t\t\t\t</md-grid-tile>\n\t\t\t</md-grid-list>\n\t\t</md-dialog-content>\n\t\t<hr>\n\t\t<md-dialog-actions>\n\t\t\t<button md-raised-button (click)=\"onCloseCancel()\">Cancel</button>\n\t\t\t<span style=\"flex: 1 1 auto;\"></span>\n\t\t\t<button md-raised-button type=\"button\" color=\"primary\" (click)=\"submit(loginForm)\">Submit</button>\n\t\t</md-dialog-actions>\n\t</form>\n\t<div *ngIf=\"waiting\">\n\t\t<md-grid-list cols=1 rowHeight=\"350px\">\n\t\t\t<md-grid-tile>\n\t\t\t\t<md-spinner color=\"primary\"></md-spinner>\n\t\t\t</md-grid-tile>\n\t\t</md-grid-list>\n\t</div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/login-form/login-form.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_login_login_service__ = __webpack_require__("../../../../../src/app/services/login/login.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginFormComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var LoginFormComponent = (function () {
+    function LoginFormComponent(dialogRef, loginService) {
+        this.dialogRef = dialogRef;
+        this.loginService = loginService;
+    }
+    LoginFormComponent.prototype.submit = function (form) {
+        var parent = this;
+        this.loginService.login(form.value.password, function (res) {
+            if (res._body) {
+                parent.key = res._body;
+                parent.dialogRef.close();
+            }
+            else {
+                this.failed = true;
+            }
+        });
+    };
+    LoginFormComponent.prototype.onCloseCancel = function () {
+        this.dialogRef.close();
+    };
+    LoginFormComponent.prototype.ngOnInit = function () {
+        this.failed = false;
+        this.key = '';
+    };
+    return LoginFormComponent;
+}());
+LoginFormComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_11" /* Component */])({
+        selector: 'app-login-form',
+        template: __webpack_require__("../../../../../src/app/login-form/login-form.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/login-form/login-form.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_material__["m" /* MdDialogRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_material__["m" /* MdDialogRef */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_login_login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_login_login_service__["a" /* LoginService */]) === "function" && _b || Object])
+], LoginFormComponent);
+
+var _a, _b;
+//# sourceMappingURL=login-form.component.js.map
 
 /***/ }),
 
@@ -843,12 +949,83 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../src/app/services/login/login.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__ = __webpack_require__("../../../../ts-md5/dist/md5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var LoginService = (function () {
+    function LoginService(http) {
+        this.http = http;
+        this.observers = [];
+        this.loggedIn = false;
+        this.reportAuth = false;
+        this.serviceAuth = false;
+        this.usageAuth = false;
+    }
+    LoginService.prototype.update = function () {
+        for (var _i = 0, _a = this.observers; _i < _a.length; _i++) {
+            var observer = _a[_i];
+            observer.update();
+        }
+    };
+    LoginService.prototype.subscribe = function (obj) {
+        this.observers.push(obj);
+    };
+    LoginService.prototype.login = function (password, callback) {
+        var parent = this;
+        var hash = __WEBPACK_IMPORTED_MODULE_2_ts_md5_dist_md5__["Md5"].hashStr(password);
+        this.http.post('/login/', {
+            hash: hash
+        }).subscribe(function (res) {
+            var data = res.json();
+            if (data.key) {
+                parent.loggedIn = true;
+                parent.key = data.key;
+                parent.reportAuth = data.reportAuth;
+                parent.serviceAuth = data.serviceAuth;
+                parent.usageAuth = data.usageAuth;
+            }
+            parent.update();
+            if (typeof callback == 'function')
+                callback(res);
+        });
+    };
+    return LoginService;
+}());
+LoginService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */]) === "function" && _a || Object])
+], LoginService);
+
+var _a;
+//# sourceMappingURL=login.service.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/report/report.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login_service__ = __webpack_require__("../../../../../src/app/services/login/login.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReportService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -861,10 +1038,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var ReportService = (function () {
-    function ReportService(http) {
+    function ReportService(http, loginService) {
         this.http = http;
+        this.loginService = loginService;
         this.observers = [];
+        loginService.subscribe(this);
     }
     ReportService.prototype.update = function () {
         for (var _i = 0, _a = this.observers; _i < _a.length; _i++) {
@@ -882,41 +1062,65 @@ var ReportService = (function () {
     // 		callback("");
     // }
     ReportService.prototype.updateReport = function (report, callback) {
-        var parent = this;
-        this.http.post('/reports/update', report).subscribe(function (res) {
-            parent.update();
-            if (typeof callback == 'function')
-                callback(res);
-        });
+        if (this.loginService.reportAuth) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
+            headers.append('key', this.loginService.key);
+            var parent = this;
+            this.http.post('/reports/update', report, {
+                headers: headers
+            }).subscribe(function (res) {
+                parent.update();
+                if (typeof callback == 'function')
+                    callback(res);
+            });
+        }
     };
     ReportService.prototype.getAllReports = function (callback) {
-        this.http.get('/reports/all').subscribe(function (res) {
-            callback(res.json());
-        });
+        if (this.loginService.reportAuth) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
+            headers.append('key', this.loginService.key);
+            this.http.get('/reports/all', {
+                headers: headers
+            }).subscribe(function (res) {
+                callback(res.json());
+            });
+        }
     };
     ReportService.prototype.getInterimReport = function (callback) {
-        this.http.get('/reports/interim').subscribe(function (res) {
-            // console.log(res.json())
-            callback(res.json());
-        });
+        if (this.loginService.reportAuth) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
+            headers.append('key', this.loginService.key);
+            this.http.get('/reports/interim', {
+                headers: headers
+            }).subscribe(function (res) {
+                // console.log(res.json())
+                callback(res.json());
+            });
+        }
     };
     ;
     ReportService.prototype.insertReport = function (report, callback) {
-        var parent = this;
-        this.http.post('/reports/insert', report).subscribe(function (res) {
-            parent.update();
-            if (typeof callback == 'function')
-                callback(res);
-        });
+        if (this.loginService.reportAuth) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
+            headers.append('key', this.loginService.key);
+            var parent = this;
+            this.http.post('/reports/insert', report, {
+                headers: headers
+            }).subscribe(function (res) {
+                parent.update();
+                if (typeof callback == 'function')
+                    callback(res);
+            });
+        }
     };
     return ReportService;
 }());
 ReportService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__login_login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__login_login_service__["a" /* LoginService */]) === "function" && _b || Object])
 ], ReportService);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=report.service.js.map
 
 /***/ }),
@@ -957,6 +1161,7 @@ ScreenSizeService = __decorate([
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login_service__ = __webpack_require__("../../../../../src/app/services/login/login.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ServiceService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -969,10 +1174,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var ServiceService = (function () {
-    function ServiceService(http) {
+    function ServiceService(http, loginService) {
         this.http = http;
+        this.loginService = loginService;
         this.observers = [];
+        loginService.subscribe(this);
     }
     ServiceService.prototype.update = function () {
         for (var _i = 0, _a = this.observers; _i < _a.length; _i++) {
@@ -981,28 +1189,46 @@ var ServiceService = (function () {
         }
     };
     ServiceService.prototype.addService = function (service, callback) {
-        var parent = this;
-        this.http.post('/service/insert', service).subscribe(function (res) {
-            parent.update();
-            if (typeof callback == 'function')
-                callback(res);
-        });
+        if (this.loginService.serviceAuth) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
+            headers.append('key', this.loginService.key);
+            var parent = this;
+            this.http.post('/service/insert', service, {
+                headers: headers
+            }).subscribe(function (res) {
+                parent.update();
+                if (typeof callback == 'function')
+                    callback(res);
+            });
+        }
     };
     ServiceService.prototype.updateService = function (service, callback) {
-        var parent = this;
-        this.http.post('/service/update', service).subscribe(function (res) {
-            parent.update();
-            if (typeof callback == 'function')
-                callback(res);
-        });
+        if (this.loginService.serviceAuth) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
+            headers.append('key', this.loginService.key);
+            var parent = this;
+            this.http.post('/service/update', service, {
+                headers: headers
+            }).subscribe(function (res) {
+                parent.update();
+                if (typeof callback == 'function')
+                    callback(res);
+            });
+        }
     };
     ServiceService.prototype.getOpenServices = function (callback) {
-        this.http.get('/service/open').subscribe(function (res) {
-            if (Array.isArray(res.json()))
-                callback(res.json());
-            else
-                callback([]);
-        });
+        if (this.loginService.serviceAuth) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
+            headers.append('key', this.loginService.key);
+            this.http.get('/service/open', {
+                headers: headers
+            }).subscribe(function (res) {
+                if (Array.isArray(res.json()))
+                    callback(res.json());
+                else
+                    callback([]);
+            });
+        }
     };
     ServiceService.prototype.subscribe = function (obj) {
         this.observers.push(obj);
@@ -1011,10 +1237,10 @@ var ServiceService = (function () {
 }());
 ServiceService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__login_login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__login_login_service__["a" /* LoginService */]) === "function" && _b || Object])
 ], ServiceService);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=service.service.js.map
 
 /***/ }),
@@ -1025,6 +1251,7 @@ var _a;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login_service__ = __webpack_require__("../../../../../src/app/services/login/login.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsageService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1037,24 +1264,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var UsageService = (function () {
-    function UsageService(http) {
+    function UsageService(http, loginService) {
         this.http = http;
+        this.loginService = loginService;
+        this.observers = [];
+        loginService.subscribe(this);
     }
+    UsageService.prototype.update = function () {
+        for (var _i = 0, _a = this.observers; _i < _a.length; _i++) {
+            var observer = _a[_i];
+            observer.update();
+        }
+    };
     UsageService.prototype.addUsage = function (usage, callback) {
-        this.http.post('/usage/insert', usage).subscribe(function (res) {
-            if (typeof callback == 'function')
-                callback(res);
-        });
+        if (this.loginService.usageAuth) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]();
+            headers.append('key', this.loginService.key);
+            this.http.post('/usage/insert', usage, {
+                headers: headers
+            }).subscribe(function (res) {
+                if (typeof callback == 'function')
+                    callback(res);
+            });
+        }
     };
     return UsageService;
 }());
 UsageService = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__login_login_service__["a" /* LoginService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__login_login_service__["a" /* LoginService */]) === "function" && _b || Object])
 ], UsageService);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=usage.service.js.map
 
 /***/ }),

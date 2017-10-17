@@ -21,11 +21,13 @@ import { MdToolbarModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { InterimReportFormComponent } from './interim-report-form/interim-report-form.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 import { ReportFormComponent } from './report-form/report-form.component';
 import { ServiceFormComponent } from './service-form/service-form.component';
 import { ServiceReviewFormComponent } from './service-review-form/service-review-form.component';
 import { UsageFormComponent } from './usage-form/usage-form.component';
 
+import { LoginService } from './services/login/login.service';
 import { ReportService } from './services/report/report.service';
 import { UsageService } from './services/usage/usage.service';
 import { ScreenSizeService } from './services/screen-size/screen-size.service';
@@ -41,9 +43,11 @@ import { ObjectIteratorPipe } from './pipes/object-iterator/object-iterator.pipe
 		ServiceFormComponent,
 		ServiceReviewFormComponent,
 		UsageFormComponent,
-		ObjectIteratorPipe
+		ObjectIteratorPipe,
+		LoginFormComponent
 	],
 	entryComponents: [
+		LoginFormComponent,
 		InterimReportFormComponent,
 		ReportFormComponent,
 		ServiceFormComponent,
@@ -80,6 +84,7 @@ import { ObjectIteratorPipe } from './pipes/object-iterator/object-iterator.pipe
 		])
 	],
 	providers: [
+		LoginService,
 		ReportService,
 		UsageService,
 		ScreenSizeService,

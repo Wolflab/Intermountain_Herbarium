@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
+
+import { LoginService } from '../login/login.service';
 
 @Injectable()
 export class ReportService {
 	observers: any[];
 
-	constructor(private http: Http) {
+	constructor(private http: Http,
+			public loginService: LoginService) {
 		this.observers = [];
+		loginService.subscribe(this);
 	}
 
-	private update(){
+	public update(){
 		for(var observer of this.observers){
 			observer.update();
 		}
@@ -27,44 +31,72 @@ export class ReportService {
 	// }
 
 	updateReport(report, callback?){
-		var parent = this;
-		this.http.post(
-			'/reports/update',
-			report
-		).subscribe(function(res){
-			parent.update();
-			if(typeof callback == 'function')
-				callback(res);
-		});
+		if(this.loginService.reportAuth){
+			let headers = new Headers();
+			headers.append('key', this.loginService.key);
+			var parent = this;
+			this.http.post(
+				'/reports/update',
+				report,
+				{
+					headers: headers
+				}
+			).subscribe(function(res){
+				parent.update();
+				if(typeof callback == 'function')
+					callback(res);
+			});
+		}
 	}
 
 	getAllReports(callback?){
-		this.http.get(
-			'/reports/all',
-		).subscribe(function(res){
-			callback(res.json());
-		});
+		if(this.loginService.reportAuth){
+			let headers = new Headers();
+			headers.append('key', this.loginService.key);
+			this.http.get(
+				'/reports/all',
+				{
+					headers: headers
+				}
+			).subscribe(function(res){
+				callback(res.json());
+			});
+		}
 	}
 
 	getInterimReport(callback?){
-		this.http.get(
-			'/reports/interim',
-		).subscribe(function(res){
-			// console.log(res.json())
-			callback(res.json());
-		});
+		if(this.loginService.reportAuth){
+			let headers = new Headers();
+			headers.append('key', this.loginService.key);
+			this.http.get(
+				'/reports/interim',
+				{
+					headers: headers
+				}
+			).subscribe(function(res){
+				// console.log(res.json())
+				callback(res.json());
+			});
+		}
 	};
 
 	insertReport(report, callback?){
-		var parent = this;
-		this.http.post(
-			'/reports/insert',
-			report
-		).subscribe(function(res){
-			parent.update();
-			if(typeof callback == 'function')
-				callback(res);
-		});
+		if(this.loginService.reportAuth){
+			let headers = new Headers();
+			headers.append('key', this.loginService.key);
+			var parent = this;
+			this.http.post(
+				'/reports/insert',
+				report,
+				{
+					headers: headers
+				}
+			).subscribe(function(res){
+				parent.update();
+				if(typeof callback == 'function')
+					callback(res);
+			});
+		}
 	}
 
 }

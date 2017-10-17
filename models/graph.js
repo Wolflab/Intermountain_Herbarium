@@ -118,21 +118,27 @@ const d3n = new D3Node({
 		.attr('d', valueline2);
 
 	// Add the valueline3 path.
-	svg.append('path')
-		.data([data])
-		.attr('fill', 'none')
-		.attr('class', 'line')
-		.attr('stroke-width', lineWidth)
-		.style('stroke', 'green')
-		.attr('d', valueline3);
+	// svg.append('path')
+	// 	.data([data])
+	// 	.attr('fill', 'none')
+	// 	.attr('class', 'line')
+	// 	.attr('stroke-width', lineWidth)
+	// 	.style('stroke', 'green')
+	// 	.attr('d', valueline3);
 
 	// Add the X Axis
 	svg.append('g')
 		.attr('transform', 'translate(0,' + height + ')')
+		// .style("font", "24px times")
+		.style("font-size", "6px")
+		.attr("class", "axis")
 		.call(d3.axisBottom(x));
 
 	// Add the Y Axis
 	svg.append('g')
+		// .style("font", "24px times")
+		.style("font-size", "6px")
+		.attr("class", "axis")
 		.call(d3.axisLeft(y));
 
 	//Add legend

@@ -1,0 +1,32 @@
+<div>
+	<form #loginForm="ngForm" *ngIf="!waiting">
+		<h2 md-dialog-title>Login Dialog</h2>
+		<hr>
+		<md-dialog-content>
+			<md-grid-list cols=6 rowHeight="75px">
+				<md-grid-tile [colspan]=6 *ngIf="failed">
+					<h4 style="color: red;">Incorrect Password</h4>
+				</md-grid-tile>
+				<md-grid-tile [colspan]=6>
+					<md-input-container>
+						<input mdInput required type="password" name="password" placeholder="Password" ngModel>
+						<md-error>This is required</md-error>
+					</md-input-container>
+				</md-grid-tile>
+			</md-grid-list>
+		</md-dialog-content>
+		<hr>
+		<md-dialog-actions>
+			<button md-raised-button (click)="onCloseCancel()">Cancel</button>
+			<span style="flex: 1 1 auto;"></span>
+			<button md-raised-button type="button" color="primary" (click)="submit(loginForm)">Submit</button>
+		</md-dialog-actions>
+	</form>
+	<div *ngIf="waiting">
+		<md-grid-list cols=1 rowHeight="350px">
+			<md-grid-tile>
+				<md-spinner color="primary"></md-spinner>
+			</md-grid-tile>
+		</md-grid-list>
+	</div>
+</div>

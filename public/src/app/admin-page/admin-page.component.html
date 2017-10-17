@@ -1,7 +1,10 @@
 <div>
 	<md-card>
+		<div *ngIf="!loginService.loggedIn && !loginBeenCalled">
+			<div *ngIf="openLoginDialog()"></div>
+		</div>
 		<md-tab-group>
-			<md-tab label="Service">
+			<md-tab label="Service" *ngIf="loginService.serviceAuth">
 				<div class="content">
 					<md-grid-list cols=6 rowHeight="50px">
 						<md-grid-tile [colspan]="screenSizeService.mobile ? 2 : 1">
@@ -33,12 +36,12 @@
 					</div>
 				</div>
 			</md-tab>
-			<md-tab label="Usage">
+			<md-tab label="Usage" *ngIf="loginService.usageAuth">
 				<div class="content">
 					<button md-raised-button color="primary" (click)="openUsageDialog()">Add Usage</button>
 				</div>
 			</md-tab>			
-			<md-tab label="Reports">
+			<md-tab label="Reports" *ngIf="loginService.reportAuth">
 				<div class="content">
 					<md-grid-list cols=6 rowHeight="50px">
 							<md-grid-tile [colspan]="screenSizeService.mobile ? 2 : 1">

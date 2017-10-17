@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 import { MdDialog } from '@angular/material';
 
-
+import { LoginFormComponent } from '../login-form/login-form.component';
 import { InterimReportFormComponent } from '../interim-report-form/interim-report-form.component';
 import { ReportFormComponent } from '../report-form/report-form.component';
 import { ServiceFormComponent } from '../service-form/service-form.component';
 import { ServiceReviewFormComponent } from '../service-review-form/service-review-form.component';
 import { UsageFormComponent } from '../usage-form/usage-form.component';
 
+import { LoginService } from '../services/login/login.service';
 import { ReportService } from '../services/report/report.service';
 import { ScreenSizeService } from '../services/screen-size/screen-size.service';
 import { ServiceService } from '../services/service/service.service';
@@ -20,10 +21,12 @@ import { UsageService } from '../services/usage/usage.service';
 	styleUrls: ['./admin-page.component.css']
 })
 export class AdminPageComponent implements OnInit {
+	loginBeenCalled: boolean;
 	openServices: any[];
 	reports: Object[];
 
 	constructor(public dialog: MdDialog,
+			public loginService: LoginService,
 			public reportService: ReportService,
 			public screenSizeService: ScreenSizeService, 
 			public serviceService: ServiceService,
@@ -44,6 +47,16 @@ export class AdminPageComponent implements OnInit {
 
 	ngOnInit() {
 		this.update();
+		this.loginBeenCalled = false;
+	}
+
+	openLoginDialog(): void {
+		if(!this.loginBeenCalled){
+			this.loginBeenCalled = true;
+			let dialogRef = this.dialog.open(LoginFormComponent, {
+				width: '600px',
+			});
+		}
 	}
 
 	openServiceDialog(): void {
