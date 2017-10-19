@@ -15,6 +15,10 @@ exports.update = function(report){
 	);
 }
 
+exports.get = function(fiscalYear){
+	return db.reports.find({fiscalYear: fiscalYear.toString()});
+}
+
 exports.getAll = function(){
 	return db.reports.find({}, {sort: {"fiscalYear": -1}});
 }

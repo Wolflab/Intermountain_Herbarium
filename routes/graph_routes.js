@@ -28,4 +28,10 @@ router.get('/total/svg', async function(req, res){
 // 	});
 // });
 
+router.get('/report/:year', async function(req, res){
+	graph.createCsv(req.params.year, function(){
+		res.download(__dirname + '/../output/report.csv', 'report.csv');
+	});
+});
+
 module.exports = router;

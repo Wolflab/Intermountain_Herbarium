@@ -4,6 +4,75 @@ const D3Node = require('d3-node');
 
 const reports = require('./reports');
 
+exports.createCsv = async function(year, callback){
+	var data = await reports.get(year);
+	var previousYear = await reports.get(parseInt(year)-1);
+	data = data[0];
+	previousYear = previousYear[0];
+	var fileData = ',Fiscal Year: ' + data.fiscalYear + ',\n';
+	for(var type in data.report){
+		type = data.report[type];
+		fileData += '\n\n,' + type.title + ',\n';
+		for(var activity in type.activities){
+			activity = type.activities[activity];
+			if(activity.title)
+				fileData += activity.title + ',,\n';
+			var totals = {};
+			for(var datum in activity.data){
+				datum = activity.data[datum];
+				if(activity.title != 'Group Usage'){
+					fileData += datum.title.replace(/,/g, '.');
+					for(var input in datum.inputs){
+						input = datum.inputs[input];
+						fileData += ',' + input.placeholder + ':';
+						if(!input.value)
+							input.value = 0;
+						fileData += input.value;
+						if(totals[input.placeholder]){
+							totals[input.placeholder].value += input.value;
+						}else{
+							totals[input.placeholder] = {
+								placeholder: input.placeholder,
+								value: input.value
+							}
+						}
+						if(activity.title == 'Database' || !activity.title){
+							var prevYearTotal = previousYear.report[type][activity][datum][input].value;
+							if(!prevYearTotal)
+								prevYearTotal = 0;
+							fileData += ',Yearly Accumulation: ' + (input.value - prevYearTotal) + ',';
+						}
+					}
+					fileData += '\n';
+				}else{
+					fileData += datum.title + ',';
+					if(datum.inputs.length > 1)
+						fileData += ',Total Count: ' + (datum.inputs.length-1).toString() + '\n';
+					else
+						fileData += ',\n'
+					for(var group of datum.inputs){
+						if(group.groupName)
+							fileData += ',' + group.groupName + ',\n';
+					}
+				}
+			}
+			if(activity.title!= 'Database' && activity.title){
+				fileData += 'Totals:,';
+				for(var input in totals){
+					input = totals[input];
+					fileData += input.placeholder + ':';
+					if(!input.value)
+						input.value = 0;
+					fileData += input.value + ',';
+				}
+				fileData += '\n';
+			}
+		}
+	}
+	fs.writeFileSync('./output/report.csv', fileData);
+	setTimeout(callback, 1000);
+}
+
 exports.createTotalGraph = async function(callback){
 	var data = await reports.getTotalDataset();
 	// create output files
@@ -222,9 +291,10 @@ const d3n = new D3Node({
 	// format the data
 	data.forEach(function(d) {
 		d.fiscalYear = parseTime(d.fiscalYear);
-		d.specimenTotal = +d.specimenTotal;
-		// d.open = +d.open;
-		// d.test = +d.test;
+		if(d.specimenTotal)
+			d.specimenTotal = +d.specimenTotal;
+		else
+			d.specimenTotal = 0;
 	});
 
 	// Scale the range of the data
