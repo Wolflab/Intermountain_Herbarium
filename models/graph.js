@@ -10,20 +10,20 @@ exports.createCsv = async function(year, callback){
 	data = data[0];
 	previousYear = previousYear[0];
 	var fileData = ',Fiscal Year: ' + data.fiscalYear + ',\n';
-	for(var type in data.report){
-		type = data.report[type];
+	for(var typeKey in data.report){
+		var type = data.report[typeKey];
 		fileData += '\n\n,' + type.title + ',\n';
-		for(var activity in type.activities){
-			activity = type.activities[activity];
+		for(var activityKey in type.activities){
+			var activity = type.activities[activityKey];
 			if(activity.title)
 				fileData += activity.title + ',,\n';
 			var totals = {};
-			for(var datum in activity.data){
-				datum = activity.data[datum];
+			for(var datumKey in activity.data){
+				var datum = activity.data[datumKey];
 				if(activity.title != 'Group Usage'){
 					fileData += datum.title.replace(/,/g, '.');
-					for(var input in datum.inputs){
-						input = datum.inputs[input];
+					for(var inputKey in datum.inputs){
+						var inputKey = datum.inputs[input];
 						fileData += ',' + input.placeholder + ':';
 						if(!input.value)
 							input.value = 0;
@@ -37,7 +37,7 @@ exports.createCsv = async function(year, callback){
 							}
 						}
 						if(activity.title == 'Database' || !activity.title){
-							var prevYearTotal = previousYear.report[type][activity][datum][input].value;
+							var prevYearTotal = previousYear.report[typeKey][activityKey][datumKey][inputKey].value;
 							if(!prevYearTotal)
 								prevYearTotal = 0;
 							fileData += ',Yearly Accumulation: ' + (input.value - prevYearTotal) + ',';
