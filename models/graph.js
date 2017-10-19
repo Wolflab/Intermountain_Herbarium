@@ -33,7 +33,7 @@ exports.createCsv = async function(year, callback){
 						}else{
 							totals[input.placeholder] = {
 								placeholder: input.placeholder,
-								value: input.value
+								value: parseInt(input.value)
 							}
 						}
 						if(activity.title == 'Database' || !activity.title){
