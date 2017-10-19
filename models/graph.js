@@ -45,11 +45,7 @@ exports.createCsv = async function(year, callback){
 					}
 					fileData += '\n';
 				}else{
-					fileData += datum.title + ',';
-					if(datum.inputs.length > 1)
-						fileData += ',Total Count: ' + (datum.inputs.length-1).toString() + '\n';
-					else
-						fileData += ',\n'
+					fileData += ',,Total Count: ' + datum.inputs.length.toString() + '\n';
 					for(var group of datum.inputs){
 						if(group.groupName)
 							fileData += ',' + group.groupName + ',\n';
