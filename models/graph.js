@@ -45,15 +45,18 @@ exports.createCsv = async function(year, callback){
 					}
 					fileData += '\n';
 				}else{
-					fileData += datum.title + ',';
-					fileData += ',Total Count: ' + datum.inputs.length.toString() + '\n';
+					fileData += datum.title + ',,\n';
+					var count = 0;
 					for(var group of datum.inputs){
-						if(group.groupName)
+						if(group.groupName){
 							fileData += ',' + group.groupName + ',\n';
+							count += 1;
+						}
 					}
+					fileData += ',Total Count: ' + count + ',\n';
 				}
 			}
-			if(activity.title!= 'Database' && activity.title){
+			if(activity.title!= 'Database' && activity.title && activity.title != 'Group Usage'){
 				fileData += 'Totals:,';
 				for(var input in totals){
 					input = totals[input];
