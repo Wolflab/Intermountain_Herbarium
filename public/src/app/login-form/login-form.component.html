@@ -1,4 +1,4 @@
-<div>
+<div (keyup.enter)="submit(loginForm)">
 	<form #loginForm="ngForm" *ngIf="!waiting">
 		<h2 md-dialog-title>Login Dialog</h2>
 		<hr>
