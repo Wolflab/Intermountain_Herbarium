@@ -29,7 +29,7 @@ exports.createCsv = async function(year, callback){
 							input.value = 0;
 						fileData += input.value;
 						if(totals[input.placeholder]){
-							totals[input.placeholder].value += input.value;
+							totals[input.placeholder].value += parseInt(input.value);
 						}else{
 							totals[input.placeholder] = {
 								placeholder: input.placeholder,
@@ -37,7 +37,7 @@ exports.createCsv = async function(year, callback){
 							}
 						}
 						if(activity.title == 'Database' || !activity.title){
-							var prevYearTotal = previousYear.report[typeKey][activityKey][datumKey][inputKey].value;
+							var prevYearTotal = previousYear.report[typeKey].activities[activityKey].data[datumKey].inputs[inputKey].value;
 							if(!prevYearTotal)
 								prevYearTotal = 0;
 							fileData += ',Yearly Accumulation: ' + (input.value - prevYearTotal) + ',';
