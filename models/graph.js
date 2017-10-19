@@ -23,7 +23,7 @@ exports.createCsv = async function(year, callback){
 				if(activity.title != 'Group Usage'){
 					fileData += datum.title.replace(/,/g, '.');
 					for(var inputKey in datum.inputs){
-						var inputKey = datum.inputs[input];
+						var input = datum.inputs[inputKey];
 						fileData += ',' + input.placeholder + ':';
 						if(!input.value)
 							input.value = 0;
