@@ -116,7 +116,7 @@ const d3n = new D3Node({
 	const width = _width - margin.left - margin.right;
 	const height = _height - margin.top - margin.bottom;
 
-	var svg = d3n.createSVG(_width, _height)
+	const svg = d3n.createSVG(_width, _height)
 		.append('g')
 		.attr('transform', `translate(${margin.left}, ${margin.top})`);
 
